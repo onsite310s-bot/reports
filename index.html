@@ -245,6 +245,12 @@ ol.neg.aware li::before{color:#e48a3c}
   .wtrack figcaption{font-size:6.5pt;text-align:left}
   .wbtn,.wthumbs,.wnote{display:none!important}
 }
+.mto{display:grid;gap:6px}
+.mrow{display:grid;grid-template-columns:1.1fr 1fr 1.4fr;gap:6px;align-items:center}
+.mrow span{font-size:13px;font-weight:600;display:grid;line-height:1.2}.mrow small{font-weight:400;color:#7c8a90;font-size:11px}
+.mrow select.fails{border-color:#d9453b;background:#fdeceb}.mrow select.meets{border-color:#3d9a62}
+.mrow .auto{font-size:11px;color:#b3261e;grid-column:1/-1;margin-top:-3px}
+@media (max-width:560px){.mrow{grid-template-columns:1fr 1fr}.mrow input{grid-column:1/-1}}
 .pubm{position:fixed;inset:0;background:rgba(0,0,0,.6);display:grid;place-items:center;z-index:50;padding:16px}
 .pubm[hidden]{display:none}
 .pubc{background:#fff;color:#151a1e;border-radius:10px;padding:18px;max-width:440px;width:100%;display:grid;gap:10px;font:400 14px/1.45 var(--body)}
@@ -301,6 +307,35 @@ ul.good li::before{content:"✓";position:absolute;left:12px;top:8px;color:#4fb6
 .verdict p{margin:0 0 6px;font-size:10pt}
 .verdict ul{margin:6px 0 0;padding-left:18px;display:grid;gap:3px;font-size:10pt}
 .verdict .vnote{margin-top:10px;padding-top:10px;border-top:1px solid var(--r-line);font-size:10pt}
+/* MTO + OMVIC */
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.mt{display:flex;gap:10px;align-items:center;background:var(--r-panel);border-radius:5px;padding:9px 11px;border-left:4px solid var(--r-line);break-inside:avoid}
+.mt i{font-style:normal;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:800 12pt/1 var(--body);flex:none;background:#2a363d;color:#90a0a8}
+.mt.meets{border-left-color:#4fb67c}.mt.meets i{background:#4fb67c;color:#0f1417}
+.mt.fails{border-left-color:#e2574f;background:#2a1a1a}.mt.fails i{background:#e2574f;color:#fff}
+.mt span{display:grid;gap:2px}.mt b{font:700 10.5pt/1.15 var(--display);text-transform:uppercase;letter-spacing:.02em}.mt small{font:500 7.5pt/1.2 var(--mono);color:var(--r-muted)}
+.mfails{display:grid;gap:6px;margin-top:8px}.mfails>div{background:var(--r-panel);border-left:4px solid #e2574f;border-radius:4px;padding:8px 12px;break-inside:avoid}.mfails p{margin:3px 0 0;font-size:9.5pt}
+.rights{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
+.rights>div{background:var(--r-panel2);border-radius:4px;padding:9px 12px;font-size:9.3pt;color:var(--r-ink);break-inside:avoid}
+.rights b{display:block;font:700 10.5pt/1.2 var(--display);text-transform:uppercase;letter-spacing:.03em;color:var(--r-accent);margin-bottom:2px}
+.fc.omv{border-left-color:#d8c14a}.fc.omv .fi{background:rgba(216,193,74,.15);color:#e5d36a}.fc.omv .fs{background:#e5d36a}
+.callout{margin-top:10px;border-radius:5px;padding:10px 14px;font-size:9.6pt;border-left:5px solid;background:var(--r-panel);break-inside:avoid}
+.callout b{display:block;font:700 11pt/1.2 var(--display);text-transform:uppercase;margin-bottom:2px}
+.callout.r{border-left-color:#e2574f}.callout.r b{color:#ff7a70}.callout.g{border-left-color:#4fb67c}.callout.g b{color:#6fd19a}
+@media (max-width:700px){.mgrid{grid-template-columns:1fr 1fr}.rights{grid-template-columns:1fr}}
+/* focus cards */
+.fcards{display:grid;gap:8px}
+.fc{display:grid;grid-template-columns:48px 1fr;gap:12px;background:var(--r-panel);border-radius:6px;padding:12px 14px;border-left:5px solid;break-inside:avoid;align-items:start}
+.fc.fix{border-left-color:#f0a35c}.fc.aware{border-left-color:#5aa3b8}
+.fc .fi{width:48px;height:48px;border-radius:50%;display:grid;place-items:center}
+.fc.fix .fi{background:rgba(240,163,92,.16);color:#f0a35c}.fc.aware .fi{background:rgba(90,163,184,.16);color:#7cc2d6}
+.fc .fh{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.fc .fh b{font:700 13pt/1.15 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.fc .fs{font:600 7pt/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;padding:4px 6px;border-radius:3px;white-space:nowrap;color:#111}
+.fc.fix .fs{background:#f0a35c}.fc.aware .fs{background:#7cc2d6}
+.fc p{margin:4px 0 0;font-size:9.8pt}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.chips span{font:500 7.8pt/1 var(--mono);background:var(--r-panel2);border:1px solid var(--r-line);border-radius:999px;padding:5px 9px;color:var(--r-ink)}
 /* negotiation scripts */
 ol.neg p.say{margin-top:6px;background:#10171b;border:1px solid var(--r-line);border-radius:4px;padding:7px 10px;font-style:italic;color:#e9eef0;display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
 ol.neg p.say::before{content:"Say: ";font-style:normal;font-weight:700;color:var(--r-accent);margin-right:2px;white-space:nowrap}
@@ -317,8 +352,25 @@ ol.neg p.say span{flex:1}
 .bands .rg{font:500 8pt/1.2 var(--mono);color:var(--r-ink)}
 .bands small{font-size:8.3pt;line-height:1.4;color:var(--r-muted)}
 .bands .on{background:var(--r-panel2)}
-.pill.heavy{background:#b3261e;color:#fff}
-.prow.heavy .pv{color:#ff6b61}
+.bands6{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px}
+.bands6>div{background:var(--r-panel);border-radius:4px;padding:9px 11px;display:grid;gap:3px;align-content:start;border-left:5px solid var(--bc);opacity:.62;break-inside:avoid}
+.bands6>div.on{opacity:1;background:var(--r-panel2);box-shadow:inset 0 0 0 1px var(--bc)}
+.bands6 .bh{display:flex;justify-content:space-between;gap:6px;align-items:baseline}
+.bands6 b{font:700 10.5pt/1.15 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.bands6 .bn{font:600 7pt/1 var(--mono);text-transform:uppercase;background:var(--bc);color:#111;padding:3px 5px;border-radius:3px;white-space:nowrap}
+.bands6 .rg{font:500 7.8pt/1.2 var(--mono);color:var(--r-ink)}
+.bands6 small{font-size:8.2pt;line-height:1.4;color:var(--r-muted)}
+.pscale{margin:14px 0 12px;break-inside:avoid}
+.bwrap{break-inside:avoid}
+.pdots{position:relative}
+.pdots i{position:absolute;width:10px;height:10px;border-radius:50%;transform:translateX(-50%);box-shadow:0 0 0 2px #0f1417}
+.pbar{position:relative;height:10px;border-radius:5px;overflow:hidden;background:#1c262c}
+.pbar span{position:absolute;top:0;bottom:0}
+.pticks{position:relative;height:16px}
+.pticks u{position:absolute;top:3px;transform:translateX(-50%);font:500 6.5pt/1 var(--mono);color:var(--r-muted);text-decoration:none;white-space:nowrap}
+.pticks u:last-child{transform:translateX(-100%)}
+.pnames{display:grid;grid-template-columns:repeat(6,1fr);font:500 6.8pt/1.2 var(--mono);color:var(--r-muted);text-transform:uppercase;letter-spacing:.04em;text-align:center;margin-top:2px}
+.prow .pv small{font-size:7pt}
 /* tires */
 .tires2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .t2{background:var(--r-panel);border-radius:4px;padding:10px 12px;border-left:4px solid var(--r-line);display:grid;gap:6px;break-inside:avoid}
@@ -345,7 +397,7 @@ table.ft.low td{color:var(--r-muted)}
 .cexp div{background:var(--r-panel);border-radius:4px;padding:7px 10px;font-size:8.5pt;color:var(--r-muted)}
 .cexp b{color:var(--r-ink);display:block;font-size:9pt}
 .big2{font:700 15pt/1 var(--display)}
-@media (max-width:700px){.bands,.cexp{grid-template-columns:1fr 1fr}.tires2,.tips{grid-template-columns:1fr}.verdict .vl{font-size:21pt}}
+@media (max-width:700px){.bands6{grid-template-columns:1fr 1fr}.bands,.cexp{grid-template-columns:1fr 1fr}.tires2,.tips{grid-template-columns:1fr}.verdict .vl{font-size:21pt}}
 @media print{.cp{display:none}.verdict,.t2,.bands,.tips li{break-inside:avoid}.tips{display:grid}}
 ul.good li{background:var(--r-panel);border-left:3px solid #4fb67c;border-radius:4px;padding:8px 12px;font-size:9.5pt}
 ul.good li b{font:700 11pt/1 var(--display);text-transform:uppercase;letter-spacing:.03em;margin-right:6px}
@@ -417,7 +469,12 @@ Offer 21,500 or walk"></textarea>
       <p class="hint" id="verdictWhy"></p>
     </div></details>
 
-    <details class="p" open><summary>5 · Photos <small id="phCount"></small></summary><div class="pb">
+    <details class="p" open><summary>5 · Ontario safety standard (MTO) <small id="mtoCount"></small></summary><div class="pb">
+      <p class="hint">Measured against the MTO Passenger / Light-Duty Vehicle Inspection Standard. Tread under 2 mm and active airbag, ABS or stability-control codes are marked automatically.</p>
+      <div class="mto"><div class="mrow"><span>Powertrain<small>Section 1</small></span><select id="sf_pt"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_pt" placeholder="Note if it doesn't meet"></div><div class="mrow"><span>Suspension<small>Section 2</small></span><select id="sf_susp"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_susp" placeholder="Note if it doesn't meet"></div><div class="mrow"><span>Brakes<small>Section 3</small></span><select id="sf_brk"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_brk" placeholder="Note if it doesn't meet"></div><div class="mrow"><span>Steering<small>Section 4</small></span><select id="sf_str"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_str" placeholder="Note if it doesn't meet"></div><div class="mrow"><span>Instruments & auxiliary<small>Section 5</small></span><select id="sf_inst"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_inst" placeholder="Note if it doesn't meet"></div><div class="mrow"><span>Lamps<small>Section 6</small></span><select id="sf_lamp"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_lamp" placeholder="Note if it doesn't meet"></div><div class="mrow"><span>Electrical<small>Section 7</small></span><select id="sf_elec"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_elec" placeholder="Note if it doesn't meet"></div><div class="mrow"><span>Body, glass & restraints<small>Section 8</small></span><select id="sf_body"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_body" placeholder="Note if it doesn't meet"></div><div class="mrow"><span>Tires & wheels<small>Section 9</small></span><select id="sf_tire"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_tire" placeholder="Note if it doesn't meet"></div></div>
+      <button type="button" id="allMeet" style="margin-top:8px;font:600 13px/1 var(--body);padding:10px 14px;border-radius:6px;border:1px solid #ccd5d9;background:#fff;cursor:pointer">Mark the rest as Meets</button>
+    </div></details>
+    <details class="p" open><summary>6 · Photos <small id="phCount"></small></summary><div class="pb">
       <div class="drop" id="bulk"><b>Add all photos</b><span class="st">Pick them in this order: front, rear, left, right, 4 underbody, engine bay, VIN, odometer, 2 front seats, 2 rear seats, trunk. Anything after goes to additional.</span><input type="file" accept="image/*" multiple hidden></div>
       <div class="slots" id="slots"></div>
       <span class="grp">Underbody</span>
@@ -454,7 +511,7 @@ Offer 21,500 or walk"></textarea>
 
     <details class="p"><summary>Settings</summary><div class="pb">
       <div class="g2"><label>Inspection date<input id="date" type="date"></label><label>Client name (optional)<input id="client"></label></div>
-      <div class="g3"><label>Refinish from (µm)<input id="tRepaint" value="220" inputmode="numeric"></label><label>Body filler from (µm)<input id="tFiller" value="600" inputmode="numeric"></label><label>Heavy filler from (µm)<input id="tHeavy" value="1500" inputmode="numeric"></label></div>
+      <div class="g2"><label>Repainted from (µm)<input id="tRepaint" value="200" inputmode="numeric"></label><label>Body filler from (µm)<input id="tFiller" value="350" inputmode="numeric"></label></div>
       <div class="g2"><label>Battery fails below health (SOH %)<input id="failSoh" value="50" inputmode="numeric"></label><span></span></div>
       <span class="grp">Web links (GitHub Pages)</span>
       <div class="g2"><label>GitHub username<input id="ghUser" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="onsite310s"></label><label>Reports repo<input id="ghRepo" value="reports" autocapitalize="none" autocorrect="off" spellcheck="false"></label></div>
@@ -972,13 +1029,16 @@ function zonesMatch(rz,pz){
   const sideOK=!rz.side.size||(pz.side?rz.side.has(pz.side):(rz.pos.size>0||rz.parts.size>0));
   return posOK&&sideOK;
 }
-/* what each reading range means, for the customer */
+/* what each reading range means, for the customer (Nigel's ranges) */
+const MILS=um=>(um/25.4).toFixed(1);
 const PAINT_BANDS=T=>[
-  {k:'ok',name:'Factory paint',range:`under ${T.repaint} µm`,text:'Original paint. No sign of repair.'},
-  {k:'repaint',name:'Refinished',range:`${T.repaint}–${T.filler-1} µm`,text:'Extra paint on top of the factory paint. Often cosmetic (scratches, chips, a blend next to a repair), but on several panels in a row it points to accident repair.'},
-  {k:'filler',name:'Body filler (Bondo)',range:`${T.filler}–${(T.heavy||1500)-1} µm`,text:'Filler under the paint. The panel was dented and reshaped with filler instead of being replaced. This is collision damage.'},
-  {k:'heavy',name:'Heavy body filler',range:`${T.heavy||1500} µm and up (or off the scale)`,text:'A thick layer of filler. Major damage was rebuilt with filler. It can crack, shrink and trap moisture and rust underneath over time.'}];
-function paintLevel(p,T){if(p.max>=(T.heavy||1500))return 'heavy';return p.max>=T.filler?'filler':p.max>=T.repaint?'repaint':'ok'}
+  {k:'thin',name:'Very thin paint',lo:0,hi:80,col:'#8f7fe0',text:'Heavy wet-sanding, aggressive polishing, or a factory defect (common on older Japanese and Korean cars). Do not compound.'},
+  {k:'thinf',name:'Thin factory paint',lo:80,hi:100,col:'#5aa3b8',text:'Typical for modern economy cars (Honda, Toyota, Mazda, Subaru) with water-based paint. Polish with caution.'},
+  {k:'std',name:'Standard factory paint',lo:100,hi:150,col:'#4f8f74',text:'Normal for most North American and European vehicles. Safe for standard paint correction.'},
+  {k:'thick',name:'Thick factory paint',lo:150,hi:T.repaint,col:'#6f8a5a',text:'Normal for luxury brands (Porsche, Mercedes, BMW), or areas sprayed twice on the assembly line.'},
+  {k:'repaint',name:'Repainted',lo:T.repaint,hi:T.filler,col:'#e48a3c',text:'Full panel respray, heavy primer, or a very thin skim coat of glazing putty.'},
+  {k:'filler',name:'Body filler (Bondo)',lo:T.filler,hi:null,col:'#e2574f',text:'Confirms dent repair under the paint. Readings spike higher toward the center of the damage.'}].map(b=>({...b,range:b.hi==null?`${b.lo.toLocaleString()}+ µm`:b.lo?`${b.lo}–${b.hi} µm`:`Under ${b.hi} µm`,mils:({thin:'Under 3.1',thinf:'3.1–3.9',std:'4.0–5.9',thick:b.hi===200?'6.0–7.9':'6.0–'+MILS(b.hi),repaint:b.lo===200&&b.hi===350?'8.0–13.8':MILS(b.lo)+'–'+MILS(b.hi),filler:MILS(b.lo)+'+'})[b.k]+' mils'}));
+function paintLevel(p,T,status){if(status==='filler'||(!status&&p.max>=T.filler))return 'filler';if(status==='repaint'||(!status&&p.max>=T.repaint))return 'repaint';return p.max<80?'thin':p.max<100?'thinf':p.max<150?'std':'thick'}
 function paintStatus(p,median,T){
   if(p.max>=T.filler)return 'filler';
   if(p.max>=T.repaint||(median&&p.max>=Math.max(160,median*2)))return 'repaint';
@@ -986,7 +1046,7 @@ function paintStatus(p,median,T){
 }
 function crossRef(panels,accidents,T){
   const vals=panels.map(p=>p.max).sort((a,b)=>a-b); const median=vals.length?vals[Math.floor(vals.length/2)]:0;
-  const rows=panels.map(p=>({...p,status:paintStatus(p,median,T),level:paintLevel(p,T),matches:[]}));
+  const rows=panels.map(p=>{const st=paintStatus(p,median,T);return {...p,status:st,level:paintLevel(p,T,st),matches:[]}});
   const recs=accidents.map((a,i)=>({...a,i,z:recZones(a.loc,a.desc),hits:[]}));
   const noLoc=recs.filter(r=>!r.z.side.size&&!r.z.pos.size&&!r.z.parts.size&&!r.z.any);
   for(const r of rows){ if(r.status==='ok')continue; const pz=panelZones(r.panel);
@@ -996,12 +1056,13 @@ function crossRef(panels,accidents,T){
   for(const a of recs) a.verdict=a.hits.length?'confirmed':(a.z.side.size||a.z.pos.size||a.z.parts.size||a.z.any)?'not-found':'no-location';
   return {median,rows,recs};
 }
-if(typeof module!=='undefined')module.exports={statusFromByte,ocrCode,PAINT_BANDS,paintLevel,MAJOR_REPAIRS,SAY,FLAG_STATUS,expandShorthand,negotiation,parseBattery,batteryStatus,recZones,zonesMatch,panelZones,PANEL_LABEL,panelOf,parsePaint,parseTires,parseScan,parseCarfax,crossRef,parseVehicle,serviceAudit,DATE_RE};
+if(typeof module!=='undefined')module.exports={MILS,statusFromByte,ocrCode,PAINT_BANDS,paintLevel,MAJOR_REPAIRS,SAY,FLAG_STATUS,expandShorthand,negotiation,parseBattery,batteryStatus,recZones,zonesMatch,panelZones,PANEL_LABEL,panelOf,parsePaint,parseTires,parseScan,parseCarfax,crossRef,parseVehicle,serviceAudit,DATE_RE};
 
 </script>
 <script>
-const FIELDS=['asking','seller','dFL','dFR','dRL','dRR','summary','year','make','model','vin','km','tFL','tFR','tRL','tRR','cfTitle','bV','bCCA','bRated','bSOH','bChg','bRes','date','client','tRepaint','tFiller','tHeavy','failSoh','verdict','verdictNote','inspector','licence','bizPhone','bizWeb','ghUser','ghRepo','ghDomain'];
-const KEEP=['inspector','licence','bizPhone','bizWeb','tRepaint','tFiller','tHeavy','failSoh','ghUser','ghRepo','ghDomain'];
+const MTO=[['pt','Powertrain',1,'code'],['susp','Suspension',2,'repair'],['brk','Brakes',3,'brakes'],['str','Steering',4,'repair'],['inst','Instruments & auxiliary',5,'code'],['lamp','Lamps',6,'charging'],['elec','Electrical',7,'battery'],['body','Body, glass & restraints',8,'body'],['tire','Tires & wheels',9,'tires']];
+const FIELDS=[...MTO.flatMap(([k])=>['sf_'+k,'sn_'+k]),'asking','seller','dFL','dFR','dRL','dRR','summary','year','make','model','vin','km','tFL','tFR','tRL','tRR','cfTitle','bV','bCCA','bRated','bSOH','bChg','bRes','date','client','tRepaint','tFiller','failSoh','verdict','verdictNote','inspector','licence','bizPhone','bizWeb','ghUser','ghRepo','ghDomain'];
+const KEEP=['inspector','licence','bizPhone','bizWeb','tRepaint','tFiller','failSoh','ghUser','ghRepo','ghDomain'];
 let pub={};
 const DOCS={carfax:'Carfax vehicle history report',paint:'Paint thickness and tire report',scan:'System scan',battery:'Battery test'};
 let photos={},under=[],extras=[],docs={},msgs={},paint=[],codes=[],accidents=[],services=[],costs={},cf={odo:[],provinces:[],lastOdo:null,stolen:''},batx={};
@@ -1010,7 +1071,8 @@ const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 const num=s=>{const n=parseFloat(String(s??'').replace(/[^\d.]/g,''));return isNaN(n)?null:n};
 const money=n=>n==null?'—':'$'+Math.round(n).toLocaleString('en-CA');
 const paras=t=>String(t||'').trim().split(/\n\s*\n/).map(p=>'<p>'+esc(p).replace(/\n/g,'<br>')+'</p>').join('');
-const T=()=>({repaint:num(v('tRepaint'))||220,filler:num(v('tFiller'))||600,heavy:num(v('tHeavy'))||1500});
+const T=()=>({repaint:num(v('tRepaint'))||200,filler:num(v('tFiller'))||350,heavy:1e9});
+const BAND=k=>PAINT_BANDS(T()).find(b=>b.k===k)||{};
 const FAIL_SOH=()=>num(v('failSoh'))||50;
 const STATUS_NAME={active:'Active',permanent:'Permanent',stored:'Stored',history:'History',intermittent:'Intermittent',pending:'Pending',unknown:'No status'};
 const PL=p=>PANEL_LABEL[p]||p;
@@ -1084,7 +1146,7 @@ function table(el,arr,cols,onEdit){
 }
 function drawDocs(){
   const t=T();const vals=paint.map(p=>p.max).filter(Boolean).sort((a,b)=>a-b);const med=vals.length?vals[Math.floor(vals.length/2)]:0;
-  table($('paintTable'),paint,[{h:'Panel',k:'panel'},{h:'Max µm',k:'max',num:true,w:'84px'},{h:'',t:'static',w:'72px',f:r=>{const s=r.max?paintLevel(r,t):'ok';return `<span class="tag ${s==='heavy'?'filler':s}">${{ok:'Factory',repaint:'Refinish',filler:'Filler',heavy:'Heavy filler'}[s]}</span>`}}]);
+  table($('paintTable'),paint,[{h:'Panel',k:'panel'},{h:'Max µm',k:'max',num:true,w:'84px'},{h:'',t:'static',w:'92px',f:r=>{const k=r.max?paintLevel(r,t):'std';const st=k==='filler'?'filler':k==='repaint'?'repaint':'ok';return `<span class="tag ${st}">${{thin:'Very thin',thinf:'Thin factory',std:'Factory',thick:'Thick factory',repaint:'Repainted',filler:'Filler'}[k]}</span>`}}]);
   table($('accTable'),accidents,[{h:'Accident date',k:'date',w:'96px'},{h:'Record',k:'desc'},{h:'Location',k:'loc',w:'100px'},{h:'$',k:'amount',w:'70px'}]);
   table($('svcTable'),services,[{h:'Service date',k:'date',w:'96px'},{h:'km',k:'km',num:true,w:'80px'},{h:'Work done',k:'desc'}]);
   table($('codeTable'),codes,[{h:'Show',k:'include',t:'check',w:'38px'},{h:'Code',k:'code',w:'84px'},{h:'Status',k:'status',t:'select',w:'100px',o:[['active','Active'],['permanent','Permanent'],['stored','Stored'],['history','History'],['intermittent','Intermittent'],['pending','Pending'],['unknown','Unknown']]},{h:'Description',k:'desc'}]);
@@ -1140,14 +1202,14 @@ const GEO={
  'L rocker':[24,126,12,152],'R rocker':[264,126,12,152],'L pillar':[24,126,12,152],'R pillar':[264,126,12,152]};
 function diagram(rows,recs){
   const by={};rows.forEach(r=>by[r.panel]=r);
-  const col={ok:'#5d7f92',repaint:'#e48a3c',filler:'#e2574f',heavy:'#9c1f17'};
+  const col=Object.fromEntries(PAINT_BANDS(T()).map(b=>[b.k,b.col]));
   let s=`<svg viewBox="0 0 300 412" role="img" aria-label="Top view of the car showing paint readings and Carfax damage areas">`;
   s+=`<text x="150" y="9" fill="#90a0a8" font-family="DM Mono,monospace" font-size="8" text-anchor="middle">FRONT</text><text x="150" y="406" fill="#90a0a8" font-family="DM Mono,monospace" font-size="8" text-anchor="middle">REAR</text>`;
   s+=`<text x="10" y="206" fill="#90a0a8" font-family="DM Mono,monospace" font-size="8" text-anchor="middle" transform="rotate(-90 10 206)">LEFT · DRIVER</text><text x="290" y="206" fill="#90a0a8" font-family="DM Mono,monospace" font-size="8" text-anchor="middle" transform="rotate(90 290 206)">RIGHT · PASSENGER</text>`;
   Object.entries(GEO).forEach(([p,[x,y,w,h]])=>{
-    const r=by[p];const fill=r?col[r.level||r.status]:'#1c262c';
+    const r=by[p];const fill=r?col[r.level]||'#5d7f92':'#1c262c';
     const hit=recs.some(a=>zonesMatch(a.z,panelZones(p)));
-    s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3" fill="${fill}" stroke="${hit?'#f0b232':'#2a363d'}" stroke-width="${hit?2.5:1}" ${hit?'stroke-dasharray="5 3"':''} data-p="${esc(r?(r.label||PL(p))+': '+(r.max>=9999?'off the scale':r.max.toLocaleString()+' µm')+' · '+{ok:'factory paint',repaint:'refinished',filler:'body filler',heavy:'heavy body filler'}[r.level||r.status]+(r.status!=='ok'?' · '+({undisclosed:'not on the Carfax',reported:'matches the Carfax',possible:'may match Carfax damage',nocf:'no Carfax to check'}[r.verdict]||''):''):PL(p)+': not measured')}"><title>${esc(r?(r.label||PL(p))+' '+r.max+' µm':PL(p))}</title></rect>`;
+    s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3" fill="${fill}" stroke="${hit?'#f0b232':'#2a363d'}" stroke-width="${hit?2.5:1}" ${hit?'stroke-dasharray="5 3"':''} data-p="${esc(r?(r.label||PL(p))+': '+(r.max>=9999?'off the scale':r.max.toLocaleString()+' µm')+' · '+(BAND(r.level).name||'').toLowerCase()+' ('+MILS(Math.min(r.max,9999))+' mils)'+(r.status!=='ok'?' · '+({undisclosed:'not on the Carfax',reported:'matches the Carfax',possible:'may match Carfax damage',nocf:'no Carfax to check'}[r.verdict]||''):''):PL(p)+': not measured')}"><title>${esc(r?(r.label||PL(p))+' '+r.max+' µm':PL(p))}</title></rect>`;
     if(r&&h>30)s+=w<20?`<text x="${x+w/2}" y="${y+h/2}" fill="#fff" font-family="DM Mono,monospace" font-size="7" font-weight="600" text-anchor="middle" transform="rotate(-90 ${x+w/2} ${y+h/2})">${r.max>=9999?'∞':r.max}</text>`:`<text x="${x+w/2}" y="${y+h/2+3}" fill="#fff" font-family="DM Mono,monospace" font-size="${w<45?8:10}" font-weight="600" text-anchor="middle">${r.max>=9999?'∞':r.max}</text>`;
   });
   return s+'</svg>';
@@ -1171,7 +1233,41 @@ function paintStory(x,noCF){
 const STORY_PILL={nocf:['Refinished','possible'],nocfok:['No Carfax','no-location'],reported:['Matches','confirmed'],'not-found':['Not in paint','not-found'],'no-location':['No location','no-location'],undisclosed:['Unreported','undisclosed'],possible:['Possible','possible'],ok:['Clean','ok']};
 
 /* ---------- negotiation ---------- */
-function buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF){
+/* Ontario safety standard: manual result per MTO section, plus automatic fails from measurements */
+function mtoCheck(tr,active){
+  const auto={};const a=(k,t)=>(auto[k]=auto[k]||[]).push(t);
+  tr.filter(t=>t.mm!=null&&t.mm<2).forEach(t=>a('tire',`${t.name} tread ${t.mm.toFixed(1)} mm, under the 2 mm minimum`));
+  active.forEach(c=>{const d=(c.desc||'')+' '+(c.module||'');
+    if(/air ?bag|\bSRS\b|restraint|occupant classification|seat ?belt pretension/i.test(d))a('body',`Active airbag (SRS) fault ${c.code}`);
+    else if(/\bABS\b|anti-?lock|wheel speed sensor/i.test(d))a('brk',`Active ABS fault ${c.code}`);
+    else if(/stability|\bESC\b|\bESP\b|\bVSC\b|\bDSC\b|traction control/i.test(d))a('brk',`Active stability control fault ${c.code}`);});
+  return MTO.map(([k,name,sec,icon])=>{const man=v('sf_'+k),note=v('sn_'+k).trim();const st=man||(auto[k]?'fails':'');
+    return {k,name,sec,icon,st,auto:auto[k]||[],note,man}});
+}
+/* OMVIC: material facts the dealer must disclose in writing, matched to what we found */
+function omvicItems(x,sa,active,mto){
+  const out=[];const add=(t,w)=>out.push({t,w});
+  const big=accidents.filter(a=>num(a.amount)>3000);
+  if(big.length)add('Damage over $3,000 from one incident',`The Carfax shows ${big.map(a=>`$${num(a.amount).toLocaleString()} on ${a.date}`).join(', ')}. The dealer must disclose it on the bill of sale, with the repair cost if known.`);
+  const fill=x.rows.filter(r=>r.status==='filler'),rp=x.rows.filter(r=>r.status!=='ok');
+  if(fill.length&&!big.length)add('Accident repair',`Body filler was found on ${fill.map(r=>(r.label||PL(r.panel)).toLowerCase()).join(', ')}. If the repair cost over $3,000, the dealer must disclose it in writing.`);
+  if(accidents.some(a=>a.structural))add('Structural damage','The Carfax mentions structural damage. Structural damage or repairs must be disclosed in writing.');
+  if(rp.length>=2)add('Replaced body panels',`${rp.length} panels show paint work. If two or more panels next to each other were replaced (not counting bumpers), the dealer must disclose it.`);
+  const out_prov=(cf.provinces||[]).map(p=>p.replace(/ in Canada| in USA| in United States/i,'')).filter(p=>!/ontario/i.test(p));
+  if(out_prov.length)add('Registered outside Ontario',`The Carfax shows registration in ${out_prov.join(', ')}. The dealer must disclose where, unless the car has been registered in Ontario for the last 7 years in a row.`);
+  if(/rebuilt|salvage|irreparable|non-repairable/i.test(v('cfTitle')))add('Branded title',`The title is branded ${v('cfTitle')}. The dealer must disclose it. If they don't, you can cancel within 90 days.`);
+  if(/total loss/i.test(v('cfTitle')+' '+accidents.map(a=>a.desc).join(' ')))add('Declared a total loss','An insurer declared this car a total loss. The dealer must disclose it.');
+  if(/recovered/i.test(cf.stolen||''))add('Stolen and recovered','The car was reported stolen and recovered. The dealer must disclose it.');
+  if(sa.issues.some(i=>i.type==='odo'))add('Odometer','The odometer history goes backwards. A rolled-back, replaced or broken odometer must be disclosed. If the distance isn\'t disclosed properly, you can cancel within 90 days.');
+  const use=services.map(r=>r.desc+' '+r.source).join(' ');const u=/daily rental|rental (?:vehicle|car|fleet)|registered as (?:a )?rental/i.test(use)?'a daily rental':/taxi|limousine|\blimo\b/i.test(use)?'a taxi or limousine':/police|emergency/i.test(use)?'a police or emergency vehicle':'';
+  if(u)add('Past use',`The history suggests it was used as ${u}. The dealer must disclose this. If they don't, you can cancel within 90 days.`);
+  const sys=active.filter(c=>c.code);const cats=[...new Set(sys.map(c=>/^P0[0-9]/.test(c.code)?'engine / emissions':/^P07|^P08|^P09|trans/i.test(c.code+' '+c.desc)?'transmission':/^U/.test(c.code)?'computer systems':/^B/.test(c.code)?'electrical':/^C/.test(c.code)?'chassis / suspension':'computer systems'))];
+  if(sys.length)add('Needed repairs',`Active faults (${sys.map(c=>c.code).join(', ')}) point to needed repairs in: ${cats.join(', ')}. Known needed repairs to the engine, transmission, computer, electrical, fuel, suspension or A/C systems must be disclosed.`);
+  if(mto.some(m=>m.auto.some(t=>/ABS/.test(t))))add('ABS not working','An active ABS fault was found. An anti-lock brake system that doesn\'t work must be disclosed.');
+  if(mto.some(m=>m.auto.some(t=>/airbag/i.test(t))))add('Airbags','An active airbag fault was found. Airbags that are missing or don\'t work must be disclosed.');
+  return out;
+}
+function buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF,mto){
   const n=negotiation(v('summary'));const items=n.items;const has=k=>items.some(i=>i.key.split(':')[0]===k||new RegExp(k,'i').test(i.title));
   const add=o=>{const ex=items.find(i=>i.src==='you'&&i.key.split(':')[0]===o.key&&['tires','battery','charging','body'].includes(o.key));
     if(ex){if(!ex.why.includes(o.why))ex.why+=' '+o.why;if(o.say)ex.say=o.say;ex.ask=o.ask;if(o.grp==='fix')ex.grp='fix';return}
@@ -1186,9 +1282,9 @@ function buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF){
   if(bst==='charge')add({key:'battery',grp:'fix',title:'Battery needs a full charge',why:`The battery passed: health is ${bat.soh!=null&&bat.soh!==''?bat.soh+'%':'good'}. It was only at ${batx.soc??'a low'}% charge, which usually means the car has been sitting.${chg&&chg>=13.2&&chg<=14.9?' The alternator charges normally.':''}`,ask:'Ask the dealer to fully charge the battery before delivery. It does not need replacing.',say:'The battery is healthy but flat. Please fully charge it before I pick the car up.'});
   if(chg&&(chg<13.2||chg>14.9))add({key:'charging',grp:'fix',title:'Charging system',why:`Charging voltage measured ${bat.charging} V (normal is about 13.5 to 14.8 V).`,ask:'Ask the dealer to diagnose and repair the charging system before delivery.',say:SAY.charging});
   const low=tr.filter(t=>t.mm!=null&&t.mm<3),old8=tr.filter(t=>t.age!=null&&t.age>=8),old6=tr.filter(t=>t.age!=null&&t.age>=6&&t.age<8);
-  if(low.length||old8.length){const why=[low.length?`${low.map(t=>t.k).join(', ')} at ${Math.min(...low.map(t=>t.mm))} mm of tread.`:'',old8.length?`${old8.map(t=>t.k).join(', ')} ${old8.length>1?'are':'is'} ${Math.floor(Math.max(...old8.map(t=>t.age)))} years old (DOT ${[...new Set(old8.map(t=>dotCode(t.dot).code))].join(', ')}). Rubber hardens and cracks with age even when the tread looks good${old8.some(t=>t.age>=10)?', and 10 years is the limit most tire makers set':''}.`:''].filter(Boolean).join(' ');
+  if(low.length||old8.length){const why=[low.length?`${low.map(t=>t.name).join(', ')} at ${Math.min(...low.map(t=>t.mm))} mm of tread.`:'',old8.length?`${old8.map(t=>t.name).join(', ')} ${old8.length>1?'are':'is'} ${Math.floor(Math.max(...old8.map(t=>t.age)))} years old (DOT ${[...new Set(old8.map(t=>dotCode(t.dot).code))].join(', ')}). Rubber hardens and cracks with age even when the tread looks good${old8.some(t=>t.age>=10)?', and 10 years is the limit most tire makers set':''}.`:''].filter(Boolean).join(' ');
     add({key:'tires',grp:'fix',title:old8.some(t=>t.age>=10)?'Tires past the 10-year limit':'Tires',why,ask:`Ask the dealer to install ${low.length+old8.length>=3?'four':'new'} tires before delivery.`,say:old8.length?`These tires are from ${Math.min(...old8.map(t=>dotCode(t.dot).yr))}. That's ${Math.floor(Math.max(...old8.map(t=>t.age)))} years old. I need new tires installed before I take delivery, written on the bill of sale.`:SAY.tires})}
-  else if(old6.length)add({key:'tires',grp:'aware',title:'Tires are getting old',why:`${old6.map(t=>t.k).join(', ')} ${old6.length>1?'are':'is'} ${Math.floor(Math.max(...old6.map(t=>t.age)))} years old. Tread is fine for now, but plan on new tires within about ${Math.max(1,Math.round(10-Math.max(...old6.map(t=>t.age))))} years.`,ask:'Not a deal-breaker. Use it as leverage on the price or ask for a set of tires.',say:'The tires are already '+Math.floor(Math.max(...old6.map(t=>t.age)))+' years old. Can you include new tires, or adjust the price for them?'});
+  else if(old6.length)add({key:'tires',grp:'aware',title:'Tires are getting old',why:`${old6.map(t=>t.name).join(', ')} ${old6.length>1?'are':'is'} ${Math.floor(Math.max(...old6.map(t=>t.age)))} years old. Tread is fine for now, but plan on new tires within about ${Math.max(1,Math.round(10-Math.max(...old6.map(t=>t.age))))} years.`,ask:'Not a deal-breaker. Use it as leverage on the price or ask for a set of tires.',say:'The tires are already '+Math.floor(Math.max(...old6.map(t=>t.age)))+' years old. Can you include new tires, or adjust the price for them?'});
   active.filter(c=>!new RegExp('\\b'+c.code.replace(/[-:]/g,'.')+'\\b','i').test(v('summary'))).forEach(c=>items.push({src:'auto',grp:'fix',key:'code:'+c.code,title:(c.status==='permanent'?'Permanent code ':'Active code ')+c.code,why:`${c.code}${c.desc?': '+c.desc:''}${c.module?' ('+c.module+')':''}. ${c.status==='permanent'?'A permanent code stays until the car proves the repair worked. It can\'t be cleared with a scanner.':'This fault is active right now.'}`,ask:'Ask the dealer to diagnose and repair the fault and show you a clean scan before delivery.',say:`Your scan shows ${c.code}${c.desc?' ('+c.desc.toLowerCase()+')':''}. Please diagnose and repair it and show me a clean scan before I sign.`}));
   const major=sa.issues.find(i=>i.type==='major');if(major)add({key:'service',grp:'fix',title:'Maintenance not on record',why:major.text.replace(/\s*Ask for receipts.*$/,''),ask:'Ask for service records. If there are none, ask the dealer to complete these services before delivery.',say:SAY.service});
   (sa.repairs||[]).forEach(r=>add({key:'repair:'+r.date,grp:'aware',title:'Major repair on record',why:`${r.what.join(', ')} on ${r.date}${r.km!=null?' at '+r.km.toLocaleString()+' km':''}${r.source?' by '+r.source:''}. A big repair done at a dealer is normal; what matters is that it was done right and is covered.`,ask:'Ask for the repair invoice and whether the parts and labour warranty transfers to you.',say:`The Carfax shows ${r.what[0].toLowerCase()} on ${r.date}. Can I see the invoice, and does the repair warranty transfer to me?`}));
@@ -1197,7 +1293,21 @@ function buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF){
   if(noCF){const f=x.rows.filter(r=>r.status!=='ok');const ff=f.filter(r=>r.status==='filler');
     if(f.length)add({key:'body',grp:'aware',title:ff.length?'Body filler, no history report':'Refinished panels',why:`${lst(f)}.${ff.length?' Body filler means the panel was damaged and reshaped, and with no Carfax there is no record of it.':''}`,ask:'Ask what repairs were done and when, and get the Carfax before you pay.',say:'The paint readings show body work. What happened, and can I see the Carfax and the repair invoice?'});
     add({key:'nocarfax',grp:'aware',title:'No vehicle history report',why:'A Carfax was not available for this inspection, so accidents, liens, registration and service history could not be checked.',ask:'Ask the dealer for the Carfax, or buy one with the VIN at carfax.ca before you pay.',say:'Can you send me the Carfax for this VIN before we go any further?'});}
+  (mto||[]).filter(m=>m.st==='fails').forEach(m=>{const why=[...m.auto,m.note].filter(Boolean).join('. ')||'Does not meet the Ontario standard.';
+    if(m.k==='tire'&&items.some(i=>i.key.split(':')[0]==='tires')){const t=items.find(i=>i.key.split(':')[0]==='tires');t.mto=m;t.grp='fix';return}
+    items.push({src:'auto',grp:'fix',key:'mto:'+m.k,title:`Would not pass Ontario safety: ${m.name}`,why:why.replace(/\.?$/,'.')+' This has to meet the standard before a safety certificate can be issued.',ask:'',say:'',mto:m})});
   items.forEach(i=>{if(i.say==null)i.say=SAY[i.key.split(':')[0]]||''});
+  const um=r=>r.max>=9999?'off scale':r.max.toLocaleString()+' µm';
+  items.forEach(i=>{const k=i.key.split(':')[0];let c=[];
+    if(k==='body')c=x.rows.filter(r=>r.status!=='ok'&&(noCF||r.verdict==='undisclosed')).map(r=>`${r.label||PL(r.panel)} · ${um(r)}`);
+    else if(k==='battery'||k==='charging')c=[bat.soh!=null&&bat.soh!==''&&`Health ${bat.soh}%`,batx.soc!=null&&batx.soc!==''&&`Charge ${batx.soc}%`,bat.cca&&`${bat.cca}${bat.rated?' / '+bat.rated:''} CCA`,bat.charging&&`Charging ${bat.charging} V`].filter(Boolean);
+    else if(k==='tires')c=tr.filter(t=>(t.mm!=null&&t.mm<5)||(t.age!=null&&t.age>=6)).map(t=>[t.name,t.mm!=null?t.mm.toFixed(1)+' mm':'',dotCode(t.dot)?'DOT '+dotCode(t.dot).code:'',t.age!=null?ageText(t.age):''].filter(Boolean).join(' · '));
+    else if(k==='code'){const cd=active.find(a=>'code:'+a.code===i.key);if(cd)c=[cd.code,STATUS_NAME[cd.status]||cd.status,cd.module].filter(Boolean)}
+    else if(k==='service')c=(sa.missing||[]).slice(0,5).map(m=>'No record: '+String(m.name||m).toLowerCase());
+    else if(k==='repair'){const r=(sa.repairs||[]).find(r=>'repair:'+r.date===i.key);if(r)c=[r.date,r.km!=null?r.km.toLocaleString()+' km':'',r.source].filter(Boolean)}
+    else if(k==='title')c=[v('cfTitle')];
+    if(i.mto)c=[...c,`MTO Section ${i.mto.sec}: does not meet`];
+    i.chips=c});
   if(v('seller')==='private')items.forEach(i=>{i.ask=String(i.ask).replace(/the dealer/g,'the seller').replace(/before delivery/g,'before the sale');i.say=String(i.say||'').replace(/before delivery/g,'before the sale').replace(/before I take delivery/g,'before I buy').replace(/ written on the bill of sale/g,' or the price adjusted')});
   /* the good */
   const good=n.positives.map(p=>({title:p.title,text:p.text.charAt(0).toUpperCase()+p.text.slice(1)}));
@@ -1228,8 +1338,9 @@ function recommend(x,neg,sa,noCF){
   const k=v('verdict')&&v('verdict')!=='auto'?v('verdict'):auto;
   const who=v('seller')==='private'?'seller':'dealer';
   const T={yes:{label:'Recommended',icon:'✓',text:`Nothing found on this car is a deal-breaker.${neg.aware.length?' Read "Know before you buy" before you sign.':''}`},
-    fix:{label:'Recommended if fixed',icon:'!',text:`Everything found can be fixed. We recommend this car if the ${who} agrees to fix the items below${who==='dealer'?' before delivery':''}, or adjusts the price to cover them. Get it in writing.`},
+    fix:{label:'Recommended if fixed',icon:'!',text:`Everything found can be addressed. We recommend this car if the ${who} takes care of the topics below. How they handle it is between you and the ${who}.`},
     no:{label:'Not recommended',icon:'✕',text:'Unreported body damage is the one thing a negotiation can\'t fix. The damage is already done, and it was repaired off the record: there is no way to know what was damaged underneath, what was replaced or who did the work, and no paper trail for insurance, liability or resale.'}};
+  if(k!=='no')T[k].text+=who==='dealer'?' Recommended only when sold with a Safety Standards Certificate.':' Recommended only once the car has a Safety Standards Certificate.';
   return {k,auto,...T[k],reasons:k==='no'?(no.length?no:[]):k==='fix'?neg.fix.map(i=>i.title):[]};
 }
 function dealRating(price,market){
@@ -1263,7 +1374,11 @@ function render(){
   const mins=tr.filter(t=>t.mm!=null).map(t=>t.mm),minT=mins.length?Math.min(...mins):null;const ages=tr.filter(t=>t.age!=null).map(t=>t.age),oldest=ages.length?Math.max(...ages):null;
   const bat={voltage:v('bV'),cca:num(v('bCCA')),rated:num(v('bRated')),soh:num(v('bSOH')),soc:batx.soc,charging:v('bChg'),result:v('bRes')};const bst=batteryStatus(bat,FAIL_SOH());
   const svcFlags=sa.issues.filter(i=>i.sev==='flag').length,svcN=sa.issues.filter(i=>i.sev!=='info').length;
-  const neg=buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF);const ask=num(v('asking'));
+  const mto=mtoCheck(tr,active);const mtoF=mto.filter(m=>m.st==='fails'),mtoM=mto.filter(m=>m.st==='meets');
+  mto.forEach(m=>{const el=$('sf_'+m.k);el.className=m.st;let au=el.parentNode.querySelector('.auto');if(m.auto.length&&!m.man){if(!au){au=document.createElement('span');au.className='auto';el.parentNode.appendChild(au)}au.textContent='Auto: '+m.auto.join('; ')}else if(au)au.remove()});
+  $('mtoCount').textContent=mtoF.length||mtoM.length?`${mtoM.length} meet · ${mtoF.length} don't`:'';
+  const omv=v('seller')==='private'?[]:omvicItems(x,sa,active,mto);
+  const neg=buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF,mto);const ask=num(v('asking'));
   const rec=recommend(x,neg,sa,noCF);
   $('verdictWhy').textContent=`Auto verdict: ${{yes:'Recommended',fix:'Recommended if fixed',no:'Not recommended'}[rec.auto]}.`+(v('verdict')!=='auto'&&v('verdict')!==rec.auto?' You have overridden it.':'');
   const lowCodes=codes.filter(c=>c.code&&!c.include);
@@ -1288,37 +1403,49 @@ function render(){
     ${tile('Title',noCF?'No Carfax':titleV?esc(titleV):'—',noCF?'o':brandBad?'r':titleV?'g':'',noCF?'Ask the seller for one':brandBad?'Branded title':'')}
   </div></div>
   <div class="sec"><h2 class="rs">Inspector's summary</h2>${neg.notes.length?`<div class="summary">${notesHTML(neg.notes)}</div>`:'<p class="empty">Write your summary in step 4.</p>'}</div>
-  ${neg.fix.length?`<div class="sec" id="s-neg"><h2 class="rs">What to bring up in negotiation</h2><p class="legend" style="margin:-4px 0 10px">Ask the ${who} to fix these before you buy. Repairs done before ${who==='seller'?'the sale':'delivery'} are worth more than a discount. Use the "Say" lines word for word.</p>
-    <ol class="neg">${neg.fix.map(negLi).join('')}</ol></div>`:''}
+  ${neg.fix.length?`<div class="sec" id="s-neg"><h2 class="rs">Topics to bring up in negotiation</h2><p class="legend" style="margin:-4px 0 10px">Focus on these findings when you talk to the ${who}. How each one is handled is up to you and the ${who}.</p>
+    <div class="fcards">${neg.fix.map((i,n)=>negCard(i,n,'fix')).join('')}</div></div>`:''}
   ${neg.aware.length?`<div class="sec" id="s-aware"><h2 class="rs">Know before you buy</h2>
-    <ol class="neg aware">${neg.aware.map(negLi).join('')}</ol></div>`:''}
-  ${neg.fix.length||neg.aware.length?`<div class="sec"><h2 class="rs" style="font-size:14pt">How to negotiate with this report</h2><ul class="tips">${(who==='dealer'?[
-    ['Lead with the report','Show the findings before you talk price. Facts from a licensed technician are harder to argue with than "can you do better?"'],
-    ['Ask for repairs first','A repair the dealer does at cost is worth more to you than the same amount off the price. Ask for the work, then talk price.'],
-    ['Get it in writing','Every repair they agree to goes on the bill of sale or a "We Owe" form, signed, before you pay. A promise isn\'t a repair.'],
-    ['If they won\'t fix it','Get a repair quote and ask for that amount off the price instead. Be ready to walk away: there are other cars.']]:[
-    ['Lead with the report','Show the seller the findings before you talk price. It shows you know what the car needs.'],
-    ['Price, not promises','Private sellers rarely fix things before a sale. Get a repair quote and ask for that amount off the price.'],
-    ['Write it down','Put the agreed price and the condition of the car ("as inspected on this date") on the bill of sale.'],
-    ['Be ready to walk','If the seller won\'t move on real problems, there are other cars. Don\'t fall for the car before the deal is right.']]).map(([b,t])=>`<li><b>${b}</b>${t}</li>`).join('')}</ul></div>`:''}
-  ${neg.good.length?`<div class="sec"><h2 class="rs">The good</h2><ul class="good">${neg.good.map(g=>`<li>${g.title?`<b>${esc(g.title)}</b> `:''}${esc(g.text)}</li>`).join('')}</ul></div>`:''}
+    <div class="fcards">${neg.aware.map((i,n)=>negCard(i,n,'aware')).join('')}</div></div>`:''}
+  ${mtoF.length||mtoM.length?`<div class="sec" id="s-mto"><h2 class="rs">Ontario safety standard check</h2><p class="legend" style="margin:-4px 0 10px">Checked against the MTO Passenger / Light-Duty Vehicle Inspection Standard, the standard used for an Ontario Safety Standards Certificate.</p>
+    <div class="mgrid">${mto.map(m=>`<div class="mt ${m.st||'nc'}"><i>${m.st==='fails'?'✕':m.st==='meets'?'✓':'–'}</i><span><b>${esc(m.name)}</b><small>Section ${m.sec} · ${m.st==='fails'?'Does not meet':m.st==='meets'?'Meets':'Not checked'}</small></span></div>`).join('')}</div>
+    ${mtoF.length?`<div class="mfails">${mtoF.map(m=>`<div><b>${esc(m.name)}</b> <span class="legend">Section ${m.sec}</span><p>${esc([...m.auto,m.note].filter(Boolean).join('. ')||'Does not meet the standard.')}</p></div>`).join('')}</div>`:''}
+    <p class="legend">${mtoF.length?`${mtoF.length} area${mtoF.length>1?'s':''} would not pass an Ontario safety inspection as the car is today. `:'Every area checked meets the standard. '}This is a pre-purchase inspection, not a Safety Standards Certificate. Only a licensed Motor Vehicle Inspection Station can issue a certificate.</p></div>`:''}
+  ${v('seller')==='private'?`<div class="sec" id="s-rights"><h2 class="rs">Buying privately in Ontario</h2><div class="rights">
+      <div><b>No OMVIC protection</b>Dealer disclosure rules and the 90-day right to cancel only apply to OMVIC-registered dealers.</div>
+      <div><b>Get the UVIP</b>By law the seller must give you a Used Vehicle Information Package, with all pages: ownership history, liens and past odometer readings.</div>
+      <div><b>Buy it with a safety certificate</b>We only recommend buying this car once it has a Safety Standards Certificate. You also need one to put plates on it.${mtoF.length?` Based on our check, ${mtoF.length} area${mtoF.length>1?'s':''} would need work to pass.`:''}</div>
+      <div><b>Watch for curbsiders</b>Unregistered dealers posing as private sellers. If the seller's name isn't on the ownership, ask why.</div></div></div>`
+  :`<div class="sec" id="s-rights"><h2 class="rs">Your rights with an Ontario dealer</h2><p class="legend" style="margin:-4px 0 10px">Ontario's Motor Vehicle Dealers Act (enforced by OMVIC) requires dealers to disclose certain facts in writing on the bill of sale. Telling you out loud doesn't count.</p>
+    ${omv.length?`<h3 class="rs" style="font-size:12pt">Must be written on the bill of sale, based on our findings</h3><div class="fcards">${omv.map(o=>`<div class="fc omv"><div class="fi">${ICON('doc')}</div><div class="fb"><div class="fh"><b>${esc(o.t)}</b><span class="fs">Disclose</span></div><p>${esc(o.w)}</p></div></div>`).join('')}</div>`:''}
+    <div class="callout ${mtoF.length?'r':'g'}"><b>Buy it with a safety certificate</b>We only recommend buying this car with a Safety Standards Certificate, not as-is. A certificate means the car met Ontario's minimum standard on the day it was inspected. It is not a warranty, and it is valid for 36 days.${mtoF.length?` Our check found ${mtoF.length} area${mtoF.length>1?'s':''} that would not pass today, so ${mtoF.length>1?'they':'it'} must be fixed before the car can be certified.`:' Our check found nothing that would stop it from passing.'}</div>
+    <div class="rights">
+      <div><b>90 days to cancel</b>If the dealer didn't disclose the distance driven, the make, model and year, past use as a daily rental, police, emergency, taxi or limo, a salvage / rebuilt / irreparable brand, or a total loss, you can cancel within 90 days.</div>
+      <div><b>All-in price</b>The advertised price must include every fee except HST and licensing.</div>
+      <div><b>No cooling-off period</b>Once you sign, the deal is done. Read the bill of sale and check the disclosures before you sign.</div>
+      <div><b>Check registration</b>Every dealer and salesperson must be registered with OMVIC. You can look them up at omvic.ca.</div></div></div>`}
   </section>`;
-  function negLi(i){return `<li><div class="nh"><b>${esc(i.title)}</b></div><p>${esc(i.why)}</p><p class="ask">${esc(i.ask)}</p>${i.say?`<p class="say"><span>${esc(i.say)}</span><button class="cp" type="button" data-copy>Copy</button></p>`:''}</li>`}
+  function negCard(i,n,g){return `<div class="fc ${g}"><div class="fi">${ICON(i.key)}</div><div class="fb"><div class="fh"><b>${esc(i.title)}</b><span class="fs">${g==='fix'?'Bring up':'Know'}</span></div><p>${esc(i.why)}</p>${i.chips&&i.chips.length?`<div class="chips">${i.chips.map(c=>`<span>${esc(c)}</span>`).join('')}</div>`:''}</div></div>`}
 
   /* paint vs carfax */
   const story=paintStory(x,noCF);
   h+=`<section class="rp brk" id="s-paint"><h2 class="rs">Accident history vs. paint thickness</h2>
   ${x.rows.length?`<p style="margin:0 0 12px">${paintSummary(x,noCF)}</p>`:''}
   ${x.rows.length||accidents.length?`<div class="diag"><div>${diagram(x.rows,x.recs)}</div><div>
-    <div class="dlegend"><span><i style="background:#5d7f92"></i>Factory paint</span><span><i style="background:#e48a3c"></i>Refinished (${T().repaint} µm+)</span><span><i style="background:#e2574f"></i>Body filler (${T().filler} µm+)</span><span><i style="background:#9c1f17"></i>Heavy filler (${T().heavy} µm+)</span><span><i style="background:#1c262c;border:1px solid #2a363d"></i>Not measured</span><span><i style="border:2px dashed #f0b232"></i>Carfax damage area</span></div>
+    <div class="dlegend">${PAINT_BANDS(T()).map(b=>`<span><i style="background:${b.col}"></i>${b.name}</span>`).join('')}<span><i style="background:#1c262c;border:1px solid #2a363d"></i>Not measured</span><span><i style="border:2px dashed #f0b232"></i>Carfax damage area</span></div>
     <p class="legend wonly" style="margin-top:8px">Tap a panel to see its reading.</p><div class="ptap wonly" id="ptap"></div>
     <div class="flow" style="margin-top:14px">${story.map(([k,t])=>`<div><span class="pill ${STORY_PILL[k][1]}">${STORY_PILL[k][0]}</span><span>${esc(t)}</span></div>`).join('')}</div>
   </div></div>
-  ${x.rows.length?`<div class="pgrid">${x.rows.map(r=>`<div class="prow ${r.status}"><span class="pn">${esc(r.label||PL(r.panel))}${r.coating?` <em>${{Al:'Alum.',Fe:'Steel'}[r.coating]||esc(r.coating)}</em>`:''}</span><span class="pv">${r.max>=9999?'∞':r.max.toLocaleString()} <small>µm</small></span><span class="pp">${r.status==='ok'?'<span class="pill ok">Factory</span>':`<span class="pill ${r.level==='heavy'?'heavy':r.status}">${{repaint:'Refinished',filler:'Body filler',heavy:'Heavy filler'}[r.level]}</span><span class="pill ${r.verdict}">${{undisclosed:'Not on Carfax',reported:'On Carfax',possible:'Possible',nocf:'No Carfax'}[r.verdict]}</span>`}</span></div>`).join('')}</div><p class="legend">Highest reading on each panel. Typical reading on this car: ${x.median} µm.</p>
-  <div class="bands">${PAINT_BANDS(T()).map(b=>`<div class="${x.rows.some(r=>r.level===b.k)?'on':''}" style="border-top-color:${{ok:'#5d7f92',repaint:'#e48a3c',filler:'#e2574f',heavy:'#9c1f17'}[b.k]}"><b>${b.name}</b><span class="rg">${esc(b.range)}</span><small>${esc(b.text)}</small></div>`).join('')}</div>
-  <p class="legend">µm = microns (thousandths of a millimetre). Factory paint is usually 80 to 180 µm. Readings on aluminium panels can run a little lower.</p>`:''}`
+  ${x.rows.length?`${paintScale(x)}<div class="pgrid">${x.rows.map(r=>{const b=BAND(r.level);return `<div class="prow ${r.status}"><span class="pn">${esc(r.label||PL(r.panel))}${r.coating?` <em>${{Al:'Alum.',Fe:'Steel'}[r.coating]||esc(r.coating)}</em>`:''}</span><span class="pv">${r.max>=9999?'∞':r.max.toLocaleString()} <small>µm · ${r.max>=9999?'off scale':MILS(r.max)+' mils'}</small></span><span class="pp"><span class="pill" style="background:${b.col};color:${r.status==='ok'?'#fff':'#111'}">${{thin:'Very thin',thinf:'Thin factory',std:'Factory',thick:'Thick factory',repaint:'Repainted',filler:'Body filler'}[r.level]}</span>${r.status==='ok'?'':`<span class="pill ${r.verdict}">${{undisclosed:'Not on Carfax',reported:'On Carfax',possible:'Possible',nocf:'No Carfax'}[r.verdict]}</span>`}</span></div>`}).join('')}</div><p class="legend">Highest reading on each panel. Typical reading on this car: ${x.median} µm (${MILS(x.median)} mils).</p>
+  <div class="bwrap"><h3 class="rs" style="font-size:12pt;margin-top:16px">What the readings mean</h3>
+  <div class="bands6">${PAINT_BANDS(T()).map(b=>{const n=x.rows.filter(r=>r.level===b.k).length;return `<div class="${n?'on':''}" style="--bc:${b.col}"><div class="bh"><b>${b.name}</b>${n?`<span class="bn">${n} panel${n>1?'s':''}</span>`:''}</div><span class="rg">${b.range} · ${b.mils}</span><small>${esc(b.text)}</small></div>`}).join('')}</div></div>`:''}`
   :'<p class="empty">Load the Carfax and the paint PDF.</p>'}
   </section>`;
+  function paintScale(x){const B=PAINT_BANDS(T());const n=B.length,top=T().filler*2;
+    /* each range gets equal width so thin factory ranges are as readable as filler */
+    const pos=um=>{um=Math.min(um,top);for(let k=0;k<n;k++){const lo=B[k].lo,hi=B[k].hi==null?top:B[k].hi;if(um<hi||k===n-1)return Math.min(100,(k+Math.max(0,Math.min(1,(um-lo)/(hi-lo))))*100/n)}return 100};
+    const dots=x.rows.map(r=>({r,p:pos(r.max)})).sort((a,b)=>a.p-b.p);const lane=[];dots.forEach(d=>{let l=0;while(lane[l]!=null&&d.p-lane[l]<2.2&&l<3)l++;lane[l]=d.p;d.l=l});
+    return `<div class="pscale"><div class="pdots" style="height:${Math.min(4,lane.length)*12+4}px">${dots.map(d=>`<i title="${esc((d.r.label||PL(d.r.panel))+' '+d.r.max+' µm')}" style="left:${d.p}%;bottom:${d.l*12}px;background:${BAND(d.r.level).col}"></i>`).join('')}</div><div class="pbar">${B.map((b,k)=>`<span style="left:${k*100/n}%;width:${100/n}%;background:${b.col}"></span>`).join('')}</div><div class="pticks">${B.slice(1).map((b,k)=>`<u style="left:${(k+1)*100/n}%">${b.lo}</u>`).join('')}<u style="left:100%">${top}+ µm</u></div><div class="pnames">${B.map(b=>`<span>${b.name.replace(' (Bondo)','').replace(' paint','')}</span>`).join('')}</div></div>`}
   function paintSummary(x,noCF){const f=x.rows.filter(r=>r.status!=='ok');const fill=f.filter(r=>r.status==='filler'),rp=f.filter(r=>r.status==='repaint');const un=f.filter(r=>r.verdict==='undisclosed');
     if(!f.length)return `All ${x.rows.length} panels read as factory paint${docs.carfax?accidents.length?', and the Carfax damage did not show up in the paint (panels may have been replaced, or the damage was light).':', which matches the clean Carfax.':'.'}`;
     let t=`${f.length} of ${x.rows.length} panels show work: ${fill.length?fill.length+' with body filler':''}${fill.length&&rp.length?' and ':''}${rp.length?rp.length+' refinished':''}. `;
@@ -1423,7 +1550,7 @@ async function buildWebHTML(){
   for(const im of r.querySelectorAll('img')){const src=im.getAttribute('src')||'';if(src.startsWith('data:image')){try{im.setAttribute('src',await shrink(src,im.closest('.appx')?1100:im.closest('.wthumbs')?240:1280,.72))}catch(e){}}}
   r.querySelectorAll('section.appx').forEach(sec=>{const pgs=[...sec.querySelectorAll('.pg')];if(!pgs.length)return;const d=document.createElement('details');d.className='appd';d.innerHTML=`<summary>Show the original (${pgs.length} page${pgs.length>1?'s':''})</summary>`;pgs.forEach(p=>d.appendChild(p));sec.appendChild(d)});
   const vk=(r.querySelector('.verdict')||{}).className||'';const vcls=/\bno\b/.test(vk)?'v-no':/\bfix\b/.test(vk)?'v-fix':'v-yes';
-  const links=[['s-verdict','Verdict',vcls],['s-neg','Negotiate'],['s-aware','Know before you buy'],['s-paint','Paint & accidents'],['s-history','History'],['s-codes','Codes'],['s-batt','Battery'],['s-tires','Tires'],['s-photos','Photos']].filter(([id])=>r.querySelector('#'+id));
+  const links=[['s-verdict','Verdict',vcls],['s-neg','Negotiation topics'],['s-aware','Know before you buy'],['s-mto','Safety standard'],['s-rights','Your rights'],['s-paint','Paint & accidents'],['s-history','History'],['s-codes','Codes'],['s-batt','Battery'],['s-tires','Tires'],['s-photos','Photos']].filter(([id])=>r.querySelector('#'+id));
   const nav=`<nav class="wnav">${links.map(([id,l,c])=>`<a href="#${id}"${c?` class="${c}"`:''}>${l}</a>`).join('')}</nav>`;
   const wa=String(v('bizPhone')).replace(/\D/g,'');const waN=wa.length===10?'1'+wa:wa;
   const css=[...document.querySelectorAll('style')].map(x=>x.textContent).join('\n');
@@ -1455,10 +1582,26 @@ async function publishWeb(){
   }catch(e){pubShow('Could not publish',e.message||String(e))}
 }
 $('pubBtn').onclick=publishWeb;
+$('allMeet').onclick=()=>{const tr=['FL','FR','RL','RR'].map(k=>({name:k,mm:num(v('t'+k))}));const auto=mtoCheck(tr,codes.filter(c=>c.include&&c.code));MTO.forEach(([k])=>{const m=auto.find(a=>a.k===k);if(!v('sf_'+k)&&!(m&&m.auto.length))$('sf_'+k).value='meets'});schedule()};
 $('pubClose').onclick=()=>$('pubm').hidden=true;
 $('pubCopy').onclick=()=>{const u=$('pubUrl').value;try{navigator.clipboard.writeText(u).then(()=>$('pubCopy').textContent='Copied',()=>{$('pubUrl').select()})}catch(e){$('pubUrl').select()}setTimeout(()=>$('pubCopy').textContent='Copy link',1600)};
 try{$('ghToken').value=ghToken()}catch(e){}
 $('ghToken').addEventListener('input',()=>{try{localStorage.setItem('onsite310s-gh-token',$('ghToken').value.trim())}catch(e){}});
+const ICONS={
+ tires:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v5M12 16v5M3 12h5M16 12h5"/>',
+ battery:'<rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5h3v2M14 7V5h3v2M7 13h4M15 11v4M13 13h4"/>',
+ charging:'<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
+ code:'<path d="M5 10a7 7 0 0 1 14 0v4a7 7 0 0 1-14 0z"/><path d="M12 8v5M12 16v.5"/>',
+ body:'<path d="M3 15l2-5c.5-1.3 1.6-2 3-2h8c1.4 0 2.5.7 3 2l2 5v3H3z"/><circle cx="7.5" cy="18" r="1.8"/><circle cx="16.5" cy="18" r="1.8"/><path d="M6 8l1.5-3h9L18 8"/>',
+ service:'<path d="M14.5 6.5a4 4 0 0 0 5 5L12 19a2.1 2.1 0 0 1-3-3l7.5-7.5"/><path d="M14.5 6.5 17 4l3 3-2.5 2.5"/>',
+ repair:'<path d="M4 20l6-6M9 4l11 11-3 3L6 7z"/>',
+ brakes:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M5 6.5A9.5 9.5 0 0 0 4 17"/>',
+ leak:'<path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z"/>',
+ doc:'<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/>',
+ rust:'<path d="M4 18h16M6 18l2-8h8l2 8"/><circle cx="10" cy="14" r="1"/><circle cx="14" cy="13" r="1"/>',
+ alert:'<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17v.5"/>'};
+function ICON(key){let k=String(key).split(':')[0];if(k==='mto'){const m=MTO.find(z=>z[0]===String(key).split(':')[1]);k=m?({code:'code',repair:'repair',brakes:'brakes',charging:'charging',battery:'battery',body:'body',tires:'tires'})[m[3]]:'alert'}const m={tires:'tires',battery:'battery',charging:'charging',code:'code',codes:'code',engine:'code',body:'body',service:'service',repair:'repair',brakes:'brakes',leak:'leak',title:'doc',odo:'doc',nocarfax:'doc',rust:'rust',susp:'repair',glass:'body',ac:'charging',interior:'service'}[k]||'alert';
+  return `<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[m]}</svg>`}
 function dealHTML(ask,mkt,deal){
   const bands=[['great','Great'],['good','Good'],['fair','Fair'],['high','High'],['over','Overpriced']];
   const pos=deal?(()=>{const p=deal.pct*100;const seg=[[-20,-10,0],[-10,-5,20],[-5,5,40],[5,10,60],[10,20,80]];const g=seg.find(([a,b])=>p<b)||seg[4];const f=Math.max(0,Math.min(1,(p-g[0])/(g[1]-g[0])));return Math.max(1,Math.min(99,g[2]+f*20))})():null;
@@ -1470,8 +1613,8 @@ function notesHTML(notes){let h='',list=[];const flush=()=>{if(list.length){h+='
   notes.forEach(n=>{if(n.bullet)list.push(n.text);else{flush();h+=`<p>${esc(n.text)}</p>`}});flush();return h}
 
 /* ---------- save / load ---------- */
-function snapshot(media){const o={v:6,fields:{},paint,codes,accidents,services,cf,batx,pub};FIELDS.forEach(f=>o.fields[f]=v(f));if(media){o.docs=docs;o.msgs=msgs;o.photos=photos;o.under=under;o.extras=extras}return o}
-function load(o){FIELDS.forEach(f=>{if(o.fields&&f in o.fields)$(f).value=o.fields[f]});paint=o.paint||[];codes=o.codes||[];accidents=o.accidents||[];services=o.services||[];costs=o.costs||{};cf=o.cf||cf;batx=o.batx||{};pub=o.pub||{};if(o.v<6&&!o.fields.verdict)$('verdict').value='auto';if(o.photos)photos=o.photos;if(o.under)under=o.under;if(o.extras)extras=o.extras;paintSlots();if(o.docs)docs=o.docs;if(o.msgs)msgs=o.msgs;drawDocs();render()}
+function snapshot(media){const o={v:7,fields:{},paint,codes,accidents,services,cf,batx,pub};FIELDS.forEach(f=>o.fields[f]=v(f));if(media){o.docs=docs;o.msgs=msgs;o.photos=photos;o.under=under;o.extras=extras}return o}
+function load(o){FIELDS.forEach(f=>{if(o.fields&&f in o.fields)$(f).value=o.fields[f]});paint=o.paint||[];codes=o.codes||[];accidents=o.accidents||[];services=o.services||[];costs=o.costs||{};cf=o.cf||cf;batx=o.batx||{};pub=o.pub||{};if((o.v||0)<7){if(v('tRepaint')==='220')$('tRepaint').value='200';if(v('tFiller')==='600')$('tFiller').value='350'}if(o.v<6&&!o.fields.verdict)$('verdict').value='auto';if(o.photos)photos=o.photos;if(o.under)under=o.under;if(o.extras)extras=o.extras;paintSlots();if(o.docs)docs=o.docs;if(o.msgs)msgs=o.msgs;drawDocs();render()}
 function saveLocal(){try{localStorage.setItem('onsite310s-draft-v4',JSON.stringify(snapshot(false)))}catch(e){}}
 $('saveJob').onclick=()=>{const name=(['OnSite',v('year'),v('make'),v('model'),v('date')].filter(Boolean).join('-')||'OnSite-job').replace(/\s+/g,'-');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(snapshot(true))],{type:'application/json'}));a.download=name+'.json';a.click()};
 $('openJobBtn').onclick=()=>$('openJob').click();
