@@ -246,11 +246,14 @@ ol.neg.aware li::before{color:#e48a3c}
   .wbtn,.wthumbs,.wnote{display:none!important}
 }
 .mto{display:grid;gap:6px}
-.mrow{display:grid;grid-template-columns:1.1fr 1fr 1.4fr;gap:6px;align-items:center}
+.mrow{display:grid;grid-template-columns:1fr 2fr;gap:6px 10px;align-items:center;padding:8px 0;border-bottom:1px solid #e3e8eb}
+.mrow input.flag{border-color:#d9453b;background:#fdeceb}
+.picks{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}
+.picks button{font:500 12px/1 var(--body);padding:8px 10px;border-radius:999px;border:1px solid #ccd5d9;background:#fff;color:#26323a;cursor:pointer}
 .mrow span{font-size:13px;font-weight:600;display:grid;line-height:1.2}.mrow small{font-weight:400;color:#7c8a90;font-size:11px}
-.mrow select.fails{border-color:#d9453b;background:#fdeceb}.mrow select.meets{border-color:#3d9a62}
+
 .mrow .auto{font-size:11px;color:#b3261e;grid-column:1/-1;margin-top:-3px}
-@media (max-width:560px){.mrow{grid-template-columns:1fr 1fr}.mrow input{grid-column:1/-1}}
+@media (max-width:560px){.mrow{grid-template-columns:1fr}}
 .pubm{position:fixed;inset:0;background:rgba(0,0,0,.6);display:grid;place-items:center;z-index:50;padding:16px}
 .pubm[hidden]{display:none}
 .pubc{background:#fff;color:#151a1e;border-radius:10px;padding:18px;max-width:440px;width:100%;display:grid;gap:10px;font:400 14px/1.45 var(--body)}
@@ -317,6 +320,12 @@ ul.good li::before{content:"✓";position:absolute;left:12px;top:8px;color:#4fb6
 .lim b{display:block;font:700 10.5pt/1.2 var(--display);text-transform:uppercase;letter-spacing:.02em;margin-bottom:2px}
 @media (max-width:700px){.lim{grid-template-columns:1fr}}
 /* MTO + OMVIC */
+.sflags{display:grid;gap:8px}
+.sfl{display:grid;grid-template-columns:48px 1fr;gap:12px;background:#2a1a1a;border-radius:6px;padding:12px 14px;border-left:5px solid #e2574f;break-inside:avoid;align-items:start}
+.sfl .sfi{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:rgba(226,87,79,.18);color:#ff7a70}
+.sfl .fh{display:flex;justify-content:space-between;gap:10px;align-items:baseline}.sfl .fh b{font:700 13pt/1.15 var(--display);text-transform:uppercase}
+.sfl .fs{font:600 7pt/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;padding:4px 6px;border-radius:3px;background:#e2574f;color:#111;white-space:nowrap}
+.sfl p{margin:4px 0 0;font-size:9.8pt}
 .mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
 .mt{display:flex;gap:10px;align-items:center;background:var(--r-panel);border-radius:5px;padding:9px 11px;border-left:4px solid var(--r-line);break-inside:avoid}
 .mt i{font-style:normal;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:800 12pt/1 var(--body);flex:none;background:#2a363d;color:#90a0a8}
@@ -478,10 +487,9 @@ Offer 21,500 or walk"></textarea>
       <p class="hint" id="verdictWhy"></p>
     </div></details>
 
-    <details class="p" open><summary>5 · Ontario safety standard (MTO) <small id="mtoCount"></small></summary><div class="pb">
-      <p class="hint">Measured against the MTO Passenger / Light-Duty Vehicle Inspection Standard. Tread under 2 mm and active airbag, ABS or stability-control codes are marked automatically.</p>
-      <div class="mto"><div class="mrow"><span>Powertrain<small>Section 1</small></span><select id="sf_pt"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_pt" placeholder="Note if it doesn't meet"></div><div class="mrow"><span>Suspension<small>Section 2</small></span><select id="sf_susp"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_susp" placeholder="Note if it doesn't meet"></div><div class="mrow"><span>Brakes<small>Section 3</small></span><select id="sf_brk"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_brk" placeholder="Note if it doesn't meet"></div><div class="mrow"><span>Steering<small>Section 4</small></span><select id="sf_str"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_str" placeholder="Note if it doesn't meet"></div><div class="mrow"><span>Instruments & auxiliary<small>Section 5</small></span><select id="sf_inst"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_inst" placeholder="Note if it doesn't meet"></div><div class="mrow"><span>Lamps<small>Section 6</small></span><select id="sf_lamp"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_lamp" placeholder="Note if it doesn't meet"></div><div class="mrow"><span>Electrical<small>Section 7</small></span><select id="sf_elec"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_elec" placeholder="Note if it doesn't meet"></div><div class="mrow"><span>Body, glass & restraints<small>Section 8</small></span><select id="sf_body"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_body" placeholder="Note if it doesn't meet"></div><div class="mrow"><span>Tires & wheels<small>Section 9</small></span><select id="sf_tire"><option value="">Not checked</option><option value="meets">Meets</option><option value="fails">Does not meet</option></select><input id="sn_tire" placeholder="Note if it doesn't meet"></div></div>
-      <button type="button" id="allMeet" style="margin-top:8px;font:600 13px/1 var(--body);padding:10px 14px;border-radius:6px;border:1px solid #ccd5d9;background:#fff;cursor:pointer">Mark the rest as Meets</button>
+    <details class="p" open><summary>5 · Safety red flags (MTO categories) <small id="mtoCount"></small></summary><div class="pb">
+      <p class="hint">Not a pass or fail. Write down any red flag you see that could stop the car from passing a safety, sorted by MTO category. Tap a quick pick or type your own. Tread under 2 mm and active airbag, ABS or stability-control codes are added automatically. Leave the rest blank.</p>
+      <div class="mto"><div class="mrow"><span>Powertrain<small>Section 1</small></span><input id="sn_pt" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="pt">Oil leak</button><button type="button" data-k="pt">Coolant leak</button><button type="button" data-k="pt">Exhaust leak</button><button type="button" data-k="pt">Broken engine mount</button></div></div><div class="mrow"><span>Suspension<small>Section 2</small></span><input id="sn_susp" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="susp">Seeping ball joint</button><button type="button" data-k="susp">Leaking strut or shock</button><button type="button" data-k="susp">Worn control arm bushings</button><button type="button" data-k="susp">Broken coil spring</button></div></div><div class="mrow"><span>Brakes<small>Section 3</small></span><input id="sn_brk" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="brk">Deep grooves on rotors</button><button type="button" data-k="brk">Pads near minimum</button><button type="button" data-k="brk">Corroded brake lines</button><button type="button" data-k="brk">Weak parking brake</button></div></div><div class="mrow"><span>Steering<small>Section 4</small></span><input id="sn_str" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="str">Play in the steering</button><button type="button" data-k="str">Worn tie rod end</button><button type="button" data-k="str">Power steering leak</button></div></div><div class="mrow"><span>Instruments & auxiliary<small>Section 5</small></span><input id="sn_inst" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="inst">Warning light on</button><button type="button" data-k="inst">Horn not working</button><button type="button" data-k="inst">Wipers or washers not working</button></div></div><div class="mrow"><span>Lamps<small>Section 6</small></span><input id="sn_lamp" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="lamp">Bulb out</button><button type="button" data-k="lamp">Cracked lens</button><button type="button" data-k="lamp">Headlight aim off</button></div></div><div class="mrow"><span>Electrical<small>Section 7</small></span><input id="sn_elec" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="elec">Battery not secured</button><button type="button" data-k="elec">Corroded battery terminals</button><button type="button" data-k="elec">Exposed wiring</button></div></div><div class="mrow"><span>Body, glass & restraints<small>Section 8</small></span><input id="sn_body" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="body">Cracked windshield</button><button type="button" data-k="body">Rust holes in the body</button><button type="button" data-k="body">Seatbelt not working</button><button type="button" data-k="body">Door not latching</button></div></div><div class="mrow"><span>Tires & wheels<small>Section 9</small></span><input id="sn_tire" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="tire">Tread under 2 mm</button><button type="button" data-k="tire">Sidewall damage</button><button type="button" data-k="tire">Dry rot cracking</button><button type="button" data-k="tire">Mismatched tires</button></div></div></div>
     </div></details>
     <details class="p" open><summary>6 · Photos <small id="phCount"></small></summary><div class="pb">
       <div class="drop" id="bulk"><b>Add all photos</b><span class="st">Pick them in this order: front, rear, left, right, 4 underbody, engine bay, VIN, odometer, 2 front seats, 2 rear seats, trunk. Anything after goes to additional.</span><input type="file" accept="image/*" multiple hidden></div>
@@ -1070,7 +1078,7 @@ if(typeof module!=='undefined')module.exports={MILS,statusFromByte,ocrCode,PAINT
 </script>
 <script>
 const MTO=[['pt','Powertrain',1,'code'],['susp','Suspension',2,'repair'],['brk','Brakes',3,'brakes'],['str','Steering',4,'repair'],['inst','Instruments & auxiliary',5,'code'],['lamp','Lamps',6,'charging'],['elec','Electrical',7,'battery'],['body','Body, glass & restraints',8,'body'],['tire','Tires & wheels',9,'tires']];
-const FIELDS=[...MTO.flatMap(([k])=>['sf_'+k,'sn_'+k]),'asking','seller','dFL','dFR','dRL','dRR','summary','year','make','model','vin','km','tFL','tFR','tRL','tRR','cfTitle','bV','bCCA','bRated','bSOH','bChg','bRes','date','client','tRepaint','tFiller','failSoh','verdict','verdictNote','inspector','licence','bizPhone','bizWeb','ghUser','ghRepo','ghDomain'];
+const FIELDS=[...MTO.map(([k])=>'sn_'+k),'asking','seller','dFL','dFR','dRL','dRR','summary','year','make','model','vin','km','tFL','tFR','tRL','tRR','cfTitle','bV','bCCA','bRated','bSOH','bChg','bRes','date','client','tRepaint','tFiller','failSoh','verdict','verdictNote','inspector','licence','bizPhone','bizWeb','ghUser','ghRepo','ghDomain'];
 const KEEP=['inspector','licence','bizPhone','bizWeb','tRepaint','tFiller','failSoh','ghUser','ghRepo','ghDomain'];
 let pub={};
 const DOCS={carfax:'Carfax vehicle history report',paint:'Paint thickness and tire report',scan:'System scan',battery:'Battery test'};
@@ -1250,8 +1258,8 @@ function mtoCheck(tr,active){
     if(/air ?bag|\bSRS\b|restraint|occupant classification|seat ?belt pretension/i.test(d))a('body',`Active airbag (SRS) fault ${c.code}`);
     else if(/\bABS\b|anti-?lock|wheel speed sensor/i.test(d))a('brk',`Active ABS fault ${c.code}`);
     else if(/stability|\bESC\b|\bESP\b|\bVSC\b|\bDSC\b|traction control/i.test(d))a('brk',`Active stability control fault ${c.code}`);});
-  return MTO.map(([k,name,sec,icon])=>{const man=v('sf_'+k),note=v('sn_'+k).trim();const st=man||(auto[k]?'fails':'');
-    return {k,name,sec,icon,st,auto:auto[k]||[],note,man}});
+  return MTO.map(([k,name,sec,icon])=>{const note=v('sn_'+k).trim();const st=note||auto[k]?'flag':'';
+    return {k,name,sec,icon,st,auto:auto[k]||[],note}});
 }
 /* OMVIC: material facts the dealer must disclose in writing, matched to what we found */
 function omvicItems(x,sa,active,mto){
@@ -1302,9 +1310,9 @@ function buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF,mto){
   if(noCF){const f=x.rows.filter(r=>r.status!=='ok');const ff=f.filter(r=>r.status==='filler');
     if(f.length)add({key:'body',grp:'aware',title:ff.length?'Body filler, no history report':'Refinished panels',why:`${lst(f)}.${ff.length?' Body filler means the panel was damaged and reshaped, and with no Carfax there is no record of it.':''}`,ask:'Ask what repairs were done and when, and get the Carfax before you pay.',say:'The paint readings show body work. What happened, and can I see the Carfax and the repair invoice?'});
     add({key:'nocarfax',grp:'aware',title:'No vehicle history report',why:'A Carfax was not available for this inspection, so accidents, liens, registration and service history could not be checked.',ask:'Ask the dealer for the Carfax, or buy one with the VIN at carfax.ca before you pay.',say:'Can you send me the Carfax for this VIN before we go any further?'});}
-  (mto||[]).filter(m=>m.st==='fails').forEach(m=>{const why=[...m.auto,m.note].filter(Boolean).join('. ')||'Does not meet the Ontario standard.';
+  (mto||[]).filter(m=>m.st==='flag').forEach(m=>{const why=[...m.auto,m.note].filter(Boolean).join('. ');
     if(m.k==='tire'&&items.some(i=>i.key.split(':')[0]==='tires')){const t=items.find(i=>i.key.split(':')[0]==='tires');t.mto=m;t.grp='fix';return}
-    items.push({src:'auto',grp:'fix',key:'mto:'+m.k,title:`Would not pass Ontario safety: ${m.name}`,why:why.replace(/\.?$/,'.')+' This has to meet the standard before a safety certificate can be issued.',ask:'',say:'',mto:m})});
+    items.push({src:'auto',grp:'fix',key:'mto:'+m.k,title:`Possible safety concern: ${m.name}`,why:why.replace(/\.?$/,'.')+' This could stop the car from passing a safety, so it needs to be dealt with before the car is certified.',ask:'',say:'',mto:m})});
   items.forEach(i=>{if(i.say==null)i.say=SAY[i.key.split(':')[0]]||''});
   const um=r=>r.max>=9999?'off scale':r.max.toLocaleString()+' µm';
   items.forEach(i=>{const k=i.key.split(':')[0];let c=[];
@@ -1315,7 +1323,7 @@ function buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF,mto){
     else if(k==='service')c=(sa.missing||[]).slice(0,5).map(m=>'No record: '+String(m.name||m).toLowerCase());
     else if(k==='repair'){const r=(sa.repairs||[]).find(r=>'repair:'+r.date===i.key);if(r)c=[r.date,r.km!=null?r.km.toLocaleString()+' km':'',r.source].filter(Boolean)}
     else if(k==='title')c=[v('cfTitle')];
-    if(i.mto)c=[...c,`MTO Section ${i.mto.sec}: does not meet`];
+    if(i.mto)c=[...c,`Safety concern · MTO Section ${i.mto.sec}`];
     i.chips=c});
   if(v('seller')==='private')items.forEach(i=>{i.ask=String(i.ask).replace(/the dealer/g,'the seller').replace(/before delivery/g,'before the sale');i.say=String(i.say||'').replace(/before delivery/g,'before the sale').replace(/before I take delivery/g,'before I buy').replace(/ written on the bill of sale/g,' or the price adjusted')});
   /* the good */
@@ -1383,9 +1391,9 @@ function render(){
   const mins=tr.filter(t=>t.mm!=null).map(t=>t.mm),minT=mins.length?Math.min(...mins):null;const ages=tr.filter(t=>t.age!=null).map(t=>t.age),oldest=ages.length?Math.max(...ages):null;
   const bat={voltage:v('bV'),cca:num(v('bCCA')),rated:num(v('bRated')),soh:num(v('bSOH')),soc:batx.soc,charging:v('bChg'),result:v('bRes')};const bst=batteryStatus(bat,FAIL_SOH());
   const svcFlags=sa.issues.filter(i=>i.sev==='flag').length,svcN=sa.issues.filter(i=>i.sev!=='info').length;
-  const mto=mtoCheck(tr,active);const mtoF=mto.filter(m=>m.st==='fails'),mtoM=mto.filter(m=>m.st==='meets');
-  mto.forEach(m=>{const el=$('sf_'+m.k);el.className=m.st;let au=el.parentNode.querySelector('.auto');if(m.auto.length&&!m.man){if(!au){au=document.createElement('span');au.className='auto';el.parentNode.appendChild(au)}au.textContent='Auto: '+m.auto.join('; ')}else if(au)au.remove()});
-  $('mtoCount').textContent=mtoF.length||mtoM.length?`${mtoM.length} meet · ${mtoF.length} don't`:'';
+  const mto=mtoCheck(tr,active);const mtoF=mto.filter(m=>m.st==='flag');
+  mto.forEach(m=>{const el=$('sn_'+m.k);el.className=m.st;let au=el.parentNode.querySelector('.auto');if(m.auto.length){if(!au){au=document.createElement('span');au.className='auto';el.parentNode.appendChild(au)}au.textContent='Auto: '+m.auto.join('; ')}else if(au)au.remove()});
+  $('mtoCount').textContent=mtoF.length?`${mtoF.length} red flag${mtoF.length>1?'s':''}`:'';
   const omv=v('seller')==='private'?[]:omvicItems(x,sa,active,mto);
   const neg=buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF,mto);const ask=num(v('asking'));
   const rec=recommend(x,neg,sa,noCF);
@@ -1416,18 +1424,20 @@ function render(){
     <div class="fcards">${neg.fix.map((i,n)=>negCard(i,n,'fix')).join('')}</div></div>`:''}
   ${neg.aware.length?`<div class="sec" id="s-aware"><h2 class="rs">Know before you buy</h2>
     <div class="fcards">${neg.aware.map((i,n)=>negCard(i,n,'aware')).join('')}</div></div>`:''}
-  ${mtoF.length||mtoM.length?`<div class="sec" id="s-mto"><h2 class="rs">Ontario safety standard check</h2><p class="legend" style="margin:-4px 0 10px">Checked against the MTO Passenger / Light-Duty Vehicle Inspection Standard, the standard used for an Ontario Safety Standards Certificate.</p>
-    <div class="mgrid">${mto.map(m=>`<div class="mt ${m.st||'nc'}"><i>${m.st==='fails'?'✕':m.st==='meets'?'✓':'–'}</i><span><b>${esc(m.name)}</b><small>Section ${m.sec} · ${m.st==='fails'?'Does not meet':m.st==='meets'?'Meets':'Not checked'}</small></span></div>`).join('')}</div>
-    ${mtoF.length?`<div class="mfails">${mtoF.map(m=>`<div><b>${esc(m.name)}</b> <span class="legend">Section ${m.sec}</span><p>${esc([...m.auto,m.note].filter(Boolean).join('. ')||'Does not meet the standard.')}</p></div>`).join('')}</div>`:''}
-    <p class="legend">${mtoF.length?`${mtoF.length} area${mtoF.length>1?'s':''} would not pass an Ontario safety inspection as the car is today. `:'Every area checked meets the standard. '}This is a pre-purchase inspection, not a Safety Standards Certificate. Only a licensed Motor Vehicle Inspection Station can issue a certificate.</p></div>`:''}
+  <div class="sec" id="s-mto"><h2 class="rs">Could it pass a safety?</h2>
+    ${mtoF.length?`<p class="legend" style="margin:-4px 0 10px">Red flags I saw during the inspection that could stop this car from getting an Ontario Safety Standards Certificate, sorted by the categories of the MTO inspection standard. One item can be enough to fail a safety.</p>
+    <div class="sflags">${mtoF.map(m=>`<div class="sfl"><div class="sfi">${ICON('mto:'+m.k)}</div><div><div class="fh"><b>${esc(m.name)}</b><span class="fs">MTO Section ${m.sec}</span></div><p>${esc([...m.auto,m.note].filter(Boolean).join('. '))}</p></div></div>`).join('')}</div>
+    <div class="callout r"><b>Get it safetied before you buy</b>These findings could stop the car from being certified. Make sure the ${v('seller')==='private'?'car has':'dealer provides'} a Safety Standards Certificate before you pay, so you aren't left with a car that can't pass.</div>`
+    :`<p style="margin:0">I didn't see red flags in the safety categories during this inspection.</p>`}
+    <p class="legend">This is not a safety inspection, and I am not certifying the car or saying it will pass. These are findings from a pre-purchase inspection. Only a licensed Motor Vehicle Inspection Station can issue a Safety Standards Certificate.</p></div>
   ${v('seller')==='private'?`<div class="sec" id="s-rights"><h2 class="rs">Buying privately in Ontario</h2><div class="rights">
       <div><b>No OMVIC protection</b>Dealer disclosure rules and the 90-day right to cancel only apply to OMVIC-registered dealers.</div>
       <div><b>Get the UVIP</b>By law the seller must give you a Used Vehicle Information Package, with all pages: ownership history, liens and past odometer readings.</div>
-      <div><b>Buy it with a safety certificate</b>We only recommend buying this car once it has a Safety Standards Certificate. You also need one to put plates on it.${mtoF.length?` Based on our check, ${mtoF.length} area${mtoF.length>1?'s':''} would need work to pass.`:''}</div>
+      <div><b>Buy it with a safety certificate</b>We only recommend buying this car once it has a Safety Standards Certificate. You also need one to put plates on it.${mtoF.length?` I saw ${mtoF.length} possible safety concern${mtoF.length>1?'s':''} that could stop it from passing.`:''}</div>
       <div><b>Watch for curbsiders</b>Unregistered dealers posing as private sellers. If the seller's name isn't on the ownership, ask why.</div></div></div>`
   :`<div class="sec" id="s-rights"><h2 class="rs">Your rights with an Ontario dealer</h2><p class="legend" style="margin:-4px 0 10px">Ontario's Motor Vehicle Dealers Act (enforced by OMVIC) requires dealers to disclose certain facts in writing on the bill of sale. Telling you out loud doesn't count.</p>
     ${omv.length?`<h3 class="rs" style="font-size:12pt">Must be written on the bill of sale, based on our findings</h3><div class="fcards">${omv.map(o=>`<div class="fc omv"><div class="fi">${ICON('doc')}</div><div class="fb"><div class="fh"><b>${esc(o.t)}</b><span class="fs">Disclose</span></div><p>${esc(o.w)}</p></div></div>`).join('')}</div>`:''}
-    <div class="callout ${mtoF.length?'r':'g'}"><b>Buy it with a safety certificate</b>We only recommend buying this car with a Safety Standards Certificate, not as-is, and with an extended warranty. A certificate means the car met Ontario's minimum standard on the day it was inspected. It is not a warranty, and it is valid for 36 days.${mtoF.length?` Our check found ${mtoF.length} area${mtoF.length>1?'s':''} that would not pass today, so ${mtoF.length>1?'they':'it'} must be fixed before the car can be certified.`:' Our check found nothing that would stop it from passing.'}</div>
+    <div class="callout ${mtoF.length?'r':'g'}"><b>Buy it with a safety certificate</b>We only recommend buying this car with a Safety Standards Certificate, not as-is, and with an extended warranty. A certificate means the car met Ontario's minimum standard on the day it was inspected. It is not a warranty, and it is valid for 36 days.${mtoF.length?` I saw ${mtoF.length} possible safety concern${mtoF.length>1?'s':''} that could stop it from being certified, so make sure the car is safetied before you buy.`:''}</div>
     <div class="rights">
       <div><b>90 days to cancel</b>If the dealer didn't disclose the distance driven, the make, model and year, past use as a daily rental, police, emergency, taxi or limo, a salvage / rebuilt / irreparable brand, or a total loss, you can cancel within 90 days.</div>
       <div><b>All-in price</b>The advertised price must include every fee except HST and licensing.</div>
@@ -1573,7 +1583,7 @@ async function buildWebHTML(){
   for(const im of r.querySelectorAll('img')){const src=im.getAttribute('src')||'';if(src.startsWith('data:image')){try{im.setAttribute('src',await shrink(src,im.closest('.appx')?1100:im.closest('.wthumbs')?240:1280,.72))}catch(e){}}}
   r.querySelectorAll('section.appx').forEach(sec=>{const pgs=[...sec.querySelectorAll('.pg')];if(!pgs.length)return;const d=document.createElement('details');d.className='appd';d.innerHTML=`<summary>Show the original (${pgs.length} page${pgs.length>1?'s':''})</summary>`;pgs.forEach(p=>d.appendChild(p));sec.appendChild(d)});
   const vk=(r.querySelector('.verdict')||{}).className||'';const vcls=/\bno\b/.test(vk)?'v-no':/\bfix\b/.test(vk)?'v-fix':'v-yes';
-  const links=[['s-verdict','Verdict',vcls],['s-neg','Negotiation topics'],['s-aware','Know before you buy'],['s-mto','Safety standard'],['s-rights','Your rights'],['s-paint','Paint & accidents'],['s-history','History'],['s-codes','Codes'],['s-batt','Battery'],['s-tires','Tires'],['s-photos','Photos'],['s-limits','What this covers']].filter(([id])=>r.querySelector('#'+id));
+  const links=[['s-verdict','Verdict',vcls],['s-neg','Negotiation topics'],['s-aware','Know before you buy'],['s-mto','Safety'],['s-rights','Your rights'],['s-paint','Paint & accidents'],['s-history','History'],['s-codes','Codes'],['s-batt','Battery'],['s-tires','Tires'],['s-photos','Photos'],['s-limits','What this covers']].filter(([id])=>r.querySelector('#'+id));
   const nav=`<nav class="wnav">${links.map(([id,l,c])=>`<a href="#${id}"${c?` class="${c}"`:''}>${l}</a>`).join('')}</nav>`;
   const wa=String(v('bizPhone')).replace(/\D/g,'');const waN=wa.length===10?'1'+wa:wa;
   const css=[...document.querySelectorAll('style')].map(x=>x.textContent).join('\n');
@@ -1605,7 +1615,7 @@ async function publishWeb(){
   }catch(e){pubShow('Could not publish',e.message||String(e))}
 }
 $('pubBtn').onclick=publishWeb;
-$('allMeet').onclick=()=>{const tr=['FL','FR','RL','RR'].map(k=>({name:k,mm:num(v('t'+k))}));const auto=mtoCheck(tr,codes.filter(c=>c.include&&c.code));MTO.forEach(([k])=>{const m=auto.find(a=>a.k===k);if(!v('sf_'+k)&&!(m&&m.auto.length))$('sf_'+k).value='meets'});schedule()};
+document.querySelectorAll('.picks button').forEach(b=>b.onclick=()=>{const el=$('sn_'+b.dataset.k);const t=b.textContent;if(!el.value.includes(t))el.value=el.value.trim()?el.value.trim().replace(/[.,;]$/,'')+', '+t.toLowerCase():t;el.dispatchEvent(new Event('input',{bubbles:true}))});
 $('pubClose').onclick=()=>$('pubm').hidden=true;
 $('pubCopy').onclick=()=>{const u=$('pubUrl').value;try{navigator.clipboard.writeText(u).then(()=>$('pubCopy').textContent='Copied',()=>{$('pubUrl').select()})}catch(e){$('pubUrl').select()}setTimeout(()=>$('pubCopy').textContent='Copy link',1600)};
 try{$('ghToken').value=ghToken()}catch(e){}
