@@ -1,0 +1,524 @@
+<!doctype html><html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>OnSite 310S Inspection: 2019 Mazda CX-5 Touring</title><meta property="og:title" content="OnSite 310S Inspection: 2019 Mazda CX-5 Touring"><meta property="og:description" content="Pre-purchase inspection report by OnSite 310S Inc."><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap"><style>
+/* Editor (left, light) + live report (right, dark OnSite template). Printing outputs the report only. */
+:root{
+  --e-bg:#eef1f3; --e-card:#fff; --e-ink:#151a1e; --e-muted:#5d6970; --e-line:#d4dbdf; --e-accent:#e2a21b;
+  --r-bg:#0f1417; --r-panel:#161e23; --r-panel2:#1c262c; --r-line:#2a363d; --r-ink:#e6ecee; --r-muted:#90a0a8; --r-accent:#f0b232;
+  --flag:#e2574f; --safety:#e2574f; --soon:#e48a3c; --monitor:#d8c14a; --info:#7fa3b8; --good:#4fb67c;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font:400 14px/1.5 var(--body);background:var(--e-bg);color:var(--e-ink)}
+.app{display:grid;grid-template-columns:minmax(400px,560px) 1fr;height:100%}
+.editor{overflow-y:auto;border-right:1px solid var(--e-line);display:flex;flex-direction:column}
+.preview{overflow-y:auto;background:#30393f;padding:24px}
+.bar{position:sticky;top:0;z-index:5;background:var(--e-ink);color:#fff;padding:12px 16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.bar b{font:800 20px/1 var(--display);letter-spacing:.03em;margin-right:auto}
+.bar button{font:600 13px/1 var(--body);padding:9px 12px;border-radius:4px;border:1px solid #4a555c;background:transparent;color:#fff;cursor:pointer}
+.bar button.go{background:var(--e-accent);border-color:var(--e-accent);color:#1b1400}
+.panels{padding:14px;display:grid;gap:12px}
+details.p{background:var(--e-card);border:1px solid var(--e-line);border-radius:6px}
+details.p>summary{cursor:pointer;padding:12px 14px;font:700 17px/1 var(--display);letter-spacing:.04em;text-transform:uppercase;display:flex;gap:10px;list-style:none;align-items:center}
+details.p>summary::after{content:"+";font-family:var(--mono);color:var(--e-muted);margin-left:8px}
+details.p[open]>summary::after{content:"–"}
+details.p>summary small{font:500 11px/1 var(--mono);color:var(--e-muted);letter-spacing:.04em;text-transform:none;margin-left:auto}
+.pb{padding:4px 14px 16px;display:grid;gap:10px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+label{display:grid;gap:4px;font:600 12px/1.2 var(--body);color:var(--e-muted)}
+input,select,textarea{font:400 14px/1.4 var(--body);padding:8px 9px;border:1px solid var(--e-line);border-radius:4px;background:#fafbfb;color:var(--e-ink);width:100%;min-width:0}
+input[type=checkbox]{width:auto}
+textarea{min-height:70px;resize:vertical}
+textarea.tall{min-height:100px}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--e-accent);outline-offset:1px}
+.hint{font-size:12px;color:var(--e-muted);margin:0}
+.warn{font-size:12.5px;color:#8a4b00;background:#fff5e0;border:1px solid #f1d39a;border-radius:4px;padding:8px 10px;margin:0}
+.btn-s{font:600 13px/1 var(--body);padding:8px 10px;border-radius:4px;border:1px solid var(--e-line);background:#fff;cursor:pointer;color:var(--e-ink)}
+.btn-s.go{background:var(--e-ink);color:#fff;border-color:var(--e-ink)}
+.row-btns{display:flex;gap:8px;flex-wrap:wrap}
+.drop{border:1px dashed #b9c3c8;border-radius:4px;padding:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;cursor:pointer;background:#f6f8f9}
+.drop b{font:700 15px/1.2 var(--display);letter-spacing:.03em;text-transform:uppercase}
+.drop .st{font:500 12px/1.4 var(--mono);color:var(--e-muted);text-align:right}
+.drop.has{border-style:solid;border-color:var(--good);background:#eef8f2}
+.drop.drag,.slot.drag{outline:2px solid var(--e-accent)}
+.doc{display:grid;gap:8px;border-top:1px solid var(--e-line);padding-top:10px}
+.doc:first-of-type{border-top:0;padding-top:0}
+.rt{width:100%;border-collapse:collapse;font-size:13px}
+.rt th{font:500 10.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--e-muted);text-align:left;padding:4px 4px}
+.rt td{padding:3px 4px;vertical-align:middle}
+.rt input,.rt select{padding:5px 6px;font-size:13px}
+.rt .x{border:0;background:transparent;color:var(--e-muted);font:600 16px/1 var(--body);cursor:pointer;padding:4px}
+.tag{font:500 10.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:4px 6px;border-radius:3px;white-space:nowrap;display:inline-block}
+.tag.ok{background:#e3f4ea;color:#1d6b40}.tag.repaint{background:#fde9d6;color:#8a4500}.tag.filler,.tag.undisclosed,.tag.flag{background:#fbe0de;color:#9b2019}.tag.reported,.tag.confirmed{background:#e6eef4;color:#2c5670}.tag.possible,.tag.not-found,.tag.no-location{background:#f4f0d8;color:#6d5f00}
+.xref{display:grid;gap:6px}
+.xref div{display:flex;gap:8px;align-items:baseline;font-size:13px}
+.calc{font:500 12px/1.4 var(--mono);color:var(--e-muted);background:#f3f5f6;border-radius:4px;padding:8px 10px}
+.finding{border:1px solid var(--e-line);border-left:4px solid var(--monitor);border-radius:4px;padding:10px;display:grid;gap:8px;background:#fafbfb}
+.finding[data-sev=flag],.finding[data-sev=safety]{border-left-color:var(--safety)}.finding[data-sev=soon]{border-left-color:var(--soon)}.finding[data-sev=info]{border-left-color:var(--info)}
+.frow{display:grid;grid-template-columns:1fr 120px;gap:8px}
+.frow2{display:grid;grid-template-columns:1.3fr 1fr 1fr auto;gap:8px;align-items:end}
+.fx{border:0;background:transparent;color:var(--e-muted);font:600 18px/1 var(--body);cursor:pointer;padding:6px}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.slot{position:relative;aspect-ratio:4/3;border:1px dashed #b9c3c8;border-radius:4px;background:#f6f8f9 center/cover no-repeat;display:flex;align-items:flex-end;cursor:pointer;overflow:hidden}
+.slot span{font:500 10px/1.2 var(--mono);background:rgba(255,255,255,.9);color:#222;padding:3px 5px;width:100%}
+.slot.has{border-style:solid;border-color:var(--e-ink)}
+.slot .clr{position:absolute;top:2px;right:2px;background:rgba(0,0,0,.6);color:#fff;border:0;border-radius:3px;font:600 12px/1 var(--body);padding:3px 6px;cursor:pointer;display:none}
+.slot.has .clr{display:block}
+.grp{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--e-muted);grid-column:1/-1;margin-top:6px}
+.extras{display:grid;gap:8px}
+.extra{display:grid;grid-template-columns:72px 1fr auto;gap:8px;align-items:center}
+.extra img{width:72px;height:54px;object-fit:cover;border-radius:3px}
+
+/* ===== REPORT ===== */
+.report{max-width:8.5in;margin:0 auto;background:var(--r-bg);color:var(--r-ink);font:400 10.5pt/1.55 var(--body);-webkit-print-color-adjust:exact;print-color-adjust:exact;box-shadow:0 10px 40px rgba(0,0,0,.4)}
+.rp{padding:.55in .6in}
+.rp+.rp{border-top:1px solid var(--r-line)}
+.brk{break-before:page}
+.rhead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:2px solid var(--r-accent);padding-bottom:14px;margin-bottom:22px}
+.rhead .bn{font:800 26pt/1 var(--display);letter-spacing:.02em}
+.rhead .bn small{font-size:13pt;color:var(--r-muted)}
+.rhead .sub{font:500 8pt/1.4 var(--mono);color:var(--r-muted);letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
+.rhead .meta{text-align:right;font:500 8.5pt/1.6 var(--mono);color:var(--r-muted)}
+.rhead .meta b{color:var(--r-ink);font-weight:500}
+.k{font:500 7.5pt/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--r-muted)}
+.vtitle{font:800 32pt/1 var(--display);text-transform:uppercase;margin:6px 0 6px}
+.vline{display:flex;gap:18px;flex-wrap:wrap;font:500 9pt/1.4 var(--mono);color:var(--r-muted)}
+.vline b{color:var(--r-ink);font-weight:500}
+.hero{display:grid;grid-template-columns:1.35fr 1fr;gap:16px;margin-top:18px}
+.hero img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;display:block}
+.noimg{aspect-ratio:4/3;border:1px dashed var(--r-line);border-radius:4px;display:grid;place-items:center;color:var(--r-muted);font:500 8pt var(--mono)}
+.prices{display:grid;grid-auto-rows:1fr;gap:1px;background:var(--r-line);border:1px solid var(--r-line);border-radius:4px;overflow:hidden}
+.prices>div{background:var(--r-panel);padding:12px 14px;display:grid;gap:6px;align-content:center}
+.prices .v{font:700 22pt/1 var(--display);font-variant-numeric:tabular-nums}
+.prices .v.acc{color:var(--r-accent)}
+.prices .v small{font:500 9pt var(--mono);color:var(--r-muted)}
+.verdict{margin-top:16px;background:var(--r-panel2);border-left:5px solid var(--r-accent);padding:14px 16px;display:grid;gap:6px}
+.verdict.buy{border-left-color:var(--good)}.verdict.walk{border-left-color:var(--safety)}
+.verdict h3{margin:0;font:800 20pt/1 var(--display);text-transform:uppercase}
+.verdict p{margin:0}
+h2.rs{font:800 18pt/1 var(--display);text-transform:uppercase;letter-spacing:.02em;margin:0 0 12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.sec{margin-top:24px;break-inside:avoid-page}
+.dash{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--r-line);border:1px solid var(--r-line);border-radius:4px;overflow:hidden}
+.dash>div{background:var(--r-panel);padding:10px 12px;display:grid;gap:5px;align-content:start;border-top:3px solid var(--r-line)}
+.dash>div.g{border-top-color:var(--good)}.dash>div.y{border-top-color:var(--monitor)}.dash>div.o{border-top-color:var(--soon)}.dash>div.r{border-top-color:var(--safety)}
+.dash .qv{font:600 11pt/1.25 var(--body)}
+.dash small{color:var(--r-muted);font-size:8.5pt;line-height:1.35}
+table.ft{width:100%;border-collapse:collapse;font-size:9.5pt}
+table.ft th{font:500 7.5pt/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--r-muted);text-align:left;padding:8px;border-bottom:1px solid var(--r-line)}
+table.ft td{padding:8px;border-bottom:1px solid var(--r-line);vertical-align:top}
+table.ft tr{break-inside:avoid}
+table.ft .num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+table.ft td small{display:block;color:var(--r-muted);font-size:8.5pt;margin-top:2px}
+table.ft .mono{font-family:var(--mono);color:var(--r-accent);white-space:nowrap}
+.pill{display:inline-block;font:500 7pt/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:4px 6px;border-radius:3px;white-space:nowrap;color:#111}
+.pill.flag,.pill.safety,.pill.filler,.pill.undisclosed{background:var(--safety)}.pill.soon,.pill.repaint{background:var(--soon)}.pill.monitor,.pill.possible{background:var(--monitor)}.pill.info,.pill.reported,.pill.confirmed,.pill.not-found,.pill.no-location{background:var(--info)}.pill.ok{background:var(--good)}
+tfoot td{font-weight:600;border-bottom:0!important}
+.grouph{font:700 12pt/1 var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--r-accent);margin:16px 0 4px}
+.chart{background:var(--r-panel);border-radius:4px;padding:12px 10px 6px}
+.chart svg{display:block;width:100%;height:auto}
+.legend{font:500 7.5pt/1.5 var(--mono);color:var(--r-muted);margin-top:6px}
+.tires{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.tire{background:var(--r-panel);border-radius:4px;padding:8px 10px;border-left:4px solid var(--r-line);display:grid;gap:3px}
+.tire b{font:700 15pt/1 var(--display);font-variant-numeric:tabular-nums}
+.tire.g{border-left-color:var(--good)}.tire.y{border-left-color:var(--monitor)}.tire.r{border-left-color:var(--safety)}
+.cfx{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--r-line);border:1px solid var(--r-line);border-radius:4px;overflow:hidden;margin-bottom:12px}
+.cfx div{background:var(--r-panel);padding:10px 12px;display:grid;gap:4px}
+.cfx b{font-weight:600}
+.note{display:grid;gap:10px;margin-top:20px;break-inside:avoid-page}
+.note h3{margin:0;font:700 14pt/1 var(--display);text-transform:uppercase;letter-spacing:.03em;border-bottom:1px solid var(--r-line);padding-bottom:6px}
+.note p{margin:0 0 6px}
+.ph{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.ph.c3{grid-template-columns:repeat(3,1fr)}
+.ph.c2{grid-template-columns:repeat(2,1fr)}
+.ph figure{margin:0;display:grid;gap:3px;break-inside:avoid}
+.ph img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;display:block}
+.ph figcaption{font:500 7pt/1.3 var(--mono);color:var(--r-muted);text-transform:uppercase;letter-spacing:.06em}
+.appx .pg{margin-top:12px;break-inside:avoid}
+.appx .pg img{max-width:100%;max-height:8.6in;width:auto;margin:0 auto;display:block;border-radius:3px;background:#fff}
+.appx .pg .k{display:block;margin-bottom:4px}
+.foot{font:400 8pt/1.5 var(--body);color:var(--r-muted);border-top:1px solid var(--r-line);padding-top:12px;margin-top:24px}
+.sig{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;flex-wrap:wrap}
+.sig .nm{font:700 15pt/1 var(--display);text-transform:uppercase}
+.empty{color:var(--r-muted);font-style:italic;margin:0}
+ol.next{margin:0;padding:0;list-style:none;counter-reset:n;display:grid;gap:8px}
+ol.next li{counter-increment:n;display:grid;grid-template-columns:26px 1fr;gap:10px;background:var(--r-panel);padding:9px 12px;border-radius:4px;break-inside:avoid}
+ol.next li::before{content:counter(n);font:800 15pt/1 var(--display);color:var(--r-accent)}
+
+@media (max-width:1000px){.app{grid-template-columns:1fr;height:auto}.editor{border-right:0}.preview{padding:12px}.rp{padding:.35in .3in}}
+@media print{
+  @page{size:letter;margin:0}
+  html,body{height:auto;background:var(--r-bg)}
+  .editor{display:none!important}
+  .app{display:block;height:auto}
+  .preview{overflow:visible;padding:0;background:var(--r-bg)}
+  .report{box-shadow:none;max-width:none;margin:0}
+  .rp+.rp{border-top:0}
+}
+
+
+.res{font-size:13px;color:var(--e-ink);margin:0}
+#dotWarn:empty{display:none}
+.res.warn{color:#8a4b00}
+.vehline{font:600 15px/1.35 var(--body);margin:0}
+.vehline small{display:block;font:500 12px/1.4 var(--mono);color:var(--e-muted)}
+details.chk>summary{cursor:pointer;font:600 12.5px/1.2 var(--body);color:var(--e-muted);padding:4px 0}
+details.chk[open]>summary{margin-bottom:6px}
+.dots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.dots label small{font:500 11px/1 var(--mono);color:var(--e-muted)}
+.big{font:600 18px/1.3 var(--body)!important;padding:10px 12px!important}
+.flow{display:grid;gap:8px}
+.flow div{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline;background:var(--r-panel);padding:9px 12px;border-radius:4px;break-inside:avoid}
+.flow .pill{min-width:84px;text-align:center}
+.summary{font-size:11pt;line-height:1.65}
+.summary p{margin:0 0 10px}
+.gaprow td{background:#2a1f12;color:#ffc78f;font-size:8.5pt}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{font:500 7.5pt/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:5px 7px;border-radius:3px;background:var(--r-panel);color:var(--r-muted)}
+.chip.yes{color:#9be3b8}.chip.no{color:#ffc78f}
+.diag{display:grid;grid-template-columns:260px 1fr;gap:20px;align-items:start}
+.diag svg{width:100%;height:auto;display:block}
+.dlegend{display:grid;gap:6px;font-size:9pt;color:var(--r-muted)}
+.dlegend span{display:flex;align-items:center;gap:8px}
+.dlegend i{width:14px;height:14px;border-radius:2px;display:inline-block;flex:none}
+.batt{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--r-line);border:1px solid var(--r-line);border-radius:4px;overflow:hidden}
+.batt div{background:var(--r-panel);padding:10px 12px;display:grid;gap:4px}
+.batt b{font:700 15pt/1 var(--display)}
+ol.neg{list-style:none;margin:0;padding:0;counter-reset:n;display:grid;gap:8px}
+ol.neg li{counter-increment:n;background:var(--r-panel);border-radius:4px;padding:10px 14px 10px 44px;position:relative;break-inside:avoid}
+ol.neg li::before{content:counter(n);position:absolute;left:14px;top:9px;font:800 16pt/1 var(--display);color:var(--r-accent)}
+ol.neg .nh{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+ol.neg .nh b{font:700 12.5pt/1.2 var(--display);text-transform:uppercase;letter-spacing:.03em}
+ol.neg .nc{font:500 9.5pt/1 var(--mono);color:var(--r-accent);white-space:nowrap}
+ol.neg p{margin:4px 0 0;font-size:9.5pt}
+ol.neg p.ask{color:#c7d1d6}
+ol.neg p.ask::before{content:"Ask: ";font-weight:600;color:var(--r-ink)}
+.deal{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--r-line);border:1px solid var(--r-line);border-radius:4px;overflow:hidden;margin-top:16px}
+.deal div{background:var(--r-panel);padding:12px 14px;display:grid;gap:4px}
+.deal b{font:700 20pt/1 var(--display);font-variant-numeric:tabular-nums}
+.deal small{font-size:8.5pt;color:var(--r-muted)}
+.deal .dr.great b,.deal .dr.good b{color:#4fb67c}.deal .dr.fair b{color:#d8c14a}.deal .dr.high b{color:#e48a3c}.deal .dr.over b{color:#e2574f}
+.dbar{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin-top:10px}
+.dbar span{font:500 7.5pt/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;text-align:center;padding:7px 2px;color:#111;opacity:.45}
+.dbar span.on{opacity:1;font-weight:600}
+.dbar .great{background:#2f9e5f}.dbar .good{background:#7cc26e}.dbar .fair{background:#d8c14a}.dbar .high{background:#e48a3c}.dbar .over{background:#e2574f}
+.dbar i{position:absolute;top:-5px;bottom:-5px;width:3px;background:#fff;border-radius:2px;transform:translateX(-50%)}
+ol.neg.aware li::before{color:#e48a3c}
+/* photo wheel */
+.wheel{position:relative;outline:none}
+.wtrack{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 10%;-webkit-overflow-scrolling:touch}
+.wtrack::-webkit-scrollbar{display:none}
+.wtrack figure{flex:0 0 80%;margin:0;scroll-snap-align:center;display:grid;gap:6px;opacity:.45;transform:scale(.92);transition:opacity .25s,transform .25s;cursor:pointer}
+.wtrack figure.on{opacity:1;transform:none}
+.wtrack img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px;display:block;background:#1c262c}
+.wtrack figcaption{font:500 8.5pt/1.3 var(--mono);color:var(--r-muted);text-transform:uppercase;letter-spacing:.06em;text-align:center}
+.wtrack figcaption b{color:var(--r-accent);font-weight:500;margin-right:6px}
+.wbtn{position:absolute;top:calc(50% - 46px);width:40px;height:40px;border-radius:50%;border:1px solid #3a4850;background:rgba(15,20,23,.8);color:#fff;font:600 22px/1 var(--body);cursor:pointer}
+.wprev{left:4px}.wnext{right:4px}
+.wthumbs{display:flex;gap:6px;overflow-x:auto;margin-top:10px;padding-bottom:4px;scrollbar-width:thin}
+.wthumbs button{flex:0 0 64px;height:48px;padding:0;border:2px solid transparent;border-radius:4px;background:none;cursor:pointer;opacity:.55}
+.wthumbs button.on{border-color:var(--r-accent);opacity:1}
+.wthumbs img{width:100%;height:100%;object-fit:cover;border-radius:2px;display:block}
+@media (prefers-reduced-motion:reduce){.wtrack figure{transition:none}}
+@media print{
+  .wtrack{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;overflow:visible;padding:0}
+  .wtrack figure{opacity:1;transform:none;break-inside:avoid}
+  .wtrack img{border-radius:3px}
+  .wtrack figcaption{font-size:6.5pt;text-align:left}
+  .wbtn,.wthumbs,.wnote{display:none!important}
+}
+.mto{display:grid;gap:6px}
+.mrow{display:grid;grid-template-columns:1.1fr 1fr 1.4fr;gap:6px;align-items:center}
+.mrow span{font-size:13px;font-weight:600;display:grid;line-height:1.2}.mrow small{font-weight:400;color:#7c8a90;font-size:11px}
+.mrow select.fails{border-color:#d9453b;background:#fdeceb}.mrow select.meets{border-color:#3d9a62}
+.mrow .auto{font-size:11px;color:#b3261e;grid-column:1/-1;margin-top:-3px}
+@media (max-width:560px){.mrow{grid-template-columns:1fr 1fr}.mrow input{grid-column:1/-1}}
+.pubm{position:fixed;inset:0;background:rgba(0,0,0,.6);display:grid;place-items:center;z-index:50;padding:16px}
+.pubm[hidden]{display:none}
+.pubc{background:#fff;color:#151a1e;border-radius:10px;padding:18px;max-width:440px;width:100%;display:grid;gap:10px;font:400 14px/1.45 var(--body)}
+.pubc b{font:700 18px/1.2 var(--body)}.pubc p{margin:0}
+.pubc input{font:500 13px/1 var(--mono);padding:10px;border:1px solid #ccd5d9;border-radius:6px;width:100%}
+.pubb{display:flex;flex-wrap:wrap;gap:8px}
+.pubb button,.pubb a{font:600 14px/1 var(--body);padding:11px 14px;border-radius:6px;border:1px solid #ccd5d9;background:#fff;color:#151a1e;text-decoration:none;cursor:pointer}
+.pubb #pubCopy{background:#151a1e;color:#fff;border-color:#151a1e}.pubb #pubWa{background:#25d366;border-color:#25d366;color:#08240f}
+img.heroimg{width:100%;max-height:2.1in;object-fit:cover;border-radius:4px;display:block;margin-top:14px}
+.ph.c2{grid-template-columns:repeat(2,1fr)}
+ul.good{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+ul.good li{position:relative;padding-left:34px!important}
+ul.good li::before{content:"✓";position:absolute;left:12px;top:8px;color:#4fb67c;font-weight:700}
+.nlist li b{font-weight:600;color:var(--r-ink)}
+.nlist li{color:#d3dbde}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;column-gap:22px;margin-top:16px}
+.prow{display:grid;grid-template-columns:1fr auto 92px;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--r-line);font-size:9.5pt;break-inside:avoid}
+.prow .pn em{font-style:normal;font:500 7pt/1 var(--mono);color:var(--r-muted);text-transform:uppercase;letter-spacing:.06em;margin-left:4px}
+.prow .pv{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+.prow .pv small{color:var(--r-muted)}
+.prow .pill{text-align:center}
+.prow .pp{display:grid;gap:3px}
+.prow{grid-template-columns:1fr auto 100px!important}
+.wonly{display:none}
+.ptap{margin-top:8px;background:var(--r-panel2);border-radius:4px;padding:8px 10px;font-size:9.5pt;min-height:18px}
+.ptap:empty{display:none!important}
+.prow.repaint .pv{color:#e48a3c}.prow.filler .pv{color:#e2574f}
+.cta{margin-top:18px;background:var(--r-panel2);border:1px solid var(--r-line);border-left:4px solid var(--r-accent);border-radius:4px;padding:12px 14px;font-size:10pt}
+.cta a,.sig a{color:var(--r-accent);text-decoration:none}
+.pfoot{display:none}
+@media (max-width:640px){.pgrid{grid-template-columns:1fr}}
+@media print{
+  .pfoot{display:flex;justify-content:space-between;position:fixed;left:0;right:0;bottom:0;padding:.16in .6in;font:500 6.5pt/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#6f7f87;background:var(--r-bg)}
+  .rp{padding-bottom:.7in}
+  .sec{break-inside:auto!important}
+  h2.rs{break-after:avoid}
+  .rp.end{break-inside:avoid}
+  ol.neg li,ul.good li,.flow div,.dash,.deal,.batt,.diag,.prow,table.ft tr{break-inside:avoid}
+  ul.good,ol.neg,.flow{display:block}
+  .sec{margin-top:18px}
+  img.heroimg{max-height:1.8in}
+  ol.neg li{padding:8px 12px 8px 40px}
+  ol.neg p{margin-top:3px}
+  ul.good li,ol.neg li,.flow div{margin-bottom:6px}
+}
+/* verdict */
+.verdict{margin-top:16px;border-radius:6px;padding:16px 18px;background:var(--r-panel);border:1px solid var(--r-line);border-left:8px solid var(--r-line);break-inside:avoid}
+.verdict.yes{border-left-color:#4fb67c}.verdict.fix{border-left-color:#f0b232}.verdict.no{border-left-color:#e2574f}
+.verdict .vk{font:500 7.5pt/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--r-muted)}
+.verdict .vl{font:800 26pt/1 var(--display);text-transform:uppercase;letter-spacing:.01em;margin:6px 0 8px;display:flex;align-items:center;gap:10px}
+.verdict.yes .vl{color:#6fd19a}.verdict.fix .vl{color:#f0b232}.verdict.no .vl{color:#ff7a70}
+.verdict .vl i{font-style:normal;width:34px;height:34px;border-radius:50%;display:inline-grid;place-items:center;font:800 18pt/1 var(--body);color:#111;flex:none}
+.verdict.yes .vl i{background:#4fb67c}.verdict.fix .vl i{background:#f0b232}.verdict.no .vl i{background:#e2574f}
+.verdict p{margin:0 0 6px;font-size:10pt}
+.verdict ul{margin:6px 0 0;padding-left:18px;display:grid;gap:3px;font-size:10pt}
+.verdict .vnote{margin-top:10px;padding-top:10px;border-top:1px solid var(--r-line);font-size:10pt}
+/* limitations */
+.vdisc{margin:10px 0 0!important;font-size:8.3pt!important;line-height:1.45;color:var(--r-muted)}
+.lim-top{background:var(--r-panel2);border-left:5px solid var(--r-accent);border-radius:4px;padding:10px 14px;font-size:10pt;margin-bottom:8px}
+.lim-top b{display:block;font:700 12pt/1.2 var(--display);text-transform:uppercase;color:var(--r-accent);margin-bottom:2px}
+.lim{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.lim>div{background:var(--r-panel);border-radius:4px;padding:9px 12px;font-size:9pt;line-height:1.45;color:var(--r-ink);break-inside:avoid}
+.lim>div:first-child{grid-column:1/-1;border-left:4px solid #4fb67c}
+.lim b{display:block;font:700 10.5pt/1.2 var(--display);text-transform:uppercase;letter-spacing:.02em;margin-bottom:2px}
+@media (max-width:700px){.lim{grid-template-columns:1fr}}
+/* MTO + OMVIC */
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.mt{display:flex;gap:10px;align-items:center;background:var(--r-panel);border-radius:5px;padding:9px 11px;border-left:4px solid var(--r-line);break-inside:avoid}
+.mt i{font-style:normal;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:800 12pt/1 var(--body);flex:none;background:#2a363d;color:#90a0a8}
+.mt.meets{border-left-color:#4fb67c}.mt.meets i{background:#4fb67c;color:#0f1417}
+.mt.fails{border-left-color:#e2574f;background:#2a1a1a}.mt.fails i{background:#e2574f;color:#fff}
+.mt span{display:grid;gap:2px}.mt b{font:700 10.5pt/1.15 var(--display);text-transform:uppercase;letter-spacing:.02em}.mt small{font:500 7.5pt/1.2 var(--mono);color:var(--r-muted)}
+.mfails{display:grid;gap:6px;margin-top:8px}.mfails>div{background:var(--r-panel);border-left:4px solid #e2574f;border-radius:4px;padding:8px 12px;break-inside:avoid}.mfails p{margin:3px 0 0;font-size:9.5pt}
+.rights{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
+.rights>div{background:var(--r-panel2);border-radius:4px;padding:9px 12px;font-size:9.3pt;color:var(--r-ink);break-inside:avoid}
+.rights b{display:block;font:700 10.5pt/1.2 var(--display);text-transform:uppercase;letter-spacing:.03em;color:var(--r-accent);margin-bottom:2px}
+.fc.omv{border-left-color:#d8c14a}.fc.omv .fi{background:rgba(216,193,74,.15);color:#e5d36a}.fc.omv .fs{background:#e5d36a}
+.callout{margin-top:10px;border-radius:5px;padding:10px 14px;font-size:9.6pt;border-left:5px solid;background:var(--r-panel);break-inside:avoid}
+.callout b{display:block;font:700 11pt/1.2 var(--display);text-transform:uppercase;margin-bottom:2px}
+.callout.r{border-left-color:#e2574f}.callout.r b{color:#ff7a70}.callout.g{border-left-color:#4fb67c}.callout.g b{color:#6fd19a}
+@media (max-width:700px){.mgrid{grid-template-columns:1fr 1fr}.rights{grid-template-columns:1fr}}
+/* focus cards */
+.fcards{display:grid;gap:8px}
+.fc{display:grid;grid-template-columns:48px 1fr;gap:12px;background:var(--r-panel);border-radius:6px;padding:12px 14px;border-left:5px solid;break-inside:avoid;align-items:start}
+.fc.fix{border-left-color:#f0a35c}.fc.aware{border-left-color:#5aa3b8}
+.fc .fi{width:48px;height:48px;border-radius:50%;display:grid;place-items:center}
+.fc.fix .fi{background:rgba(240,163,92,.16);color:#f0a35c}.fc.aware .fi{background:rgba(90,163,184,.16);color:#7cc2d6}
+.fc .fh{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.fc .fh b{font:700 13pt/1.15 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.fc .fs{font:600 7pt/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;padding:4px 6px;border-radius:3px;white-space:nowrap;color:#111}
+.fc.fix .fs{background:#f0a35c}.fc.aware .fs{background:#7cc2d6}
+.fc p{margin:4px 0 0;font-size:9.8pt}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.chips span{font:500 7.8pt/1 var(--mono);background:var(--r-panel2);border:1px solid var(--r-line);border-radius:999px;padding:5px 9px;color:var(--r-ink)}
+/* negotiation scripts */
+ol.neg p.say{margin-top:6px;background:#10171b;border:1px solid var(--r-line);border-radius:4px;padding:7px 10px;font-style:italic;color:#e9eef0;display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+ol.neg p.say::before{content:"Say: ";font-style:normal;font-weight:700;color:var(--r-accent);margin-right:2px;white-space:nowrap}
+ol.neg p.say span{flex:1}
+.cp{flex:none;font:600 7.5pt/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;border:1px solid #3a4850;background:none;color:var(--r-muted);border-radius:3px;padding:5px 7px;cursor:pointer;font-style:normal}
+.cp.ok{color:#6fd19a;border-color:#4fb67c}
+.tips{margin:12px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tips li{background:var(--r-panel2);border-radius:4px;padding:9px 12px;font-size:9.5pt;break-inside:avoid}
+.tips li b{display:block;font:700 11pt/1.2 var(--display);text-transform:uppercase;letter-spacing:.03em;margin-bottom:2px;color:var(--r-accent)}
+/* paint bands */
+.bands{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--r-line);border:1px solid var(--r-line);border-radius:4px;overflow:hidden;margin-top:16px}
+.bands div{background:var(--r-panel);padding:9px 11px;display:grid;gap:3px;align-content:start;border-top:4px solid}
+.bands b{font:700 11pt/1.15 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.bands .rg{font:500 8pt/1.2 var(--mono);color:var(--r-ink)}
+.bands small{font-size:8.3pt;line-height:1.4;color:var(--r-muted)}
+.bands .on{background:var(--r-panel2)}
+.bands6{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px}
+.bands6>div{background:var(--r-panel);border-radius:4px;padding:9px 11px;display:grid;gap:3px;align-content:start;border-left:5px solid var(--bc);opacity:.62;break-inside:avoid}
+.bands6>div.on{opacity:1;background:var(--r-panel2);box-shadow:inset 0 0 0 1px var(--bc)}
+.bands6 .bh{display:flex;justify-content:space-between;gap:6px;align-items:baseline}
+.bands6 b{font:700 10.5pt/1.15 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.bands6 .bn{font:600 7pt/1 var(--mono);text-transform:uppercase;background:var(--bc);color:#111;padding:3px 5px;border-radius:3px;white-space:nowrap}
+.bands6 .rg{font:500 7.8pt/1.2 var(--mono);color:var(--r-ink)}
+.bands6 small{font-size:8.2pt;line-height:1.4;color:var(--r-muted)}
+.pscale{margin:14px 0 12px;break-inside:avoid}
+.bwrap{break-inside:avoid}
+.pdots{position:relative}
+.pdots i{position:absolute;width:10px;height:10px;border-radius:50%;transform:translateX(-50%);box-shadow:0 0 0 2px #0f1417}
+.pbar{position:relative;height:10px;border-radius:5px;overflow:hidden;background:#1c262c}
+.pbar span{position:absolute;top:0;bottom:0}
+.pticks{position:relative;height:16px}
+.pticks u{position:absolute;top:3px;transform:translateX(-50%);font:500 6.5pt/1 var(--mono);color:var(--r-muted);text-decoration:none;white-space:nowrap}
+.pticks u:last-child{transform:translateX(-100%)}
+.pnames{display:grid;grid-template-columns:repeat(6,1fr);font:500 6.8pt/1.2 var(--mono);color:var(--r-muted);text-transform:uppercase;letter-spacing:.04em;text-align:center;margin-top:2px}
+.prow .pv small{font-size:7pt}
+/* tires */
+.tires2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.t2{background:var(--r-panel);border-radius:4px;padding:10px 12px;border-left:4px solid var(--r-line);display:grid;gap:6px;break-inside:avoid}
+.t2.g{border-left-color:var(--good)}.t2.y{border-left-color:var(--monitor)}.t2.o{border-left-color:var(--soon)}.t2.r{border-left-color:var(--safety)}
+.t2 .th{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.t2 .th b{font:700 12pt/1 var(--display);text-transform:uppercase;letter-spacing:.03em}
+.t2 .nums{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.t2 .nums span{display:grid;gap:2px}
+.t2 .nums em{font-style:normal;font:700 15pt/1 var(--display);font-variant-numeric:tabular-nums}
+.t2 .dotc{font:500 8.5pt/1.3 var(--mono);color:var(--r-ink)}
+.abar{position:relative;height:10px;border-radius:5px;background:linear-gradient(90deg,#2f9e5f 0 60%,#d8c14a 60% 80%,#e48a3c 80% 100%);margin:14px 0 14px}
+.abar i{position:absolute;top:-4px;width:4px;height:18px;border-radius:2px;background:#fff;transform:translateX(-50%);box-shadow:0 0 0 2px #0f1417}
+.abar.over i{left:100%!important;background:#ff6b61}
+.abar u{position:absolute;top:13px;font:500 6.5pt/1 var(--mono);color:var(--r-muted);text-decoration:none;transform:translateX(-50%)}
+.t2 .ast{font:600 9pt/1.3 var(--body)}
+.t2.g .ast{color:#6fd19a}.t2.y .ast{color:#e5d36a}.t2.o .ast{color:#f0a35c}.t2.r .ast{color:#ff7a70}
+.tread{height:6px;border-radius:3px;background:#2a363d;overflow:hidden}
+.tread i{display:block;height:100%;border-radius:3px}
+/* codes */
+table.ft.low td{color:var(--r-muted)}
+.stx{font:500 7pt/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:3px 5px;border-radius:3px;background:var(--r-panel2);color:var(--r-muted);white-space:nowrap}
+.stx.active,.stx.permanent{background:var(--soon);color:#111}
+.cexp{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}
+.cexp div{background:var(--r-panel);border-radius:4px;padding:7px 10px;font-size:8.5pt;color:var(--r-muted)}
+.cexp b{color:var(--r-ink);display:block;font-size:9pt}
+.big2{font:700 15pt/1 var(--display)}
+@media (max-width:700px){.bands6{grid-template-columns:1fr 1fr}.bands,.cexp{grid-template-columns:1fr 1fr}.tires2,.tips{grid-template-columns:1fr}.verdict .vl{font-size:21pt}}
+@media print{.cp{display:none}.verdict,.t2,.bands,.tips li{break-inside:avoid}.tips{display:grid}}
+ul.good li{background:var(--r-panel);border-left:3px solid #4fb67c;border-radius:4px;padding:8px 12px;font-size:9.5pt}
+ul.good li b{font:700 11pt/1 var(--display);text-transform:uppercase;letter-spacing:.03em;margin-right:6px}
+.nlist{margin:0 0 10px;padding-left:20px;display:grid;gap:4px}
+@media (max-width:700px){.diag{grid-template-columns:1fr}.batt{grid-template-columns:1fr 1fr}.deal{grid-template-columns:1fr}}
+
+html,body{height:auto}body.web{background:#0f1417;margin:0}body.web .report{box-shadow:none;margin:0 auto}
+body.web .wonly{display:block}
+.wnav{position:sticky;top:0;z-index:5;display:flex;gap:6px;overflow-x:auto;padding:10px 14px;background:rgba(15,20,23,.94);backdrop-filter:blur(8px);border-bottom:1px solid #2a363d;scrollbar-width:none}
+.wnav::-webkit-scrollbar{display:none}
+.wnav a{flex:none;font:600 12px/1 Inter,sans-serif;color:#c9d3d7;text-decoration:none;padding:8px 12px;border-radius:999px;border:1px solid #2a363d;white-space:nowrap}
+.wnav a.on{background:#f0b232;color:#111;border-color:#f0b232}
+.wnav a.v-no{border-color:#e2574f}.wnav a.v-fix{border-color:#f0b232}.wnav a.v-yes{border-color:#4fb67c}
+[id^=s-]{scroll-margin-top:60px}
+.rv{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}.rv.in{opacity:1;transform:none}
+.verdict.in .vl i{animation:pop .6s ease}
+@keyframes pop{0%{transform:scale(.4)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+.abar i{transition:left 1s ease}
+body.web details.appd{margin-top:8px}body.web details.appd summary{cursor:pointer;font:600 13px/1.2 Inter,sans-serif;color:#f0b232;padding:8px 0}
+.wcta{position:sticky;bottom:0;z-index:5;display:flex;gap:8px;justify-content:center;padding:10px;background:rgba(15,20,23,.94);border-top:1px solid #2a363d}
+.wcta a{font:600 13px/1 Inter,sans-serif;text-decoration:none;padding:11px 16px;border-radius:999px;color:#111;background:#f0b232}
+.wcta a.wa{background:#25d366}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+@media (max-width:640px){body.web .rhead{flex-direction:column;gap:8px}body.web .rhead .meta{text-align:left}body.web .rhead .bn{font-size:20pt}body.web .rp{padding:22px 16px}body.web .dash{grid-template-columns:1fr 1fr}body.web .vtitle{font-size:24pt}body.web .diag{grid-template-columns:1fr}body.web .batt{grid-template-columns:1fr 1fr!important}}</style></head><body class="web"><nav class="wnav"><a href="#s-verdict" class="v-fix">Verdict</a><a href="#s-neg">Negotiation topics</a><a href="#s-aware">Know before you buy</a><a href="#s-mto">Safety standard</a><a href="#s-rights">Your rights</a><a href="#s-paint">Paint & accidents</a><a href="#s-history">History</a><a href="#s-codes">Codes</a><a href="#s-batt">Battery</a><a href="#s-tires">Tires</a><a href="#s-limits">What this covers</a></nav><div class="report web"><section class="rp"><div class="rhead"><div><div class="bn">ONSITE 310S <small>INC.</small></div><div class="sub">Pre-purchase vehicle audit</div></div><div class="meta"><b>November 22, 2026</b><br>Nigel Devonish · Red Seal 310S Automotive Technician</div></div>
+  <div class="vtitle">2019 Mazda CX-5 Touring</div>
+  <div class="vline"><span>VIN <b>JM3KFBCMXK0632192</b></span><span>Last reported odometer <b>90,392 km</b> (Carfax, 2026 Jan 30)</span><span>Asking price <b>$21,600</b></span></div>
+  
+  <div class="verdict fix" id="s-verdict"><span class="vk">Our recommendation</span><div class="vl"><i aria-hidden="true">!</i>Recommended if fixed</div><p>Everything found can be addressed. We recommend this car if the dealer takes care of the topics below. How they handle it is between you and the dealer. Recommended only when sold with a Safety Standards Certificate and covered by an extended warranty.</p><ul><li>Tires</li><li>Battery</li><li>Maintenance not on record</li></ul><div class="vnote"><b>Inspector's note:</b> Recommendation note (optional, shown under the verdict)
+ * Since the SUV has a major engine repair on record from early 2026 and is past the 100,000 km mark on the scan, having an aftermarket warranty is a smart safeguard if you buy it.
+ * Ask for proof of all-wheel-drive fluid maintenance, and have the dealer clear up the tire pressure warning and key fob battery issue before you finalize the deal.</div><p class="vdisc">This recommendation is our professional opinion of the car's condition on November 22, 2026. It is not a guarantee or a warranty. A used car can develop problems at any time. Please read <b>"What this report covers"</b> near the end.</p></div>
+  <div class="sec"><h2 class="rs">At a glance</h2><div class="dash">
+    <div class="g"><span class="k">Accidents vs. paint</span><span class="qv">No accidents, paint factory</span><small>13 panels measured</small></div>
+    <div class="y"><span class="k">Service history</span><span class="qv">2 concerns</span><small>15 records on the Carfax</small></div>
+    <div class=""><span class="k">Fault codes</span><span class="qv">—</span></div>
+    <div class="g"><span class="k">Battery</span><span class="qv">Pass</span><small>100% health · 100% charge · 824 / 640 CCA</small></div>
+    <div class="g"><span class="k">Tires</span><span class="qv">Lowest 6.0 mm, oldest 3 yrs 6 mo</span><small>Limit: 10 years from the DOT date</small></div>
+    <div class="g"><span class="k">Title</span><span class="qv">Normal</span></div>
+  </div></div>
+  <div class="sec"><h2 class="rs">Inspector's summary</h2><div class="summary"><p>Ask the dealer to fix.</p><ul class="nlist"><li>Check and set the tire pressure because a low tire pressure warning code showed up on the scan.</li><li>Check or replace the key fob battery since the scan showed a transmitter code.</li><li>Confirm whether all-wheel-drive fluid service has been done or get it taken care of now that the SUV has this age and mileage.</li></ul><p>Know before you buy.</p><ul class="nlist"><li>There is a major repair in the Carfax service history from early 2026 involving cylinder head and gasket work.</li><li>Consider getting an aftermarket warranty for extra protection going forward.</li></ul><p>The good.</p><ul class="nlist"><li>The vehicle is a 2019 Mazda CX-5 Touring with 105,730.50 km on the scan report.</li><li>The test drive, body, interior, and exterior all looked good at the time of inspection with nothing major standing out.</li><li>Paint thickness readings across the body were mostly 52–98 µm, showing mostly original paint with a few thinner spots on areas like the roof and trunk.</li><li>All four tires have 6 mm of tread with 2022 DOT dates, and the brakes will passenger a safety inspection.</li><li>The battery, starter, and alternator all passed testing with normal cranking and charging numbers.</li><li>All 19 scanned systems had the check engine light off.</li><li>Carfax shows no reported accidents, no open recalls, normal Ontario registration, and 15 service records (last listed at 90,392 km), including past transmission fluid and brake fluid services.</li></ul></div></div>
+  <div class="sec" id="s-neg"><h2 class="rs">Topics to bring up in negotiation</h2><p class="legend" style="margin:-4px 0 10px">Focus on these findings when you talk to the dealer. How each one is handled is up to you and the dealer.</p>
+    <div class="fcards"><div class="fc fix"><div class="fi"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle><path d="M12 3v5M12 16v5M3 12h5M16 12h5"></path></svg></div><div class="fb"><div class="fh"><b>Tires</b><span class="fs">Bring up</span></div><p>Check and set the tire pressure because a low tire pressure warning code showed up on the scan.</p></div></div><div class="fc fix"><div class="fi"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"></rect><path d="M7 7V5h3v2M14 7V5h3v2M7 13h4M15 11v4M13 13h4"></path></svg></div><div class="fb"><div class="fh"><b>Battery</b><span class="fs">Bring up</span></div><p>Check or replace the key fob battery since the scan showed a transmitter code.</p><div class="chips"><span>Health 100%</span><span>Charge 100%</span><span>824 / 640 CCA</span><span>Charging 14.09 V</span></div></div></div><div class="fc fix"><div class="fi"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6.5a4 4 0 0 0 5 5L12 19a2.1 2.1 0 0 1-3-3l7.5-7.5"></path><path d="M14.5 6.5 17 4l3 3-2.5 2.5"></path></svg></div><div class="fb"><div class="fh"><b>Maintenance not on record</b><span class="fs">Bring up</span></div><p>At 90,392 km, the Carfax service records don't list: coolant, AWD / differential / transfer case fluid.</p><div class="chips"><span>No record: coolant</span><span>No record: awd / differential / transfer case fluid</span><span>No record: battery</span></div></div></div></div></div>
+  <div class="sec" id="s-aware"><h2 class="rs">Know before you buy</h2>
+    <div class="fcards"><div class="fc aware"><div class="fi"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l6-6M9 4l11 11-3 3L6 7z"></path></svg></div><div class="fb"><div class="fh"><b>Major repair on record</b><span class="fs">Know</span></div><p>Cylinder head replaced, Head gasket replaced on 2026 Jan 30 at 90,392 km by Markham Mazda. A big repair done at a dealer is normal; what matters is that it was done right and is covered.</p><div class="chips"><span>2026 Jan 30</span><span>90,392 km</span><span>Markham Mazda</span></div></div></div></div></div>
+  <div class="sec" id="s-mto"><h2 class="rs">Ontario safety standard check</h2><p class="legend" style="margin:-4px 0 10px">Checked against the MTO Passenger / Light-Duty Vehicle Inspection Standard, the standard used for an Ontario Safety Standards Certificate.</p>
+    <div class="mgrid"><div class="mt meets"><i>✓</i><span><b>Powertrain</b><small>Section 1 · Meets</small></span></div><div class="mt meets"><i>✓</i><span><b>Suspension</b><small>Section 2 · Meets</small></span></div><div class="mt meets"><i>✓</i><span><b>Brakes</b><small>Section 3 · Meets</small></span></div><div class="mt meets"><i>✓</i><span><b>Steering</b><small>Section 4 · Meets</small></span></div><div class="mt meets"><i>✓</i><span><b>Instruments &amp; auxiliary</b><small>Section 5 · Meets</small></span></div><div class="mt meets"><i>✓</i><span><b>Lamps</b><small>Section 6 · Meets</small></span></div><div class="mt meets"><i>✓</i><span><b>Electrical</b><small>Section 7 · Meets</small></span></div><div class="mt meets"><i>✓</i><span><b>Body, glass &amp; restraints</b><small>Section 8 · Meets</small></span></div><div class="mt meets"><i>✓</i><span><b>Tires &amp; wheels</b><small>Section 9 · Meets</small></span></div></div>
+    
+    <p class="legend">Every area checked meets the standard. This is a pre-purchase inspection, not a Safety Standards Certificate. Only a licensed Motor Vehicle Inspection Station can issue a certificate.</p></div>
+  <div class="sec" id="s-rights"><h2 class="rs">Your rights with an Ontario dealer</h2><p class="legend" style="margin:-4px 0 10px">Ontario's Motor Vehicle Dealers Act (enforced by OMVIC) requires dealers to disclose certain facts in writing on the bill of sale. Telling you out loud doesn't count.</p>
+    
+    <div class="callout g"><b>Buy it with a safety certificate</b>We only recommend buying this car with a Safety Standards Certificate, not as-is, and with an extended warranty. A certificate means the car met Ontario's minimum standard on the day it was inspected. It is not a warranty, and it is valid for 36 days. Our check found nothing that would stop it from passing.</div>
+    <div class="rights">
+      <div><b>90 days to cancel</b>If the dealer didn't disclose the distance driven, the make, model and year, past use as a daily rental, police, emergency, taxi or limo, a salvage / rebuilt / irreparable brand, or a total loss, you can cancel within 90 days.</div>
+      <div><b>All-in price</b>The advertised price must include every fee except HST and licensing.</div>
+      <div><b>No cooling-off period</b>Once you sign, the deal is done. Read the bill of sale and check the disclosures before you sign.</div>
+      <div><b>Check registration</b>Every dealer and salesperson must be registered with OMVIC. You can look them up at omvic.ca.</div></div></div>
+  </section><section class="rp brk" id="s-paint"><h2 class="rs">Accident history vs. paint thickness</h2>
+  <p style="margin:0 0 12px">All 13 panels read as factory paint.</p>
+  <div class="diag"><div><svg viewBox="0 0 300 412" role="img" aria-label="Top view of the car showing paint readings and Carfax damage areas"><text x="150" y="9" fill="#90a0a8" font-family="DM Mono,monospace" font-size="8" text-anchor="middle">FRONT</text><text x="150" y="406" fill="#90a0a8" font-family="DM Mono,monospace" font-size="8" text-anchor="middle">REAR</text><text x="10" y="206" fill="#90a0a8" font-family="DM Mono,monospace" font-size="8" text-anchor="middle" transform="rotate(-90 10 206)">LEFT · DRIVER</text><text x="290" y="206" fill="#90a0a8" font-family="DM Mono,monospace" font-size="8" text-anchor="middle" transform="rotate(90 290 206)">RIGHT · PASSENGER</text><rect x="70" y="14" width="160" height="18" rx="3" fill="#1c262c" stroke="#2a363d" stroke-width="1" data-p="Front bumper: not measured" style="cursor: pointer;"><title>Front bumper</title></rect><rect x="82" y="36" width="136" height="86" rx="3" fill="#8f7fe0" stroke="#2a363d" stroke-width="1" data-p="Hood/bonnet: 76 µm · very thin paint (3.0 mils)" style="cursor: pointer;"><title>Hood/bonnet 76 µm</title></rect><text x="150" y="82" fill="#fff" font-family="DM Mono,monospace" font-size="10" font-weight="600" text-anchor="middle">76</text><rect x="40" y="36" width="38" height="86" rx="3" fill="#5aa3b8" stroke="#2a363d" stroke-width="1" data-p="Left front fender/bumper: 81 µm · thin factory paint (3.2 mils)" style="cursor: pointer;"><title>Left front fender/bumper 81 µm</title></rect><text x="59" y="82" fill="#fff" font-family="DM Mono,monospace" font-size="8" font-weight="600" text-anchor="middle">81</text><rect x="222" y="36" width="38" height="86" rx="3" fill="#8f7fe0" stroke="#2a363d" stroke-width="1" data-p="Right front fender/bumper: 79 µm · very thin paint (3.1 mils)" style="cursor: pointer;"><title>Right front fender/bumper 79 µm</title></rect><text x="241" y="82" fill="#fff" font-family="DM Mono,monospace" font-size="8" font-weight="600" text-anchor="middle">79</text><rect x="40" y="126" width="38" height="74" rx="3" fill="#8f7fe0" stroke="#2a363d" stroke-width="1" data-p="Left front door: 76 µm · very thin paint (3.0 mils)" style="cursor: pointer;"><title>Left front door 76 µm</title></rect><text x="59" y="166" fill="#fff" font-family="DM Mono,monospace" font-size="8" font-weight="600" text-anchor="middle">76</text><rect x="222" y="126" width="38" height="74" rx="3" fill="#8f7fe0" stroke="#2a363d" stroke-width="1" data-p="Right front door: 76 µm · very thin paint (3.0 mils)" style="cursor: pointer;"><title>Right front door 76 µm</title></rect><text x="241" y="166" fill="#fff" font-family="DM Mono,monospace" font-size="8" font-weight="600" text-anchor="middle">76</text><rect x="40" y="204" width="38" height="74" rx="3" fill="#8f7fe0" stroke="#2a363d" stroke-width="1" data-p="Left rear door: 75 µm · very thin paint (3.0 mils)" style="cursor: pointer;"><title>Left rear door 75 µm</title></rect><text x="59" y="244" fill="#fff" font-family="DM Mono,monospace" font-size="8" font-weight="600" text-anchor="middle">75</text><rect x="222" y="204" width="38" height="74" rx="3" fill="#5aa3b8" stroke="#2a363d" stroke-width="1" data-p="Right rear door: 81 µm · thin factory paint (3.2 mils)" style="cursor: pointer;"><title>Right rear door 81 µm</title></rect><text x="241" y="244" fill="#fff" font-family="DM Mono,monospace" font-size="8" font-weight="600" text-anchor="middle">81</text><rect x="82" y="126" width="136" height="152" rx="3" fill="#8f7fe0" stroke="#2a363d" stroke-width="1" data-p="Roof: 62 µm · very thin paint (2.4 mils)" style="cursor: pointer;"><title>Roof 62 µm</title></rect><text x="150" y="205" fill="#fff" font-family="DM Mono,monospace" font-size="10" font-weight="600" text-anchor="middle">62</text><rect x="40" y="282" width="38" height="82" rx="3" fill="#5aa3b8" stroke="#2a363d" stroke-width="1" data-p="Left rear fender/bumper: 92 µm · thin factory paint (3.6 mils)" style="cursor: pointer;"><title>Left rear fender/bumper 92 µm</title></rect><text x="59" y="326" fill="#fff" font-family="DM Mono,monospace" font-size="8" font-weight="600" text-anchor="middle">92</text><rect x="222" y="282" width="38" height="82" rx="3" fill="#5aa3b8" stroke="#2a363d" stroke-width="1" data-p="Right rear fender/bumper: 98 µm · thin factory paint (3.9 mils)" style="cursor: pointer;"><title>Right rear fender/bumper 98 µm</title></rect><text x="241" y="326" fill="#fff" font-family="DM Mono,monospace" font-size="8" font-weight="600" text-anchor="middle">98</text><rect x="82" y="282" width="136" height="82" rx="3" fill="#8f7fe0" stroke="#2a363d" stroke-width="1" data-p="Trunk/boot: 69 µm · very thin paint (2.7 mils)" style="cursor: pointer;"><title>Trunk/boot 69 µm</title></rect><text x="150" y="326" fill="#fff" font-family="DM Mono,monospace" font-size="10" font-weight="600" text-anchor="middle">69</text><rect x="70" y="368" width="160" height="18" rx="3" fill="#1c262c" stroke="#2a363d" stroke-width="1" data-p="Rear bumper: not measured" style="cursor: pointer;"><title>Rear bumper</title></rect><rect x="24" y="126" width="12" height="152" rx="3" fill="#1c262c" stroke="#2a363d" stroke-width="1" data-p="Left rocker: not measured" style="cursor: pointer;"><title>Left rocker</title></rect><rect x="264" y="126" width="12" height="152" rx="3" fill="#1c262c" stroke="#2a363d" stroke-width="1" data-p="Right rocker: not measured" style="cursor: pointer;"><title>Right rocker</title></rect><rect x="24" y="126" width="12" height="152" rx="3" fill="#8f7fe0" stroke="#2a363d" stroke-width="1" data-p="Left pillar: 74 µm · very thin paint (2.9 mils)" style="cursor: pointer;"><title>Left pillar 74 µm</title></rect><text x="30" y="202" fill="#fff" font-family="DM Mono,monospace" font-size="7" font-weight="600" text-anchor="middle" transform="rotate(-90 30 202)">74</text><rect x="264" y="126" width="12" height="152" rx="3" fill="#8f7fe0" stroke="#2a363d" stroke-width="1" data-p="Right pillar: 70 µm · very thin paint (2.8 mils)" style="cursor: pointer;"><title>Right pillar 70 µm</title></rect><text x="270" y="202" fill="#fff" font-family="DM Mono,monospace" font-size="7" font-weight="600" text-anchor="middle" transform="rotate(-90 270 202)">70</text></svg></div><div>
+    <div class="dlegend"><span><i style="background:#8f7fe0"></i>Very thin paint</span><span><i style="background:#5aa3b8"></i>Thin factory paint</span><span><i style="background:#4f8f74"></i>Standard factory paint</span><span><i style="background:#6f8a5a"></i>Thick factory paint</span><span><i style="background:#e48a3c"></i>Repainted</span><span><i style="background:#e2574f"></i>Body filler (Bondo)</span><span><i style="background:#1c262c;border:1px solid #2a363d"></i>Not measured</span><span><i style="border:2px dashed #f0b232"></i>Carfax damage area</span></div>
+    <p class="legend wonly" style="margin-top:8px">Tap a panel to see its reading.</p><div class="ptap wonly" id="ptap"></div>
+    <div class="flow" style="margin-top:14px"><div><span class="pill ok">Clean</span><span>All panels read in the factory range and the Carfax shows no accidents. The paint and the history agree.</span></div></div>
+  </div></div>
+  <div class="pscale"><div class="pdots" style="height:52px"><i title="Roof 62 µm" style="left:12.916666666666666%;bottom:0px;background:#8f7fe0"></i><i title="Trunk/boot 69 µm" style="left:14.375%;bottom:12px;background:#8f7fe0"></i><i title="Right pillar 70 µm" style="left:14.583333333333334%;bottom:24px;background:#8f7fe0"></i><i title="Left pillar 74 µm" style="left:15.416666666666666%;bottom:0px;background:#8f7fe0"></i><i title="Left rear door 75 µm" style="left:15.625%;bottom:36px;background:#8f7fe0"></i><i title="Hood/bonnet 76 µm" style="left:15.833333333333334%;bottom:36px;background:#8f7fe0"></i><i title="Left front door 76 µm" style="left:15.833333333333334%;bottom:36px;background:#8f7fe0"></i><i title="Right front door 76 µm" style="left:15.833333333333334%;bottom:36px;background:#8f7fe0"></i><i title="Right front fender/bumper 79 µm" style="left:16.458333333333332%;bottom:36px;background:#8f7fe0"></i><i title="Left front fender/bumper 81 µm" style="left:17.5%;bottom:12px;background:#5aa3b8"></i><i title="Right rear door 81 µm" style="left:17.5%;bottom:24px;background:#5aa3b8"></i><i title="Left rear fender/bumper 92 µm" style="left:26.666666666666668%;bottom:0px;background:#5aa3b8"></i><i title="Right rear fender/bumper 98 µm" style="left:31.666666666666668%;bottom:0px;background:#5aa3b8"></i></div><div class="pbar"><span style="left:0%;width:16.666666666666668%;background:#8f7fe0"></span><span style="left:16.666666666666668%;width:16.666666666666668%;background:#5aa3b8"></span><span style="left:33.333333333333336%;width:16.666666666666668%;background:#4f8f74"></span><span style="left:50%;width:16.666666666666668%;background:#6f8a5a"></span><span style="left:66.66666666666667%;width:16.666666666666668%;background:#e48a3c"></span><span style="left:83.33333333333333%;width:16.666666666666668%;background:#e2574f"></span></div><div class="pticks"><u style="left:16.666666666666668%">80</u><u style="left:33.333333333333336%">100</u><u style="left:50%">150</u><u style="left:66.66666666666667%">200</u><u style="left:83.33333333333333%">350</u><u style="left:100%">700+ µm</u></div><div class="pnames"><span>Very thin</span><span>Thin factory</span><span>Standard factory</span><span>Thick factory</span><span>Repainted</span><span>Body filler</span></div></div><div class="pgrid"><div class="prow ok"><span class="pn">Hood/bonnet <em>Steel</em></span><span class="pv">76 <small>µm · 3.0 mils</small></span><span class="pp"><span class="pill" style="background:#8f7fe0;color:#fff">Very thin</span></span></div><div class="prow ok"><span class="pn">Left front fender/bumper <em>Steel</em></span><span class="pv">81 <small>µm · 3.2 mils</small></span><span class="pp"><span class="pill" style="background:#5aa3b8;color:#fff">Thin factory</span></span></div><div class="prow ok"><span class="pn">Right front fender/bumper <em>Steel</em></span><span class="pv">79 <small>µm · 3.1 mils</small></span><span class="pp"><span class="pill" style="background:#8f7fe0;color:#fff">Very thin</span></span></div><div class="prow ok"><span class="pn">Left front door <em>Steel</em></span><span class="pv">76 <small>µm · 3.0 mils</small></span><span class="pp"><span class="pill" style="background:#8f7fe0;color:#fff">Very thin</span></span></div><div class="prow ok"><span class="pn">Right front door <em>Steel</em></span><span class="pv">76 <small>µm · 3.0 mils</small></span><span class="pp"><span class="pill" style="background:#8f7fe0;color:#fff">Very thin</span></span></div><div class="prow ok"><span class="pn">Left rear door <em>Steel</em></span><span class="pv">75 <small>µm · 3.0 mils</small></span><span class="pp"><span class="pill" style="background:#8f7fe0;color:#fff">Very thin</span></span></div><div class="prow ok"><span class="pn">Right rear door <em>Steel</em></span><span class="pv">81 <small>µm · 3.2 mils</small></span><span class="pp"><span class="pill" style="background:#5aa3b8;color:#fff">Thin factory</span></span></div><div class="prow ok"><span class="pn">Left pillar <em>Steel</em></span><span class="pv">74 <small>µm · 2.9 mils</small></span><span class="pp"><span class="pill" style="background:#8f7fe0;color:#fff">Very thin</span></span></div><div class="prow ok"><span class="pn">Right pillar <em>Steel</em></span><span class="pv">70 <small>µm · 2.8 mils</small></span><span class="pp"><span class="pill" style="background:#8f7fe0;color:#fff">Very thin</span></span></div><div class="prow ok"><span class="pn">Left rear fender/bumper <em>Steel</em></span><span class="pv">92 <small>µm · 3.6 mils</small></span><span class="pp"><span class="pill" style="background:#5aa3b8;color:#fff">Thin factory</span></span></div><div class="prow ok"><span class="pn">Right rear fender/bumper <em>Steel</em></span><span class="pv">98 <small>µm · 3.9 mils</small></span><span class="pp"><span class="pill" style="background:#5aa3b8;color:#fff">Thin factory</span></span></div><div class="prow ok"><span class="pn">Roof <em>Steel</em></span><span class="pv">62 <small>µm · 2.4 mils</small></span><span class="pp"><span class="pill" style="background:#8f7fe0;color:#fff">Very thin</span></span></div><div class="prow ok"><span class="pn">Trunk/boot <em>Steel</em></span><span class="pv">69 <small>µm · 2.7 mils</small></span><span class="pp"><span class="pill" style="background:#8f7fe0;color:#fff">Very thin</span></span></div></div><p class="legend">Highest reading on each panel. Typical reading on this car: 76 µm (3.0 mils).</p>
+  <div class="bwrap"><h3 class="rs" style="font-size:12pt;margin-top:16px">What the readings mean</h3>
+  <div class="bands6"><div class="on" style="--bc:#8f7fe0"><div class="bh"><b>Very thin paint</b><span class="bn">9 panels</span></div><span class="rg">Under 80 µm · Under 3.1 mils</span><small>Heavy wet-sanding, aggressive polishing, or a factory defect (common on older Japanese and Korean cars). Do not compound.</small></div><div class="on" style="--bc:#5aa3b8"><div class="bh"><b>Thin factory paint</b><span class="bn">4 panels</span></div><span class="rg">80–100 µm · 3.1–3.9 mils</span><small>Typical for modern economy cars (Honda, Toyota, Mazda, Subaru) with water-based paint. Polish with caution.</small></div><div class="" style="--bc:#4f8f74"><div class="bh"><b>Standard factory paint</b></div><span class="rg">100–150 µm · 4.0–5.9 mils</span><small>Normal for most North American and European vehicles. Safe for standard paint correction.</small></div><div class="" style="--bc:#6f8a5a"><div class="bh"><b>Thick factory paint</b></div><span class="rg">150–200 µm · 6.0–7.9 mils</span><small>Normal for luxury brands (Porsche, Mercedes, BMW), or areas sprayed twice on the assembly line.</small></div><div class="" style="--bc:#e48a3c"><div class="bh"><b>Repainted</b></div><span class="rg">200–350 µm · 8.0–13.8 mils</span><small>Full panel respray, heavy primer, or a very thin skim coat of glazing putty.</small></div><div class="" style="--bc:#e2574f"><div class="bh"><b>Body filler (Bondo)</b></div><span class="rg">350+ µm · 13.8+ mils</span><small>Confirms dent repair under the paint. Readings spike higher toward the center of the damage.</small></div></div></div>
+  </section><section class="rp brk" id="s-history"><h2 class="rs">Carfax history</h2>
+  
+  
+  <h2 class="rs" style="font-size:14pt">Service history</h2>
+  <div class="flow"><div><span class="pill soon">Check</span><span>Gap of 18 months and 20,590 km between 2022 Mar 8 and 2023 Sep 20 with no service on record.</span></div><div><span class="pill soon">Check</span><span>At 90,392 km, the Carfax service records don't list: coolant, AWD / differential / transfer case fluid. Ask for receipts; without them, budget for these services.</span></div><div><span class="pill monitor">Major repair</span><span>Major repair on 2026 Jan 30 at 90,392 km (Markham Mazda): cylinder head replaced, head gasket replaced.</span></div></div>
+  <table class="ft" style="margin-top:14px"><thead><tr><th>Date</th><th class="num">Odometer</th><th>Where</th><th>Work done</th></tr></thead><tbody><tr><td style="white-space:nowrap">2019 Nov 15</td><td class="num">—</td><td>WHITBY MAZDA</td><td>Vehicle serviced</td></tr><tr><td style="white-space:nowrap">2019 Nov 18</td><td class="num">—</td><td>Markham Mazda</td><td>Vehicle serviced · Pre-delivery inspection completed · Windshield washer checked</td></tr><tr><td style="white-space:nowrap">2019 Nov 28</td><td class="num">—</td><td>Markham Mazda</td><td>Vehicle serviced · Pre-delivery inspection completed · Windshield washer checked · Vehicle washed/detailed</td></tr><tr><td style="white-space:nowrap">2020 Jun 18</td><td class="num">7,598 km</td><td>Markham Mazda</td><td>Vehicle serviced · Oil and filter changed · Tire condition and pressure checked</td></tr><tr><td style="white-space:nowrap">2021 Jan 12</td><td class="num">16,851 km</td><td>Markham Mazda</td><td>Vehicle serviced · Oil and filter changed · Tire condition and pressure checked</td></tr><tr><td style="white-space:nowrap">2021 Aug 16</td><td class="num">26,382 km</td><td>Markham Mazda</td><td>Vehicle serviced · Maintenance reminder reset · Oil and filter changed · Tire condition and pressure checked</td></tr><tr><td style="white-space:nowrap">2022 Mar 8</td><td class="num">34,120 km</td><td>Markham Mazda</td><td>Vehicle serviced · Oil and filter changed · Tire condition and pressure checked</td></tr><tr class="gaprow"><td colspan="4">Gap: 18 months · 20,590 km with no service on record</td></tr><tr><td style="white-space:nowrap">2023 Sep 20</td><td class="num">54,710 km</td><td>Markham Mazda</td><td>Vehicle serviced · Air filter replaced · Brakes checked · Brakes replaced · Cabin air filter replaced/cleaned · Four tires balanced · Four tires replaced · Oil and filter changed · Tire condition and pressure checked · Vehicle washed/detailed</td></tr><tr><td style="white-space:nowrap">2023 Oct 16</td><td class="num">54,768 km</td><td>Markham Mazda</td><td>Vehicle serviced</td></tr><tr><td style="white-space:nowrap">2024 Feb 23</td><td class="num">58,294 km</td><td>Mazda of Toronto</td><td>Vehicle serviced · Oil and filter changed</td></tr><tr><td style="white-space:nowrap">2024 Nov 14</td><td class="num">67,840 km</td><td>Mazda of Toronto</td><td>Vehicle serviced · Maintenance inspection completed · Brakes checked · Oil and filter changed · Transmission fluid changed · Transmission fluid flushed</td></tr><tr><td style="white-space:nowrap">2025 Jun 10</td><td class="num">76,225 km</td><td>Mazda of Toronto</td><td>Vehicle serviced · Maintenance inspection completed · Drive belt(s) replaced · Oil and filter changed · Serpentine belt replaced</td></tr><tr><td style="white-space:nowrap">2025 Nov 26</td><td class="num">87,185 km</td><td>Mazda of Toronto</td><td>Vehicle serviced · Maintenance inspection completed · Air filter replaced · Brake fluid flushed/changed · Oil and filter changed</td></tr><tr><td style="white-space:nowrap">2026 Jan 30</td><td class="num">90,392 km</td><td>Markham Mazda</td><td>Vehicle serviced · Brake calipers cleaned/serviced · Cylinder head gasket(s) replaced · Cylinder head replaced · Drivability/performance checked · Engine timing/front cover gasket replaced · Front brake pads replaced · Front brake rotor(s) replaced · Rear brake pads replaced · Rear brake rotor(s) replaced · Spark plug(s) replaced</td></tr><tr><td style="white-space:nowrap">2026 Feb 26</td><td class="num">—</td><td>Markham Mazda</td><td>Vehicle serviced · Spark plug(s) replaced</td></tr></tbody></table>
+  <div class="chips"><span class="chip yes">✓ Engine oil / general service</span><span class="chip yes">✓ Transmission fluid</span><span class="chip yes">✓ Brake fluid</span><span class="chip yes">✓ Spark plugs</span><span class="chip yes">✓ Brakes</span><span class="chip yes">✓ Tires</span><span class="chip yes">✓ Air filter</span><span class="chip no">No record: Coolant</span><span class="chip no">No record: AWD / differential / transfer case fluid</span></div>
+
+  <div class="sec" id="s-codes"><h2 class="rs">Fault codes</h2>
+  <h3 class="rs" style="font-size:12pt;margin-top:4px">Priority: active and permanent</h3>
+  <p class="empty">Scan not loaded.</p>
+  
+  </div>
+
+  <div class="sec" id="s-batt"><h2 class="rs">Battery and charging</h2><div class="batt">
+    <div><span class="k">Result</span><b style="color:#4fb67c">Pass</b><small>Good Battery</small></div>
+    <div><span class="k">Health (SOH)</span><b>100%</b><small>Fails below 50%</small></div>
+    <div><span class="k">Charge (SOC)</span><b>100%</b><small>12.79 V resting</small></div>
+    <div><span class="k">Cold cranking amps</span><b>824</b><small>Rated 640</small></div>
+  </div>
+  <div class="batt" style="margin-top:8px;grid-template-columns:repeat(3,1fr)"><div><span class="k">Starter</span><b class="big2">Cranking Normal</b><small>12.02 V while cranking</small></div><div><span class="k">Alternator</span><b class="big2">Charging Normal</b><small>14.09 V charging (normal 13.5–14.8)</small></div><div><span class="k">Battery type</span><b class="big2">Flooded</b><small>Ripple 13 mV</small></div></div>
+  <p class="legend">Pass or fail is based on battery health (SOH): how much of its original strength the battery has left. Charge (SOC) only shows how full it is. A healthy battery that is flat just needs charging; it does not need replacing.</p></div>
+
+  <div class="sec" id="s-tires"><h2 class="rs">Tires</h2><div class="tires2"><div class="t2 g"><div class="th"><b>Front left</b><span class="dotc">DOT 2023</span></div>
+    <div class="nums"><span><span class="k">Tread</span><em>6.0 mm</em><span class="tread"><i style="width:60%;background:#4fb67c"></i></span></span><span><span class="k">Age</span><em>3 yrs 6 mo</em><span class="dotc">Made week 20 of 2023 (May 2023)</span></span></div>
+    <div class="abar"><i style="left:35%"></i><u style="left:0">0</u><u style="left:60%">6 yrs</u><u style="left:80%">8</u><u style="left:100%">10</u></div><span class="ast">Good age · 6 yrs 6 mo until the 10-year limit</span></div><div class="t2 g"><div class="th"><b>Front right</b><span class="dotc">DOT 2023</span></div>
+    <div class="nums"><span><span class="k">Tread</span><em>6.0 mm</em><span class="tread"><i style="width:60%;background:#4fb67c"></i></span></span><span><span class="k">Age</span><em>3 yrs 6 mo</em><span class="dotc">Made week 20 of 2023 (May 2023)</span></span></div>
+    <div class="abar"><i style="left:35%"></i><u style="left:0">0</u><u style="left:60%">6 yrs</u><u style="left:80%">8</u><u style="left:100%">10</u></div><span class="ast">Good age · 6 yrs 6 mo until the 10-year limit</span></div><div class="t2 g"><div class="th"><b>Rear left</b><span class="dotc">DOT 2023</span></div>
+    <div class="nums"><span><span class="k">Tread</span><em>6.0 mm</em><span class="tread"><i style="width:60%;background:#4fb67c"></i></span></span><span><span class="k">Age</span><em>3 yrs 6 mo</em><span class="dotc">Made week 20 of 2023 (May 2023)</span></span></div>
+    <div class="abar"><i style="left:35%"></i><u style="left:0">0</u><u style="left:60%">6 yrs</u><u style="left:80%">8</u><u style="left:100%">10</u></div><span class="ast">Good age · 6 yrs 6 mo until the 10-year limit</span></div><div class="t2 g"><div class="th"><b>Rear right</b><span class="dotc">DOT 2023</span></div>
+    <div class="nums"><span><span class="k">Tread</span><em>6.0 mm</em><span class="tread"><i style="width:60%;background:#4fb67c"></i></span></span><span><span class="k">Age</span><em>3 yrs 6 mo</em><span class="dotc">Made week 20 of 2023 (May 2023)</span></span></div>
+    <div class="abar"><i style="left:35%"></i><u style="left:0">0</u><u style="left:60%">6 yrs</u><u style="left:80%">8</u><u style="left:100%">10</u></div><span class="ast">Good age · 6 yrs 6 mo until the 10-year limit</span></div></div>
+  <p class="legend">Tread: 5 mm and up good · 3 to 5 mm plan for tires · under 3 mm replace (new tires are 8 to 10 mm). Age: the last 4 digits of the DOT code are the week and year the tire was made. Rubber hardens and cracks with age even when the tread looks fine: check closely at 6 years, replace at 8, and 10 years is the limit most tire makers set.</p></div>
+  </section><section class="rp brk" id="s-limits"><h2 class="rs">What this report covers</h2>
+  <div class="lim-top"><b>The purpose of this inspection</b>To help you avoid scam cars, misrepresented history and unreported damage, and to show you the issues to raise before you buy. It is not a promise that nothing will go wrong with the car.</div>
+  <div class="lim">
+    <div><b>We recommend a safety certificate and an extended warranty</b>Only buy a used car with a Safety Standards Certificate, and protect yourself with an extended warranty from a reputable provider. Read what the warranty covers before you sign.</div>
+    <div><b>A snapshot in time</b>This report describes the car as we found it on November 22, 2026. Its condition can change after the inspection, through use, weather, or the seller's actions.</div>
+    <div><b>What we can't see</b>We don't remove parts, panels, wheels or interior trim, and we don't open the engine or transmission. Hidden, internal or intermittent problems may not show up during an inspection.</div>
+    <div><b>Not a guarantee</b>This is not a warranty, a Safety Standards Certificate, an appraisal or a promise of future reliability. Only a licensed Motor Vehicle Inspection Station can issue a safety certificate.</div>
+    <div><b>Information from other sources</b>The Carfax, scan tool, battery tester and paint gauge reports come from third parties and equipment. Damage that was never reported won't be on a Carfax, and readings depend on the equipment and the vehicle.</div>
+    <div><b>Paint readings</b>Readings show extra paint or filler, but not always why or how well the repair was done. Some panels, materials or factory processes can read differently.</div>
+    <div><b>Used cars need maintenance</b>Every used car needs regular maintenance, and parts will wear out and fail over time. Budget for maintenance, repairs and insurance before you buy. Can you afford the car and the cost to keep it running?</div>
+    <div><b>Your decision</b>The decision to buy, the price you agree to, and the cost of owning the car are yours. Our recommendation is an opinion based on what we found; it doesn't replace your own judgement.</div>
+    <div><b>Who this report is for</b>This report was prepared for the client who booked the inspection, for this vehicle only. Other people should not rely on it.</div>
+    <div><b>Our liability</b>To the extent allowed by law, OnSite 310S Inc.'s total responsibility for this inspection is limited to the fee paid for it.</div>
+  </div></section><section class="rp end"><div class="sig"><div><span class="k">Inspected by</span><div class="nm">Nigel Devonish</div><span class="k">Red Seal 310S Automotive Technician</span></div><div class="k" style="text-align:right">OnSite 310S Inc.<br>WhatsApp (647) 500-3107 · <a class="site" href="https://onsite310s.ca">onsite310s.ca</a></div></div>
+  <div class="cta"><b>Buying another car?</b> Book a dealer-level pre-purchase audit at <a href="https://onsite310s.ca">onsite310s.ca</a> or message us on WhatsApp at (647) 500-3107.</div>
+  <p class="foot">This report describes the vehicle as observed on the inspection date. It is a visual, electronic and road-test assessment, not a warranty or a Safety Standards Certificate, and it cannot predict future failures. Parts were not removed. The scan lists faults active at the time of inspection; intermittent faults may not appear. Paint readings show refinishing but not always the cause. Service history is limited to what was reported to Carfax.</p></section><div class="pfoot"><span>OnSite 310S Inc. · PPI · 2019 Mazda CX-5 Touring · Not a warranty</span><span>onsite310s.ca · WhatsApp (647) 500-3107</span></div></div><div class="wcta"><a class="wa" href="https://wa.me/16475003107?text=Hi%20Nigel%2C%20I%20have%20a%20question%20about%20my%20inspection%20report%20for%20the%202019%20Mazda%20CX-5%20Touring">Questions? WhatsApp me</a><a href="https://onsite310s.ca">Book an inspection</a></div><script>function initWheels(root){
+  root.querySelectorAll('.wheel').forEach(w=>{const t=w.querySelector('.wtrack');const figs=[...t.children];if(!figs.length)return;
+    const thumbs=[...w.querySelectorAll('[data-go]')];
+    const cur=()=>{const c=t.scrollLeft+t.clientWidth/2;let b=0,d=1e9;figs.forEach((f,i)=>{const m=f.offsetLeft+f.offsetWidth/2;const dd=Math.abs(m-c);if(dd<d){d=dd;b=i}});return b};
+    const go=i=>{i=Math.max(0,Math.min(figs.length-1,i));t.scrollTo({left:figs[i].offsetLeft-(t.clientWidth-figs[i].offsetWidth)/2,behavior:'smooth'})};
+    const mark=()=>{const i=cur();figs.forEach((f,j)=>f.classList.toggle('on',j===i));thumbs.forEach((b,j)=>b.classList.toggle('on',j===i));const th=thumbs[i];if(th){const tw=th.parentElement;tw.scrollTo({left:th.offsetLeft-tw.offsetLeft-(tw.clientWidth-th.offsetWidth)/2,behavior:'smooth'})}};
+    w.querySelector('.wprev').onclick=()=>go(cur()-1);w.querySelector('.wnext').onclick=()=>go(cur()+1);
+    thumbs.forEach(b=>b.onclick=()=>go(+b.dataset.go));figs.forEach((f,i)=>f.onclick=()=>go(i));
+    let tm;t.addEventListener('scroll',()=>{clearTimeout(tm);tm=setTimeout(mark,60)},{passive:true});
+    w.tabIndex=0;w.onkeydown=e=>{if(e.key==='ArrowLeft'){go(cur()-1);e.preventDefault()}if(e.key==='ArrowRight'){go(cur()+1);e.preventDefault()}};
+    mark();});
+};function initWeb(root){
+  const doc=root.ownerDocument||document;
+  root.querySelectorAll('[data-copy]').forEach(b=>b.onclick=()=>{const t=b.previousElementSibling.textContent;const done=()=>{b.textContent='Copied';b.classList.add('ok');setTimeout(()=>{b.textContent='Copy';b.classList.remove('ok')},1600)};try{navigator.clipboard.writeText(t).then(done,done)}catch(e){done()}});
+  const tap=root.querySelector('#ptap');root.querySelectorAll('rect[data-p]').forEach(r=>{r.style.cursor='pointer';r.addEventListener('click',()=>{if(tap)tap.textContent=r.getAttribute('data-p');root.querySelectorAll('rect[data-p]').forEach(o=>o.style.opacity=o===r?1:.55)})});
+  const nav=root.querySelector('.wnav');if(nav&&'IntersectionObserver' in window){const links=[...nav.querySelectorAll('a')];const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));const on=nav.querySelector('.on');if(on)nav.scrollTo({left:on.offsetLeft-20,behavior:'smooth'})}}),{rootMargin:'-45% 0px -50% 0px'});links.forEach(a=>{const t=root.querySelector(a.getAttribute('href'));if(t)io.observe(t)})}
+  if(root.classList&&root.classList.contains('web')&&'IntersectionObserver' in window){const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io2.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});root.querySelectorAll('.sec,.verdict,.t2,ol.neg li,.diag,.bands').forEach(el=>{el.classList.add('rv');io2.observe(el)})}
+};var R=document.querySelector('.report');initWheels(R);initWeb(document.body);</script></body></html>
