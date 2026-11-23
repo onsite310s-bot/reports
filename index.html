@@ -509,7 +509,8 @@ ul.good li b{font:700 11pt/1 var(--display);text-transform:uppercase;letter-spac
       <p class="hint">Only open this if something in the report looks wrong.</p>
       <span class="grp" style="margin:0">Vehicle</span>
       <div class="g3"><label>Year<input id="year"></label><label>Make<input id="make"></label><label>Model<input id="model"></label></div>
-      <div class="g2"><label>VIN<input id="vin" maxlength="17" style="font-family:var(--mono);text-transform:uppercase"></label><label>Odometer (km)<input id="km" inputmode="numeric"></label></div>
+      <div class="g2"><label>VIN<input id="vin" maxlength="17" style="font-family:var(--mono);text-transform:uppercase"></label><label>Last on Carfax (km)<input id="km" inputmode="numeric"></label></div>
+      <div class="g2"><label>Odometer at inspection (km)<input id="kmNow" inputmode="numeric" placeholder="From the scan, or type it"></label><span></span></div>
       <span class="grp">Paint readings</span>
       <table class="rt" id="paintTable"></table>
       <div class="row-btns"><button class="btn-s" type="button" id="addPanel">+ Add panel</button></div>
@@ -714,7 +715,14 @@ function parseScanBlueDriver(lines){
   }
   return {codes,format:'bluedriver'};
 }
-function parseScan(lines){
+/* extras any scan report may carry: odometer, number of systems scanned, check engine light */
+function scanInfo(lines){const t=lines.join('\n');const o={};
+  const od=t.match(/odometer(?: reading)?\s*[:\-]?\s*([\d,.]+)\s*(km|mi)/i);if(od){let n=parseFloat(od[1].replace(/,/g,''));if(/mi/i.test(od[2]))n*=1.609;o.odo=Math.round(n)}
+  const sy=t.match(/systems?\s+scanned\s*\(?\s*(\d+)\s*\)?/i);if(sy)o.systems=+sy[1];
+  if(/\bMIL\b[^A-Za-z\n]*(status)?[^A-Za-z\n]*\bOFF\b/i.test(t))o.mil='off';else if(/\bMIL\b[^A-Za-z\n]*(status)?[^A-Za-z\n]*\bON\b/i.test(t))o.mil='on';
+  return o}
+function parseScan(lines){const r=parseScan0(lines);r.info=scanInfo(lines);return r}
+function parseScan0(lines){
   if(lines.some(l=>/bluedriver/i.test(l))||lines.filter(l=>/^\s*\d+\s+.+\s+Codes?\s*$/i.test(l)).length>=2)return parseScanBlueDriver(lines);
   const codes=[]; let mod='', sec=null;
   const milOff=lines.some(l=>/\bMIL\b[^A-Za-z]*(status)?[^A-Za-z]*\bOFF\b/i.test(l));
@@ -1078,16 +1086,16 @@ function crossRef(panels,accidents,T){
   for(const a of recs) a.verdict=a.hits.length?'confirmed':(a.z.side.size||a.z.pos.size||a.z.parts.size||a.z.any)?'not-found':'no-location';
   return {median,rows,recs};
 }
-if(typeof module!=='undefined')module.exports={MILS,statusFromByte,ocrCode,PAINT_BANDS,paintLevel,MAJOR_REPAIRS,SAY,FLAG_STATUS,expandShorthand,negotiation,parseBattery,batteryStatus,recZones,zonesMatch,panelZones,PANEL_LABEL,panelOf,parsePaint,parseTires,parseScan,parseCarfax,crossRef,parseVehicle,serviceAudit,DATE_RE};
+if(typeof module!=='undefined')module.exports={scanInfo,MILS,statusFromByte,ocrCode,PAINT_BANDS,paintLevel,MAJOR_REPAIRS,SAY,FLAG_STATUS,expandShorthand,negotiation,parseBattery,batteryStatus,recZones,zonesMatch,panelZones,PANEL_LABEL,panelOf,parsePaint,parseTires,parseScan,parseCarfax,crossRef,parseVehicle,serviceAudit,DATE_RE};
 
 </script>
 <script>
 const MTO=[['pt','Powertrain',1,'code'],['susp','Suspension',2,'repair'],['brk','Brakes',3,'brakes'],['str','Steering',4,'repair'],['inst','Instruments & auxiliary',5,'code'],['lamp','Lamps',6,'charging'],['elec','Electrical',7,'battery'],['body','Body, glass & restraints',8,'body'],['tire','Tires & wheels',9,'tires']];
-const FIELDS=[...MTO.map(([k])=>'sn_'+k),'asking','seller','dFL','dFR','dRL','dRR','summary','year','make','model','vin','km','tFL','tFR','tRL','tRR','cfTitle','bV','bCCA','bRated','bSOH','bChg','bRes','date','client','tRepaint','tFiller','failSoh','verdict','inspector','licence','bizPhone','bizWeb','ghUser','ghRepo','ghDomain'];
+const FIELDS=[...MTO.map(([k])=>'sn_'+k),'asking','seller','dFL','dFR','dRL','dRR','summary','year','make','model','vin','km','kmNow','tFL','tFR','tRL','tRR','cfTitle','bV','bCCA','bRated','bSOH','bChg','bRes','date','client','tRepaint','tFiller','failSoh','verdict','inspector','licence','bizPhone','bizWeb','ghUser','ghRepo','ghDomain'];
 const KEEP=['inspector','licence','bizPhone','bizWeb','tRepaint','tFiller','failSoh','ghUser','ghRepo','ghDomain'];
 let pub={};
 const DOCS={carfax:'Carfax vehicle history report',paint:'Paint thickness and tire report',scan:'System scan',battery:'Battery and charging test'};
-let photos={},under=[],extras=[],docs={},msgs={},paint=[],codes=[],accidents=[],services=[],costs={},cf={odo:[],provinces:[],lastOdo:null,stolen:''},batx={};
+let photos={},under=[],extras=[],docs={},msgs={},paint=[],codes=[],accidents=[],services=[],costs={},cf={odo:[],provinces:[],lastOdo:null,stolen:''},batx={},scx={};
 const $=id=>document.getElementById(id);const v=id=>$(id).value;
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const num=s=>{const n=parseFloat(String(s??'').replace(/[^\d.]/g,''));return isNaN(n)?null:n};
@@ -1174,7 +1182,7 @@ function ingest(kind,res,name){
   if(kind==='paint'){const p=parsePaint(res.lines);paint=p.panels.map(x=>({panel:x.panel,max:x.max,label:x.label||'',coating:x.coating||'',oor:!!x.oor}));const t=parseTires(res.lines);let tn=0;
     ['FL','FR','RL','RR'].forEach(k=>{if(t[k]!=null){$('t'+k).value=t[k];tn++}if(t['DOT'+k]&&!v('d'+k))$('d'+k).value=t['DOT'+k]});fillVehicle(res.lines);
     m=paint.length?`${paint.length} panels read${tn?` and tread on ${tn} tires`:', no tire tread found'}.`:'No panel readings found. Send me this PDF so I can tune the reader to it.'}
-  if(kind==='scan'){codes=parseScan(res.lines).codes;fillVehicle(res.lines);const a=codes.filter(c=>c.include).length,u=codes.filter(c=>c.status==='unknown').length;
+  if(kind==='scan'){const ps=parseScan(res.lines);codes=ps.codes;scx=ps.info||{};if(scx.odo)$('kmNow').value=scx.odo;fillVehicle(res.lines);const a=codes.filter(c=>c.include).length,u=codes.filter(c=>c.status==='unknown').length;
     if(!docs.battery){const b=parseBattery(res.lines);if(b.voltage||b.cca)fillBattery(res.lines)}
     m=codes.length?`${a} active/permanent code${a===1?'':'s'} flagged${a?' ('+codes.filter(c=>c.include).map(c=>c.code).join(', ')+')':''}. ${codes.filter(c=>!c.include&&c.status!=='unknown').length} stored/history/intermittent/pending listed as low priority.${u?` ${u} have no status from the scanner; tick any under "Check" to flag them.`:''}${res.ocr?' Codes read from a photo can have wrong letters or digits: check them under "Check what the PDFs gave me". Exporting the scan as a PDF from the scanner is more accurate.':''}`:'No fault codes found.'}
   if(kind==='battery'){const b=fillBattery(res.lines);const st=batteryStatus(b,FAIL_SOH());m=(b.voltage||b.cca||b.result)?`${b.voltage?b.voltage+' V':''}${b.cca?' · '+b.cca+(b.rated?' / '+b.rated:'')+' CCA':''}${b.soh?' · '+b.soh+'% health':''}${b.soc!=null?' · '+b.soc+'% charge':''}${st?' → '+BATT_LABEL[st]:''}`:'No battery readings found. Send me this PDF so I can tune the reader to it.'}
@@ -1341,7 +1349,7 @@ function buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF,mto){
     add({key:'tires',grp:'fix',title:old8.some(t=>t.age>=10)?'Tires past the 10-year limit':'Tires',why,ask:`Ask the dealer to install ${low.length+old8.length>=3?'four':'new'} tires before delivery.`,say:old8.length?`These tires are from ${Math.min(...old8.map(t=>dotCode(t.dot).yr))}. That's ${Math.floor(Math.max(...old8.map(t=>t.age)))} years old. I need new tires installed before I take delivery, written on the bill of sale.`:SAY.tires})}
   else if(old6.length)add({key:'tires',grp:'aware',title:'Tires are getting old',why:`${old6.map(t=>t.name).join(', ')} ${old6.length>1?'are':'is'} ${Math.floor(Math.max(...old6.map(t=>t.age)))} years old. Tread is fine for now, but plan on new tires within about ${Math.max(1,Math.round(10-Math.max(...old6.map(t=>t.age))))} years.`,ask:'Not a deal-breaker. Use it as leverage on the price or ask for a set of tires.',say:'The tires are already '+Math.floor(Math.max(...old6.map(t=>t.age)))+' years old. Can you include new tires, or adjust the price for them?'});
   active.filter(c=>!new RegExp('\\b'+c.code.replace(/[-:]/g,'.')+'\\b','i').test(sumBody())).forEach(c=>items.push({src:'auto',grp:'fix',key:'code:'+c.code,title:(c.status==='permanent'?'Permanent code ':'Active code ')+c.code,why:`${c.code}${c.desc?': '+c.desc:''}${c.module?' ('+c.module+')':''}. ${c.status==='permanent'?'A permanent code stays until the car proves the repair worked. It can\'t be cleared with a scanner.':'This fault is active right now.'}`,ask:'Ask the dealer to diagnose and repair the fault and show you a clean scan before delivery.',say:`Your scan shows ${c.code}${c.desc?' ('+c.desc.toLowerCase()+')':''}. Please diagnose and repair it and show me a clean scan before I sign.`}));
-  const major=sa.issues.find(i=>i.type==='major');if(major)add({key:'service',grp:'fix',title:'Maintenance not on record',why:major.text.replace(/\s*Ask for receipts.*$/,''),ask:'Ask for service records. If there are none, ask the dealer to complete these services before delivery.',say:SAY.service});
+  const major=sa.issues.find(i=>i.type==='major');if(major)add({key:'service',grp:'aware',title:'Maintenance not on record',why:major.text.replace(/\s*Ask for receipts.*$/,'')+' Intervals vary by make, so check the owner\'s manual schedule and ask for receipts.',ask:'Ask for service records. If there are none, ask the dealer to complete these services before delivery.',say:SAY.service});
   (sa.repairs||[]).forEach(r=>add({key:'repair:'+r.date,grp:'aware',title:'Major repair on record',why:`${r.what.join(', ')} on ${r.date}${r.km!=null?' at '+r.km.toLocaleString()+' km':''}${r.source?' by '+r.source:''}. A big repair done at a dealer is normal; what matters is that it was done right and is covered.`,ask:'Ask for the repair invoice and whether the parts and labour warranty transfers to you.',say:`The Carfax shows ${r.what[0].toLowerCase()} on ${r.date}. Can I see the invoice, and does the repair warranty transfer to me?`}));
   if(/rebuilt|salvage|irreparable|non-repairable|flood|total|junk|stolen/i.test(v('cfTitle')))add({key:'title',grp:'aware',title:'Branded title',why:`The Carfax shows the title as ${v('cfTitle')}.`,ask:'A branded title affects insurance and resale value. We do not recommend this car.',say:''});
   sa.issues.filter(i=>i.type==='odo').forEach(i=>add({key:'odo',grp:'aware',title:'Odometer reading went down',why:i.text,ask:'Ask the dealer to explain the odometer history in writing.',say:'The Carfax shows the odometer going down. Can you explain that in writing?'}));
@@ -1358,7 +1366,7 @@ function buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF,mto){
     else if(k==='battery'||k==='charging')c=[bat.soh!=null&&bat.soh!==''&&`Health ${bat.soh}%`,batx.soc!=null&&batx.soc!==''&&`Charge ${batx.soc}%`,bat.cca&&`${bat.cca}${bat.rated?' / '+bat.rated:''} CCA`,bat.charging&&`Charging ${bat.charging} V`].filter(Boolean);
     else if(k==='tires')c=tr.filter(t=>(t.mm!=null&&t.mm<5)||(t.age!=null&&t.age>=6)).map(t=>[t.name,t.mm!=null?t.mm.toFixed(1)+' mm':'',dotCode(t.dot)?'DOT '+dotCode(t.dot).code:'',t.age!=null?ageText(t.age):''].filter(Boolean).join(' · '));
     else if(k==='code'){const cd=active.find(a=>'code:'+a.code===i.key);if(cd)c=[cd.code,STATUS_NAME[cd.status]||cd.status,cd.module].filter(Boolean)}
-    else if(k==='service')c=(sa.missing||[]).slice(0,5).map(m=>'No record: '+String(m.name||m).toLowerCase());
+    else if(k==='service')c=(sa.missing||[]).map(m=>String(m.name||m).toLowerCase()).filter(m=>i.why.toLowerCase().includes(m)).slice(0,5).map(m=>'No record: '+m);
     else if(k==='repair'){const r=(sa.repairs||[]).find(r=>'repair:'+r.date===i.key);if(r)c=[r.date,r.km!=null?r.km.toLocaleString()+' km':'',r.source].filter(Boolean)}
     else if(k==='title')c=[v('cfTitle')];
     if(i.mto)c=[...c,`Safety concern · MTO Section ${i.mto.sec}`];
@@ -1413,7 +1421,8 @@ function render(){
   const flagged=x.rows.filter(r=>r.status!=='ok'),undis=flagged.filter(r=>r.verdict==='undisclosed');
   const active=codes.filter(c=>c.include&&c.code);
   const ctab=(list,low)=>`<table class="ft${low?' low':''}"><thead><tr><th>Code</th><th>Description</th><th>Module</th><th>Status</th></tr></thead><tbody>${list.map(c=>`<tr><td class="mono">${esc(c.code)}</td><td>${esc(c.desc)}</td><td>${esc(c.module||'')}</td><td><span class="stx ${c.status}">${STATUS_NAME[c.status]||esc(c.status)}</span></td></tr>`).join('')}</tbody></table>`;
-  const km=num(v('km'));const sa=serviceAudit(services.filter(s=>s.date),km,v('date'),cf.odo);
+  const km=num(v('km')),kmNow=num(v('kmNow'));const sa=serviceAudit(services.filter(s=>s.date),kmNow||km,v('date'),cf.odo);
+  if(kmNow&&km&&kmNow<km-100&&!sa.issues.some(i=>i.type==='odo'))sa.issues.push({type:'odo',sev:'flag',text:`The odometer reads ${kmNow.toLocaleString('en-CA')} km at the inspection, lower than the ${km.toLocaleString('en-CA')} km last reported on the Carfax.`});
   const odoLast=(cf.odo||[]).map(o=>({...o,t:dateVal(o.date)})).sort((a,b)=>a.t-b.t).pop();
   const veh=[v('year'),v('make'),v('model')].filter(Boolean).join(' ');
   const date=v('date')?new Date(v('date')+'T12:00').toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'}):'';
@@ -1447,13 +1456,13 @@ function render(){
 
   let h=`<section class="rp">${head}
   <div class="vtitle">${esc(veh||'Vehicle')}</div>
-  <div class="vline">${v('vin')?`<span>VIN <b>${esc(v('vin').toUpperCase())}</b></span>`:''}${km?`<span>Last reported odometer <b>${km.toLocaleString('en-CA')} km</b>${odoLast&&odoLast.km===km?' (Carfax, '+esc(odoLast.date)+')':''}</span>`:''}${ask?`<span>Asking price <b>${money(ask)}</b></span>`:''}</div>
+  <div class="vline">${v('vin')?`<span>VIN <b>${esc(v('vin').toUpperCase())}</b></span>`:''}${kmNow?`<span>Odometer at inspection <b>${kmNow.toLocaleString('en-CA')} km</b></span>`:''}${km?`<span>${kmNow?'Last on Carfax':'Last reported odometer'} <b>${km.toLocaleString('en-CA')} km</b>${odoLast&&odoLast.km===km?' ('+(kmNow?'':'Carfax, ')+esc(odoLast.date)+')':''}</span>`:''}${ask?`<span>Asking price <b>${money(ask)}</b></span>`:''}</div>
   ${photos.exF?`<img class="heroimg" src="${photos.exF}" alt="Front of the vehicle">`:''}
   <div class="verdict ${rec.k}" id="s-verdict"><span class="vk">Our recommendation</span><div class="vl"><i aria-hidden="true">${rec.icon}</i>${rec.label}</div><p>${esc(rec.text)}</p>${rec.reasons.length?`<ul>${rec.reasons.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>`:''}${sumParts().rec?`<div class="vnote"><b>Inspector's recommendation:</b> ${esc(sumParts().rec.replace(/^(not recommended|recommended if fixed|recommended)\s*[.:,–-]\s*/i,''))}</div>`:''}<p class="vdisc">This recommendation is our professional opinion of the car's condition on ${esc(date||'the inspection date')}. It is not a guarantee or a warranty. A used car can develop problems at any time. Please read <b>"What this report covers"</b> near the end.</p></div>
   <div class="sec"><h2 class="rs">At a glance</h2><div class="dash">
     ${noCF?tile('Paint (no Carfax)',paint.length?(flagged.length?`${flagged.length} refinished panel${flagged.length>1?'s':''}`:'Paint factory'):'—',flagged.length?'y':paint.length?'g':'','No Carfax provided'):  tile('Accidents vs. paint',paint.length||accidents.length?(undis.length?`${undis.length} unreported repair${undis.length>1?'s':''}`:accidents.length?`${accidents.length} reported${flagged.length?', paint matches':''}`:'No accidents, paint factory'):'—',undis.length?'r':flagged.length||accidents.length?'y':paint.length?'g':'',paint.length?`${x.rows.length} panels measured`:'')}
     ${tile('Service history',docs.carfax||services.length?(svcN?`${svcN} concern${svcN>1?'s':''}`:'Regular, no gaps'):'—',svcFlags?'r':svcN?'y':services.length?'g':'',services.length?`${services.length} records on the Carfax`:'')}
-    ${tile('Fault codes',docs.scan||codes.length?(active.length?`${active.length} active`:'None active'):'—',active.length?'o':docs.scan||codes.length?'g':'',[active.map(c=>c.code).join(', '),lowCodes.length?lowCodes.length+' stored/history (low priority)':''].filter(Boolean).join(' · '))}
+    ${tile('Fault codes',docs.scan||codes.length?(active.length?`${active.length} active`:'None active'):'—',active.length?'o':docs.scan||codes.length?'g':'',[active.map(c=>c.code).join(', '),lowCodes.length?lowCodes.length+' stored/history (low priority)':'',scx.systems?scx.systems+' systems scanned':''].filter(Boolean).join(' · '))}
     ${tile('Battery',bst?BATT_LABEL[bst]:'—',{ok:'g',charge:'g',fail:'r'}[bst]||'',[bat.soh!=null&&bat.soh!==''&&bat.soh+'% health',batx.soc!=null&&batx.soc!==''&&batx.soc+'% charge',bat.cca&&bat.cca+(bat.rated?' / '+bat.rated:'')+' CCA'].filter(Boolean).join(' · '))}
     ${tile('Tires',minT!=null||oldest!=null?[minT!=null?`Lowest ${minT.toFixed(1)} mm`:'',oldest!=null?`oldest ${ageText(oldest)}`:''].filter(Boolean).join(', '):'—',minT==null&&oldest==null?'':(minT!=null&&minT<3)||(oldest||0)>=8?'r':(minT!=null&&minT<5)||(oldest||0)>=6?'y':'g',oldest!=null?'Limit: 10 years from the DOT date':'')}
     ${tile('Title',noCF?'No Carfax':titleV?esc(titleV):'—',noCF?'o':brandBad?'r':titleV?'g':'',noCF?'Ask the seller for one':brandBad?'Branded title':'')}
@@ -1525,6 +1534,7 @@ function render(){
   <div class="chips">${sa.found.map(n=>`<span class="chip yes">✓ ${esc(n)}</span>`).join('')}${sa.missing.filter(n=>/Transmission|Coolant|Brake fluid|Spark|AWD/.test(n)).map(n=>`<span class="chip no">No record: ${esc(n)}</span>`).join('')}</div>`:'<p class="empty">Carfax not loaded.</p>'}
 
   <div class="sec" id="s-codes"><h2 class="rs">Fault codes</h2>
+  ${scx.systems||scx.mil?`<p style="margin:0 0 8px">${[scx.systems?`<b>${scx.systems} systems scanned</b>`:'',scx.mil?`Check engine light <b>${scx.mil}</b>`:''].filter(Boolean).join(' · ')}</p>`:''}
   <h3 class="rs" style="font-size:12pt;margin-top:4px">Priority: active and permanent</h3>
   ${active.length?ctab(active):`<p class="empty">${docs.scan||codes.length?'No active or permanent fault codes at the time of inspection.':'Scan not loaded.'}</p>`}
   ${lowCodes.length?`<h3 class="rs" style="font-size:12pt;margin-top:14px">Low priority: stored, history, intermittent, pending</h3>${ctab(lowCodes,true)}<p class="legend">These are in the car's memory but were not failing during the inspection. They are not a negotiation point unless a warning light comes on or the problem shows up on the test drive.</p>`:''}
@@ -1688,8 +1698,8 @@ function notesHTML(notes){let h='',list=[];const flush=()=>{if(list.length){h+='
   notes.forEach(n=>{if(n.bullet)list.push(n.text);else{flush();h+=`<p>${esc(n.text)}</p>`}});flush();return h}
 
 /* ---------- save / load ---------- */
-function snapshot(media){const o={v:7,fields:{},paint,codes,accidents,services,cf,batx,pub};FIELDS.forEach(f=>o.fields[f]=v(f));if(media){o.docs=docs;o.msgs=msgs;o.photos=photos;o.under=under;o.extras=extras}return o}
-function load(o){FIELDS.forEach(f=>{if(o.fields&&f in o.fields)$(f).value=o.fields[f]});paint=o.paint||[];codes=o.codes||[];accidents=o.accidents||[];services=o.services||[];costs=o.costs||{};cf=o.cf||cf;batx=o.batx||{};pub=o.pub||{};if((o.v||0)<7){if(v('tRepaint')==='220')$('tRepaint').value='200';if(v('tFiller')==='600')$('tFiller').value='350'}if(o.v<6&&!o.fields.verdict)$('verdict').value='auto';if(o.photos)photos=o.photos;if(o.under)under=o.under;if(o.extras)extras=o.extras;paintSlots();if(o.docs)docs=o.docs;if(o.msgs)msgs=o.msgs;drawDocs();render()}
+function snapshot(media){const o={v:7,fields:{},paint,codes,accidents,services,cf,batx,pub,scx};FIELDS.forEach(f=>o.fields[f]=v(f));if(media){o.docs=docs;o.msgs=msgs;o.photos=photos;o.under=under;o.extras=extras}return o}
+function load(o){FIELDS.forEach(f=>{if(o.fields&&f in o.fields)$(f).value=o.fields[f]});paint=o.paint||[];codes=o.codes||[];accidents=o.accidents||[];services=o.services||[];costs=o.costs||{};cf=o.cf||cf;batx=o.batx||{};scx=o.scx||{};pub=o.pub||{};if((o.v||0)<7){if(v('tRepaint')==='220')$('tRepaint').value='200';if(v('tFiller')==='600')$('tFiller').value='350'}if(o.v<6&&!o.fields.verdict)$('verdict').value='auto';if(o.photos)photos=o.photos;if(o.under)under=o.under;if(o.extras)extras=o.extras;paintSlots();if(o.docs)docs=o.docs;if(o.msgs)msgs=o.msgs;drawDocs();render()}
 function saveLocal(){try{localStorage.setItem('onsite310s-draft-v4',JSON.stringify(snapshot(false)))}catch(e){}}
 $('saveJob').onclick=()=>{const name=(['OnSite',v('year'),v('make'),v('model'),v('date')].filter(Boolean).join('-')||'OnSite-job').replace(/\s+/g,'-');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(snapshot(true))],{type:'application/json'}));a.download=name+'.json';a.click()};
 $('openJobBtn').onclick=()=>$('openJob').click();
@@ -1698,7 +1708,7 @@ let armed=false;
 $('newJob').onclick=()=>{if(!armed){armed=true;$('newJob').textContent='Tap again to clear';setTimeout(()=>{armed=false;$('newJob').textContent='New'},2500);return}
   armed=false;$('newJob').textContent='New';const keep=KEEP.map(k=>[k,v(k)]);pub={};
   FIELDS.forEach(f=>{const el=$(f);el.value=el.tagName==='SELECT'?el.options[0].value:''});keep.forEach(([k,x])=>$(k).value=x);$('date').value=new Date().toLocaleDateString('en-CA');
-  photos={};under=[];extras=[];paintSlots();docs={};msgs={};paint=[];codes=[];accidents=[];services=[];costs={};cf={odo:[],provinces:[],lastOdo:null,stolen:''};batx={};drawDocs();render()};
+  photos={};under=[];extras=[];paintSlots();docs={};msgs={};paint=[];codes=[];accidents=[];services=[];costs={};cf={odo:[],provinces:[],lastOdo:null,stolen:''};batx={};scx={};drawDocs();render()};
 $('webBtn').onclick=async()=>{const {html,title}=await buildWebHTML();
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([html],{type:'text/html'}));a.download=(title.replace(/[^\w -]+/g,'').replace(/\s+/g,'-')||'OnSite-report')+'.html';document.body.appendChild(a);a.click();a.remove();
 };
