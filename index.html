@@ -348,6 +348,8 @@ ul.good li::before{content:"✓";position:absolute;left:12px;top:8px;color:#4fb6
 .fcards{display:grid;gap:8px}
 .fc{display:grid;grid-template-columns:48px 1fr;gap:12px;background:var(--r-panel);border-radius:6px;padding:12px 14px;border-left:5px solid;break-inside:avoid;align-items:start}
 .fc.fix{border-left-color:#f0a35c}.fc.aware{border-left-color:#5aa3b8}
+.fc.walk{border-left-color:#e2574f}.fc.walk .fi{background:rgba(226,87,79,.16);color:#ff7a70}.fc.walk .fs{background:#ff7a70}
+.wchk{display:grid;gap:6px}.wchk div{display:flex;gap:10px;align-items:center;background:var(--r-panel);border-radius:6px;padding:10px 14px;border-left:5px solid #4fb67c;font-size:10pt;break-inside:avoid}.wchk i{flex:none;width:22px;height:22px;border-radius:50%;background:#4fb67c;color:#0b1a12;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:12px}
 .fc .fi{width:48px;height:48px;border-radius:50%;display:grid;place-items:center}
 .fc.fix .fi{background:rgba(240,163,92,.16);color:#f0a35c}.fc.aware .fi{background:rgba(90,163,184,.16);color:#7cc2d6}
 .fc .fh{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
@@ -477,24 +479,29 @@ ul.good li b{font:700 11pt/1 var(--display);text-transform:uppercase;letter-spac
     </div></details>
 
     <details class="p" open><summary>4 · Inspector's summary</summary><div class="pb">
-      <textarea id="summary" style="min-height:260px" placeholder="Paste the Gemini summary here, or write bullets, one per line:
-- Paint: Left rear quarter 1,500 µm, not on the Carfax
+      <textarea id="summary" style="min-height:260px" placeholder="Paste Gemini's answer here. It comes back in this layout:
+SUMMARY:
+- Overall picture of the car
+WALK AWAY:
+- None
+NEGOTIATE:
 - Battery: Failed, 41% health
-- Tires: Rears at 2.4 mm, DOT 2017
-- Recommendation: Not recommended. Unreported body filler."></textarea>
-      <div class="gem"><button type="button" id="gemBtn">Copy Gemini prompt</button><span>Paste it in Gemini with your 4 PDFs, add your notes after "My notes:", then paste Gemini's answer here.</span></div>
-      <p class="hint">One bullet per line, starting with a dash. Each bullet is sorted into: topics to bring up, know before you buy, or the good. The "Recommendation:" line shows under the verdict.</p>
+GOOD TO KNOW:
+- Tires: 7 years old
+THE GOOD:
+- Paint: All factory, matches the Carfax
+CHECK:
+- None
+RECOMMENDATION: Recommended if fixed. ..."></textarea>
+      <div class="gem"><button type="button" id="gemBtn">Copy Gemini prompt</button><span>Paste it in Gemini with your 4 PDFs, then dictate your notes after "My notes:". Paste Gemini's whole answer here.</span></div>
+      <p class="hint">Each heading goes to its own place in the report: Walk away, Negotiate (topics to bring up), Good to know, and The good. CHECK lines are only for you and never reach the customer. You can still type your own bullets the old way.</p>
       <div id="negPreview"></div>
       <label style="margin-top:10px">Recommendation<select id="verdict"><option value="auto">Auto (from the findings)</option><option value="yes">Recommended</option><option value="fix">Recommended if fixed</option><option value="no">Not recommended</option></select></label>
 
       <p class="hint" id="verdictWhy"></p>
     </div></details>
 
-    <details class="p" open><summary>5 · Safety red flags (MTO categories) <small id="mtoCount"></small></summary><div class="pb">
-      <p class="hint">Not a pass or fail. Write down any red flag you see that could stop the car from passing a safety, sorted by MTO category. Tap a quick pick or type your own. Tread under 2 mm and active airbag, ABS or stability-control codes are added automatically. Leave the rest blank.</p>
-      <div class="mto"><div class="mrow"><span>Powertrain<small>Section 1</small></span><input id="sn_pt" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="pt">Oil leak</button><button type="button" data-k="pt">Coolant leak</button><button type="button" data-k="pt">Exhaust leak</button><button type="button" data-k="pt">Broken engine mount</button></div></div><div class="mrow"><span>Suspension<small>Section 2</small></span><input id="sn_susp" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="susp">Seeping ball joint</button><button type="button" data-k="susp">Leaking strut or shock</button><button type="button" data-k="susp">Worn control arm bushings</button><button type="button" data-k="susp">Broken coil spring</button></div></div><div class="mrow"><span>Brakes<small>Section 3</small></span><input id="sn_brk" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="brk">Deep grooves on rotors</button><button type="button" data-k="brk">Pads near minimum</button><button type="button" data-k="brk">Corroded brake lines</button><button type="button" data-k="brk">Weak parking brake</button></div></div><div class="mrow"><span>Steering<small>Section 4</small></span><input id="sn_str" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="str">Play in the steering</button><button type="button" data-k="str">Worn tie rod end</button><button type="button" data-k="str">Power steering leak</button></div></div><div class="mrow"><span>Instruments & auxiliary<small>Section 5</small></span><input id="sn_inst" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="inst">Warning light on</button><button type="button" data-k="inst">Horn not working</button><button type="button" data-k="inst">Wipers or washers not working</button></div></div><div class="mrow"><span>Lamps<small>Section 6</small></span><input id="sn_lamp" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="lamp">Bulb out</button><button type="button" data-k="lamp">Cracked lens</button><button type="button" data-k="lamp">Headlight aim off</button></div></div><div class="mrow"><span>Electrical<small>Section 7</small></span><input id="sn_elec" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="elec">Battery not secured</button><button type="button" data-k="elec">Corroded battery terminals</button><button type="button" data-k="elec">Exposed wiring</button></div></div><div class="mrow"><span>Body, glass & restraints<small>Section 8</small></span><input id="sn_body" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="body">Cracked windshield</button><button type="button" data-k="body">Rust holes in the body</button><button type="button" data-k="body">Seatbelt not working</button><button type="button" data-k="body">Door not latching</button></div></div><div class="mrow"><span>Tires & wheels<small>Section 9</small></span><input id="sn_tire" placeholder="Red flag you saw (leave blank if none)"><div class="picks"><button type="button" data-k="tire">Tread under 2 mm</button><button type="button" data-k="tire">Sidewall damage</button><button type="button" data-k="tire">Dry rot cracking</button><button type="button" data-k="tire">Mismatched tires</button></div></div></div>
-    </div></details>
-    <details class="p" open><summary>6 · Photos <small id="phCount"></small></summary><div class="pb">
+    <details class="p" open><summary>5 · Photos <small id="phCount"></small></summary><div class="pb">
       <div class="drop" id="bulk"><b>Add all photos</b><span class="st">Pick them in this order: front, rear, left, right, 4 underbody, engine bay, VIN, odometer, 2 front seats, 2 rear seats, trunk. Anything after goes to additional.</span><input type="file" accept="image/*" multiple hidden></div>
       <div class="slots" id="slots"></div>
       <span class="grp">Underbody</span>
@@ -1029,8 +1036,27 @@ const SAY={
  engine:'There is a drivetrain concern. Please diagnose it and tell me in writing what you\'ll repair before delivery.',
  body:'The paint readings show repair work that isn\'t on the Carfax. What was damaged, what was replaced, and who did the work?',
  rust:'There is rust underneath. What has been done about it, and will you treat it before delivery?'};
+/* Section headers Gemini is told to use. Bullets under a header go straight to that group, no guessing. */
+const SUM_HEAD=[[/^summary$/i,'summary'],[/^(walk[- ]?away( flags| reasons| check)?|deal[- ]?breakers?|why buyers walk away)$/i,'walk'],[/^(negotiate|negotiation( topics)?|topics to bring up( in negotiation)?|bring up)$/i,'fix'],[/^(good to know|know before you buy)$/i,'aware'],[/^(the good|good news|positives?|what'?s good)$/i,'good'],[/^(check|check with me|to confirm|confirm)$/i,'check'],[/^(inspector'?s |final |my )?recommendation$/i,'rec']];
+function sumHeader(l){const t=String(l).replace(/\*\*/g,'').replace(/^#+\s*/,'').replace(/^[-*•]\s*/,'').trim().replace(/\s*:\s*$/,'');if(!/:\s*$/.test(String(l).replace(/\*\*/g,'').trim())&&!/^#/.test(String(l).trim()))return null;const h=SUM_HEAD.find(([re])=>re.test(t));return h?h[1]:null}
+const isNone=t=>/^(none|n\/a|nothing( found| to report)?|no (issues|concerns|walk-?away (flags|reasons)|deal-?breakers)( found)?)\.?$/i.test(String(t).trim());
 function negotiation(summary){
-  const lines=String(summary||'').split('\n').map(x=>x.trim()).filter(Boolean);
+  const raw=String(summary||'').split('\n').map(x=>x.trim()).filter(Boolean);
+  const structured=raw.some(l=>{const h=sumHeader(l);return h&&h!=='rec'&&h!=='summary'});
+  if(structured){
+    const notes=[],items=[],positives=[],checks=[];let sec=null;
+    raw.forEach(l=>{const h=sumHeader(l);if(h){sec=h;return}
+      const body=l.replace(/^[-*•·–>]\s*/,'').trim();if(!body||isNone(body))return;
+      if(sec==='summary'||sec===null){notes.push({text:expandShorthand(l),bullet:/^[-*•·–>]/.test(l)});return}
+      if(sec==='check'){checks.push(body);return}
+      if(sec==='rec')return;
+      const full=expandShorthand(body);const lab=full.match(/^([^:]{2,45}):\s+(.+)$/);const label=lab?lab[1].trim():null;const sentence=lab?lab[2].trim():full;
+      if(sec==='good'){positives.push({title:label,text:sentence});return}
+      const r=(label&&NEG_RULES.find(r=>r.re.test(label)))||NEG_RULES.find(r=>r.re.test(full)&&(!r.test||r.test(full)))||NEG_RULES.find(r=>r.key==='engine');
+      items.push({key:r.key+(label?':'+label:':'+items.length),grp:sec,title:label||r.title,why:sentence,ask:r.ask,say:SAY[r.key]||'',src:'you'})});
+    return {notes,items,positives,checks,bulleted:true,structured:true};
+  }
+  const lines=raw;
   const bullets=lines.filter(l=>/^[-*•·–>]/.test(l));const src=bullets.length?bullets:(lines.length>1?lines:[]);
   const notes=[],items=[],positives=[];
   lines.forEach(l=>{if(!src.includes(l))notes.push({text:expandShorthand(l),bullet:false});else notes.push({text:expandShorthand(l),bullet:bullets.length>0})});
@@ -1039,7 +1065,7 @@ function negotiation(summary){
     if(!isProblem(sentence)){positives.push({title:label,text:sentence});return}
     const r=(label&&NEG_RULES.find(r=>r.re.test(label)))||NEG_RULES.find(r=>r.re.test(full)&&(!r.test||r.test(full)))||NEG_RULES.find(r=>r.key==='engine');
     if(r){const ex=items.find(x=>x.key===r.key&&!label);if(ex){ex.why+=' '+sentence}else{items.push({key:r.key+(label?':'+label:''),grp:r.grp,title:label||r.title,why:sentence,ask:r.ask,say:SAY[r.key]||'',src:'you'})}}});
-  return {notes,items,positives,bulleted:src.length>0};
+  return {notes,items,positives,checks:[],bulleted:src.length>0,structured:false};
 }
 
 /* ---------- cross-reference ---------- */
@@ -1091,7 +1117,7 @@ if(typeof module!=='undefined')module.exports={scanInfo,MILS,statusFromByte,ocrC
 </script>
 <script>
 const MTO=[['pt','Powertrain',1,'code'],['susp','Suspension',2,'repair'],['brk','Brakes',3,'brakes'],['str','Steering',4,'repair'],['inst','Instruments & auxiliary',5,'code'],['lamp','Lamps',6,'charging'],['elec','Electrical',7,'battery'],['body','Body, glass & restraints',8,'body'],['tire','Tires & wheels',9,'tires']];
-const FIELDS=[...MTO.map(([k])=>'sn_'+k),'asking','seller','dFL','dFR','dRL','dRR','summary','year','make','model','vin','km','kmNow','tFL','tFR','tRL','tRR','cfTitle','bV','bCCA','bRated','bSOH','bChg','bRes','date','client','tRepaint','tFiller','failSoh','verdict','inspector','licence','bizPhone','bizWeb','ghUser','ghRepo','ghDomain'];
+const FIELDS=['asking','seller','dFL','dFR','dRL','dRR','summary','year','make','model','vin','km','kmNow','tFL','tFR','tRL','tRR','cfTitle','bV','bCCA','bRated','bSOH','bChg','bRes','date','client','tRepaint','tFiller','failSoh','verdict','inspector','licence','bizPhone','bizWeb','ghUser','ghRepo','ghDomain'];
 const KEEP=['inspector','licence','bizPhone','bizWeb','tRepaint','tFiller','failSoh','ghUser','ghRepo','ghDomain'];
 let pub={};
 const DOCS={carfax:'Carfax vehicle history report',paint:'Paint thickness and tire report',scan:'System scan',battery:'Battery and charging test'};
@@ -1107,35 +1133,70 @@ const BAND=k=>PAINT_BANDS(T()).find(b=>b.k===k)||{};
 function sumParts(){const out=[],rec=[];let inRec=false;
   String(v('summary')).replace(/\*\*/g,'').split(/\r?\n/).forEach(l=>{
     const m=l.match(/^\s*(?:[-•*]\s*)?(?:inspector'?s\s+|final\s+|my\s+)?recommendation\s*[:\-–]\s*(.*)$/i);
-    if(m){inRec=true;if(m[1].trim())rec.push(m[1].trim());return}
-    if(inRec&&l.trim()&&!/^\s*[-•*]\s/.test(l)){rec.push(l.trim());return}
+    if(m){inRec=m[1].trim()?1:2;if(m[1].trim())rec.push(m[1].trim());return}
+    if(inRec&&l.trim()&&!sumHeader(l)&&(inRec===2||!/^\s*[-•*]\s/.test(l))){rec.push(l.trim().replace(/^[-•*]\s*/,''));return}
     inRec=false;out.push(l)});
   return {body:out.join('\n'),rec:rec.join(' ')}}
 const sumBody=()=>sumParts().body;
-const GEMINI_PROMPT=`You are helping me, a Red Seal 310S licensed automotive technician, write the inspector's summary for a pre-purchase vehicle inspection report for a car buyer in Ontario. I've attached 4 PDFs: a full system scan, a battery and charging system test, a paint thickness report with tire tread depths, and the Carfax Canada history report. After "My notes:" I've written the inspection steps I did, what I found, and the negotiation strategy for the issues found.
+const GEMINI_PROMPT=`You write the customer summary for my pre-purchase vehicle inspection reports. I'm a Red Seal 310S licensed automotive technician in Ontario. Your job is to turn my findings into the exact format below, the same way every time, following my rules. You are not the inspector: my notes are my professional findings and you never overrule them.
 
-Use only what's in the PDFs and my notes. Don't guess or add anything else.
+I've attached up to 4 PDFs: a full system scan, a battery and charging test, a paint thickness report with tire tread depths, and the Carfax Canada report. After "My notes:" are my notes, often voice-to-text.
 
-Rules:
-- Write for a car buyer, not a mechanic: plain English, short sentences.
+HOW TO READ MY NOTES
+- They're dictated, so fix obvious voice-to-text mistakes (for example "bond oh" = Bondo, "see a fax" = Carfax, "tie rod in" = tie rod end). If you can't tell what I meant, don't guess: put it under CHECK.
+- Use my wording for my findings. Don't make a problem sound bigger or smaller than I said.
+- If my notes and a PDF disagree, don't pick one: put it under CHECK.
+- Use only what's in the PDFs and my notes. Never add problems, causes or repairs I didn't find.
+
+MY RULES
+Walk away (deal-breakers no negotiation can fix):
+- Accident repair that isn't on the Carfax: body filler (350 µm and up) on any panel, or 3 or more repainted panels (200 to 350 µm) with no matching accident.
+- Branded title: rebuilt, salvage, irreparable, flood, total loss, or stolen.
+- Odometer that goes backwards or doesn't add up.
+- Structural or frame damage.
+- Anything I call a walk-away or deal-breaker in my notes.
+Negotiate (real problems the seller can fix or adjust the price for):
+- Battery that failed on state of health (SOH). A healthy battery with a low charge is NOT a fail; it only needs charging.
+- Charging system outside about 13.5 to 14.8 V.
+- Active or permanent fault codes. Stored, history, pending and intermittent codes are low priority; leave them out unless my notes mention them.
+- Tires under 3 mm, or 8+ years old by DOT date (10 years is the limit even with tread left).
+- Leaks, noises, worn brakes or suspension, warning lights, overdue maintenance, and anything else I found that can be repaired.
+Good to know (not a problem now, but the buyer should know):
+- Tires 6 to 8 years old, an accident that IS on the Carfax and matches the paint, a big repair on record, gaps in service history, one or two repainted panels with no record (could be cosmetic).
+The good: what checked out well, so the buyer gets the full picture.
+Recommendation:
+- Not recommended if there is anything under WALK AWAY.
+- Recommended if fixed if there is anything under NEGOTIATE.
+- Recommended if both are empty.
+- Every recommendation is only for a car sold with a Safety Standards Certificate and covered by an extended warranty. Never recommend an as-is car.
+
+HOW TO WRITE IT
+- For a car buyer, not a mechanic: plain English, short sentences, one or two sentences per bullet.
+- Name the topic, never script it. Don't tell the buyer what to say or how to negotiate; that's between them and the seller.
 - No prices, repair costs or discount amounts.
-- Don't name the brands of the scan tool, battery tester or paint gauge.
-- Don't script what the customer should say. Name the topic to bring up with the dealer; how it gets handled is up to the customer and the dealer.
-- Fault codes: only active or permanent codes matter. Stored, history, intermittent and pending codes are low priority; skip them unless my notes mention them.
-- Battery: pass or fail on state of health (SOH) only. A healthy battery with a low charge passes and just needs charging.
-- Paint thickness: under 200 µm is factory paint, 200 to 350 µm is a repaint, 350 µm and up is body filler. Say whether each repainted or filled panel matches an accident on the Carfax.
-- Tires: under 2 mm of tread is below Ontario's safety minimum. Use the DOT dates for age: 6+ years check closely, 8+ years replace soon, 10 years is the limit.
-- Safety: never say the car passes or fails a safety. Say a finding "could stop it from passing a safety".
-- Only recommend buying with a Safety Standards Certificate and an extended warranty. Unreported accident damage (body filler or a repaint that isn't on the Carfax) means Not recommended. Everything else can be worked out in negotiation.
+- Never name the brands of my scan tool, battery tester or paint gauge.
+- Don't say the car passes or fails a safety inspection.
+- Panel and tire positions: Left front, Right front, Right rear, Left rear (left is the driver's side).
+- Every bullet starts with an area, then a colon. Use these areas: Accident history, Paint, Title, Odometer, Service history, Engine, Transmission, Brakes, Suspension, Steering, Tires, Battery, Charging, Fault codes, Electrical, Leaks, Interior, Underbody, Test drive.
 
-Format. Reply with ONLY bullets like this, one or two sentences each, nothing before or after:
+FORMAT
+Reply with ONLY these 7 headings, in this order, in plain text (no bold, no #, no tables). Under each heading, write bullets that start with "- ". If a heading has nothing, write "- None".
+
+SUMMARY:
+- 2 or 3 sentences giving the overall picture of the car.
+WALK AWAY:
 - Area: finding
-Use areas such as Accident history, Paint, Service history, Engine, Transmission, Brakes, Suspension, Steering, Tires, Battery, Charging, Fault codes, Electrical, Interior, Underbody, Test drive. Include what's good, not only problems. Give each issue to raise with the dealer its own bullet.
-End with exactly one line:
-- Recommendation: Recommended, Recommended if fixed, or Not recommended, then one or two sentences on why and what the buyer should focus on.
+NEGOTIATE:
+- Area: finding
+GOOD TO KNOW:
+- Area: finding
+THE GOOD:
+- Area: finding
+CHECK:
+- Anything you weren't sure about, for me to confirm. This part is only for me and never goes to the customer.
+RECOMMENDATION: Recommended, Recommended if fixed, or Not recommended, then one or two sentences on why.
 
-My notes:
-`;
+My notes: `;
 const FAIL_SOH=()=>num(v('failSoh'))||50;
 const STATUS_NAME={active:'Active',permanent:'Permanent',stored:'Stored',history:'History',intermittent:'Intermittent',pending:'Pending',unknown:'No status'};
 const PL=p=>PANEL_LABEL[p]||p;
@@ -1296,19 +1357,8 @@ function paintStory(x,noCF){
 const STORY_PILL={nocf:['Refinished','possible'],nocfok:['No Carfax','no-location'],reported:['Matches','confirmed'],'not-found':['Not in paint','not-found'],'no-location':['No location','no-location'],undisclosed:['Unreported','undisclosed'],possible:['Possible','possible'],ok:['Clean','ok']};
 
 /* ---------- negotiation ---------- */
-/* Ontario safety standard: manual result per MTO section, plus automatic fails from measurements */
-function mtoCheck(tr,active){
-  const auto={};const a=(k,t)=>(auto[k]=auto[k]||[]).push(t);
-  tr.filter(t=>t.mm!=null&&t.mm<2).forEach(t=>a('tire',`${t.name} tread ${t.mm.toFixed(1)} mm, under the 2 mm minimum`));
-  active.forEach(c=>{const d=(c.desc||'')+' '+(c.module||'');
-    if(/air ?bag|\bSRS\b|restraint|occupant classification|seat ?belt pretension/i.test(d))a('body',`Active airbag (SRS) fault ${c.code}`);
-    else if(/\bABS\b|anti-?lock|wheel speed sensor/i.test(d))a('brk',`Active ABS fault ${c.code}`);
-    else if(/stability|\bESC\b|\bESP\b|\bVSC\b|\bDSC\b|traction control/i.test(d))a('brk',`Active stability control fault ${c.code}`);});
-  return MTO.map(([k,name,sec,icon])=>{const note=v('sn_'+k).trim();const st=note||auto[k]?'flag':'';
-    return {k,name,sec,icon,st,auto:auto[k]||[],note}});
-}
 /* OMVIC: material facts the dealer must disclose in writing, matched to what we found */
-function omvicItems(x,sa,active,mto){
+function omvicItems(x,sa,active){
   const out=[];const add=(t,w)=>out.push({t,w});
   const big=accidents.filter(a=>num(a.amount)>3000);
   if(big.length)add('Damage over $3,000 from one incident',`The Carfax shows ${big.map(a=>`$${num(a.amount).toLocaleString()} on ${a.date}`).join(', ')}. The dealer must disclose it on the bill of sale, with the repair cost if known.`);
@@ -1326,20 +1376,20 @@ function omvicItems(x,sa,active,mto){
   if(u)add('Past use',`The history suggests it was used as ${u}. The dealer must disclose this. If they don't, you can cancel within 90 days.`);
   const sys=active.filter(c=>c.code);const cats=[...new Set(sys.map(c=>/^P0[0-9]/.test(c.code)?'engine / emissions':/^P07|^P08|^P09|trans/i.test(c.code+' '+c.desc)?'transmission':/^U/.test(c.code)?'computer systems':/^B/.test(c.code)?'electrical':/^C/.test(c.code)?'chassis / suspension':'computer systems'))];
   if(sys.length)add('Needed repairs',`Active faults (${sys.map(c=>c.code).join(', ')}) point to needed repairs in: ${cats.join(', ')}. Known needed repairs to the engine, transmission, computer, electrical, fuel, suspension or A/C systems must be disclosed.`);
-  if(mto.some(m=>m.auto.some(t=>/ABS/.test(t))))add('ABS not working','An active ABS fault was found. An anti-lock brake system that doesn\'t work must be disclosed.');
-  if(mto.some(m=>m.auto.some(t=>/airbag/i.test(t))))add('Airbags','An active airbag fault was found. Airbags that are missing or don\'t work must be disclosed.');
+  if(active.some(c=>/\bABS\b|anti-?lock|wheel speed sensor/i.test((c.desc||'')+' '+(c.module||''))))add('ABS not working','An active ABS fault was found. An anti-lock brake system that doesn\'t work must be disclosed.');
+  if(active.some(c=>/air ?bag|\bSRS\b|restraint|occupant classification/i.test((c.desc||'')+' '+(c.module||''))))add('Airbags','An active airbag fault was found. Airbags that are missing or don\'t work must be disclosed.');
   return out;
 }
-function buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF,mto){
+function buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF){
   const n=negotiation(sumBody());const items=n.items;const has=k=>items.some(i=>i.key.split(':')[0]===k||new RegExp(k,'i').test(i.title));
   const add=o=>{const ex=items.find(i=>i.src==='you'&&i.key.split(':')[0]===o.key&&['tires','battery','charging','body'].includes(o.key));
-    if(ex){if(!ex.why.includes(o.why))ex.why+=' '+o.why;if(o.say)ex.say=o.say;ex.ask=o.ask;if(o.grp==='fix')ex.grp='fix';return}
+    if(ex){if(!ex.why.includes(o.why))ex.why+=' '+o.why;if(o.say)ex.say=o.say;ex.ask=o.ask;if(o.grp==='walk')ex.grp='walk';else if(o.grp==='fix'&&ex.grp!=='walk')ex.grp='fix';return}
     if(!has(o.key))items.push({...o,src:'auto'})};
   const lst=rs=>rs.map(r=>`${r.label||PL(r.panel)} ${r.max>=9999?'off the scale':r.max.toLocaleString()+' µm'}`).join(', ');
   const undis=x.rows.filter(r=>r.status!=='ok'&&r.verdict==='undisclosed');
   const uFill=undis.filter(r=>r.status==='filler'),uPaint=undis.filter(r=>r.status==='repaint');
-  if(uFill.length)add({key:'body',grp:'aware',title:'Unreported body filler',why:`Body filler (Bondo) under the paint on: ${lst(uFill)}. None of it is on the Carfax.${uPaint.length?' Also refinished with no record: '+lst(uPaint)+'.':''}`,ask:'There is no record of what was damaged, what was replaced or who did the work. Ask for the repair invoice. If there is none, we do not recommend this car.',say:SAY.body});
-  else if(uPaint.length)add({key:'body',grp:'aware',title:'Unreported refinishing',why:`Extra paint with no matching accident on the Carfax: ${lst(uPaint)}.${uPaint.length>=3?' Several refinished panels point to an accident that was repaired off the record.':' This can be cosmetic (scratches or chips), but ask about it.'}`,ask:'Ask the dealer what was repainted and why, and for the invoice.',say:SAY.body});
+  if(uFill.length)add({key:'body',grp:'walk',title:'Unreported body filler',why:`Body filler (Bondo) under the paint on: ${lst(uFill)}. None of it is on the Carfax.${uPaint.length?' Also refinished with no record: '+lst(uPaint)+'.':''}`,ask:'There is no record of what was damaged, what was replaced or who did the work. Ask for the repair invoice. If there is none, we do not recommend this car.',say:SAY.body});
+  else if(uPaint.length)add({key:'body',grp:uPaint.length>=3?'walk':'aware',title:uPaint.length>=3?'Unreported accident repair':'Unreported refinishing',why:`Extra paint with no matching accident on the Carfax: ${lst(uPaint)}.${uPaint.length>=3?' Several refinished panels point to an accident that was repaired off the record.':' This can be cosmetic (scratches or chips), but ask about it.'}`,ask:'Ask the dealer what was repainted and why, and for the invoice.',say:SAY.body});
   const chg=num(bat.charging);
   if(bst==='fail')add({key:'battery',grp:'fix',title:'Battery failed',why:`Battery health (SOH) is ${bat.soh!=null&&bat.soh!==''?bat.soh+'%':'below spec'}${bat.cca?', '+bat.cca+(bat.rated?' of '+bat.rated:'')+' CCA':''}. A battery this worn won't hold up, especially in winter.`,ask:'Ask the dealer to install a new battery before delivery.',say:SAY.battery});
   if(bst==='charge')add({key:'battery',grp:'fix',title:'Battery needs a full charge',why:`The battery passed: health is ${bat.soh!=null&&bat.soh!==''?bat.soh+'%':'good'}. It was only at ${batx.soc??'a low'}% charge, which usually means the car has been sitting.${chg&&chg>=13.2&&chg<=14.9?' The alternator charges normally.':''}`,ask:'Ask the dealer to fully charge the battery before delivery. It does not need replacing.',say:'The battery is healthy but flat. Please fully charge it before I pick the car up.'});
@@ -1351,14 +1401,11 @@ function buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF,mto){
   active.filter(c=>!new RegExp('\\b'+c.code.replace(/[-:]/g,'.')+'\\b','i').test(sumBody())).forEach(c=>items.push({src:'auto',grp:'fix',key:'code:'+c.code,title:(c.status==='permanent'?'Permanent code ':'Active code ')+c.code,why:`${c.code}${c.desc?': '+c.desc:''}${c.module?' ('+c.module+')':''}. ${c.status==='permanent'?'A permanent code stays until the car proves the repair worked. It can\'t be cleared with a scanner.':'This fault is active right now.'}`,ask:'Ask the dealer to diagnose and repair the fault and show you a clean scan before delivery.',say:`Your scan shows ${c.code}${c.desc?' ('+c.desc.toLowerCase()+')':''}. Please diagnose and repair it and show me a clean scan before I sign.`}));
   const major=sa.issues.find(i=>i.type==='major');if(major)add({key:'service',grp:'aware',title:'Maintenance not on record',why:major.text.replace(/\s*Ask for receipts.*$/,'')+' Intervals vary by make, so check the owner\'s manual schedule and ask for receipts.',ask:'Ask for service records. If there are none, ask the dealer to complete these services before delivery.',say:SAY.service});
   (sa.repairs||[]).forEach(r=>add({key:'repair:'+r.date,grp:'aware',title:'Major repair on record',why:`${r.what.join(', ')} on ${r.date}${r.km!=null?' at '+r.km.toLocaleString()+' km':''}${r.source?' by '+r.source:''}. A big repair done at a dealer is normal; what matters is that it was done right and is covered.`,ask:'Ask for the repair invoice and whether the parts and labour warranty transfers to you.',say:`The Carfax shows ${r.what[0].toLowerCase()} on ${r.date}. Can I see the invoice, and does the repair warranty transfer to me?`}));
-  if(/rebuilt|salvage|irreparable|non-repairable|flood|total|junk|stolen/i.test(v('cfTitle')))add({key:'title',grp:'aware',title:'Branded title',why:`The Carfax shows the title as ${v('cfTitle')}.`,ask:'A branded title affects insurance and resale value. We do not recommend this car.',say:''});
-  sa.issues.filter(i=>i.type==='odo').forEach(i=>add({key:'odo',grp:'aware',title:'Odometer reading went down',why:i.text,ask:'Ask the dealer to explain the odometer history in writing.',say:'The Carfax shows the odometer going down. Can you explain that in writing?'}));
+  if(/rebuilt|salvage|irreparable|non-repairable|flood|total|junk|stolen/i.test(v('cfTitle')))add({key:'title',grp:'walk',title:'Branded title',why:`The Carfax shows the title as ${v('cfTitle')}.`,ask:'A branded title affects insurance and resale value. We do not recommend this car.',say:''});
+  sa.issues.filter(i=>i.type==='odo').forEach(i=>add({key:'odo',grp:'walk',title:'Odometer reading went down',why:i.text,ask:'Ask the dealer to explain the odometer history in writing.',say:'The Carfax shows the odometer going down. Can you explain that in writing?'}));
   if(noCF){const f=x.rows.filter(r=>r.status!=='ok');const ff=f.filter(r=>r.status==='filler');
-    if(f.length)add({key:'body',grp:'aware',title:ff.length?'Body filler, no history report':'Refinished panels',why:`${lst(f)}.${ff.length?' Body filler means the panel was damaged and reshaped, and with no Carfax there is no record of it.':''}`,ask:'Ask what repairs were done and when, and get the Carfax before you pay.',say:'The paint readings show body work. What happened, and can I see the Carfax and the repair invoice?'});
+    if(f.length)add({key:'body',grp:ff.length?'walk':'aware',title:ff.length?'Body filler, no history report':'Refinished panels',why:`${lst(f)}.${ff.length?' Body filler means the panel was damaged and reshaped, and with no Carfax there is no record of it.':''}`,ask:'Ask what repairs were done and when, and get the Carfax before you pay.',say:'The paint readings show body work. What happened, and can I see the Carfax and the repair invoice?'});
     add({key:'nocarfax',grp:'aware',title:'No vehicle history report',why:'A Carfax was not available for this inspection, so accidents, liens, registration and service history could not be checked.',ask:'Ask the dealer for the Carfax, or buy one with the VIN at carfax.ca before you pay.',say:'Can you send me the Carfax for this VIN before we go any further?'});}
-  (mto||[]).filter(m=>m.st==='flag').forEach(m=>{const why=[...m.auto,m.note].filter(Boolean).join('. ');
-    if(m.k==='tire'&&items.some(i=>i.key.split(':')[0]==='tires')){const t=items.find(i=>i.key.split(':')[0]==='tires');t.mto=m;t.grp='fix';return}
-    items.push({src:'auto',grp:'fix',key:'mto:'+m.k,title:`Possible safety concern: ${m.name}`,why:why.replace(/\.?$/,'.')+' This could stop the car from passing a safety, so it needs to be dealt with before the car is certified.',ask:'',say:'',mto:m})});
   items.forEach(i=>{if(i.say==null)i.say=SAY[i.key.split(':')[0]]||''});
   const um=r=>r.max>=9999?'off scale':r.max.toLocaleString()+' µm';
   items.forEach(i=>{const k=i.key.split(':')[0];let c=[];
@@ -1369,7 +1416,6 @@ function buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF,mto){
     else if(k==='service')c=(sa.missing||[]).map(m=>String(m.name||m).toLowerCase()).filter(m=>i.why.toLowerCase().includes(m)).slice(0,5).map(m=>'No record: '+m);
     else if(k==='repair'){const r=(sa.repairs||[]).find(r=>'repair:'+r.date===i.key);if(r)c=[r.date,r.km!=null?r.km.toLocaleString()+' km':'',r.source].filter(Boolean)}
     else if(k==='title')c=[v('cfTitle')];
-    if(i.mto)c=[...c,`Safety concern · MTO Section ${i.mto.sec}`];
     i.chips=c});
   if(v('seller')==='private')items.forEach(i=>{i.ask=String(i.ask).replace(/the dealer/g,'the seller').replace(/before delivery/g,'before the sale');i.say=String(i.say||'').replace(/before delivery/g,'before the sale').replace(/before I take delivery/g,'before I buy').replace(/ written on the bill of sale/g,' or the price adjusted')});
   /* the good */
@@ -1383,7 +1429,7 @@ function buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF,mto){
   if(batx.generator&&/normal|good|ok/i.test(batx.generator)||(chg&&chg>=13.2&&chg<=14.9))gAdd(/charg|alternator/i,'Charging system','Alternator charging normally'+(bat.charging?' at '+bat.charging+' V':'')+'.');
   if(minT!=null&&minT>=5&&(oldest==null||oldest<6))gAdd(/tire|tread/i,'Tires',`Tires at ${minT} mm or more${oldest!=null?', '+ageText(oldest)+' old':''}.`);
   if(services.length>=8&&!sa.issues.some(i=>i.type==='gap'||i.type==='none'))gAdd(/service|maint/i,'Service history',`${services.length} service records on the Carfax with no big gaps.`);
-  return {notes:n.notes,fix:items.filter(i=>i.grp==='fix'),aware:items.filter(i=>i.grp==='aware'),good,items};
+  return {notes:n.notes,structured:n.structured,checks:n.checks||[],walk:items.filter(i=>i.grp==='walk'),fix:items.filter(i=>i.grp==='fix'),aware:items.filter(i=>i.grp==='aware'),good,items};
 }
 /* Recommended / Recommended if fixed / Not recommended.
    Not recommended = damage that can't be negotiated away: unreported body filler or accident repair, branded title, odometer rollback. */
@@ -1397,12 +1443,13 @@ function recommend(x,neg,sa,noCF){
   if(nFill.length)no.push(`Body filler on the ${lst(nFill)} with no Carfax to show what happened.`);
   if(/rebuilt|salvage|irreparable|non-repairable|flood|total|junk|stolen/i.test(v('cfTitle')))no.push(`Branded title: ${v('cfTitle')}.`);
   if(sa.issues.some(i=>i.type==='odo'))no.push('The odometer reading went down in the vehicle history.');
+  neg.walk.filter(i=>i.src==='you').forEach(i=>no.push(`${i.title}: ${i.why}`));
   const auto=no.length?'no':neg.fix.length?'fix':'yes';
   const k=v('verdict')&&v('verdict')!=='auto'?v('verdict'):auto;
   const who=v('seller')==='private'?'seller':'dealer';
   const T={yes:{label:'Recommended',icon:'✓',text:`Nothing found on this car is a deal-breaker.${neg.aware.length?' Read "Know before you buy" before you sign.':''}`},
     fix:{label:'Recommended if fixed',icon:'!',text:`Everything found can be addressed. We recommend this car if the ${who} takes care of the topics below. How they handle it is between you and the ${who}.`},
-    no:{label:'Not recommended',icon:'✕',text:'Unreported body damage is the one thing a negotiation can\'t fix. The damage is already done, and it was repaired off the record: there is no way to know what was damaged underneath, what was replaced or who did the work, and no paper trail for insurance, liability or resale.'}};
+    no:{label:'Not recommended',icon:'✕',text:'We found something that usually makes buyers walk away: a problem a negotiation can\'t fix. See "Walk-away check" below.'}};
   if(k!=='no')T[k].text+=who==='dealer'?' Recommended only when sold with a Safety Standards Certificate and covered by an extended warranty.':' Recommended only once the car has a Safety Standards Certificate, and with an extended warranty.';
   return {k,auto,...T[k],reasons:k==='no'?(no.length?no:[]):k==='fix'?neg.fix.map(i=>i.title):[]};
 }
@@ -1438,16 +1485,13 @@ function render(){
   const mins=tr.filter(t=>t.mm!=null).map(t=>t.mm),minT=mins.length?Math.min(...mins):null;const ages=tr.filter(t=>t.age!=null).map(t=>t.age),oldest=ages.length?Math.max(...ages):null;
   const bat={voltage:v('bV'),cca:num(v('bCCA')),rated:num(v('bRated')),soh:num(v('bSOH')),soc:batx.soc,charging:v('bChg'),result:v('bRes')};const bst=batteryStatus(bat,FAIL_SOH());
   const svcFlags=sa.issues.filter(i=>i.sev==='flag').length,svcN=sa.issues.filter(i=>i.sev!=='info').length;
-  const mto=mtoCheck(tr,active);const mtoF=mto.filter(m=>m.st==='flag');
-  mto.forEach(m=>{const el=$('sn_'+m.k);el.className=m.st;let au=el.parentNode.querySelector('.auto');if(m.auto.length){if(!au){au=document.createElement('span');au.className='auto';el.parentNode.appendChild(au)}au.textContent='Auto: '+m.auto.join('; ')}else if(au)au.remove()});
-  $('mtoCount').textContent=mtoF.length?`${mtoF.length} red flag${mtoF.length>1?'s':''}`:'';
-  const omv=v('seller')==='private'?[]:omvicItems(x,sa,active,mto);
-  const neg=buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF,mto);const ask=num(v('asking'));
+  const omv=v('seller')==='private'?[]:omvicItems(x,sa,active);
+  const neg=buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF);const ask=num(v('asking'));
   const rec=recommend(x,neg,sa,noCF);
   const said=(sumParts().rec.match(/^(not recommended|recommended if fixed|recommended)/i)||[])[1];const saidK=said?{'not recommended':'no','recommended if fixed':'fix','recommended':'yes'}[said.toLowerCase()]:null;
   $('verdictWhy').textContent=`Auto verdict: ${{yes:'Recommended',fix:'Recommended if fixed',no:'Not recommended'}[rec.auto]}.`+(v('verdict')!=='auto'&&v('verdict')!==rec.auto?' You have overridden it.':'')+(saidK&&saidK!==rec.k?` Your summary says "${said}". Change the setting above if that's the one you want.`:'');
   const lowCodes=codes.filter(c=>c.code&&!c.include);
-  $('negPreview').innerHTML=(neg.fix.length||neg.aware.length||neg.good.length)?`<p class="hint" style="margin-top:4px"><b>Bring up:</b> ${neg.fix.map(i=>esc(i.title)).join(' · ')||'none'}<br><b>Know before you buy:</b> ${neg.aware.map(i=>esc(i.title)).join(' · ')||'none'}<br><b>The good:</b> ${neg.good.map(g=>esc(g.title||g.text)).join(' · ')||'none'}</p>`:'';
+  $('negPreview').innerHTML=(neg.checks.length?`<p class="res warn"><b>Gemini wants you to confirm:</b><br>${neg.checks.map(c=>'• '+esc(c)).join('<br>')}<br><small>These don't go in the report. Fix the summary, then delete the CHECK lines.</small></p>`:'')+((neg.walk.length||neg.fix.length||neg.aware.length||neg.good.length)?`<p class="hint" style="margin-top:4px"><b>Walk away:</b> ${neg.walk.map(i=>esc(i.title)).join(' · ')||'none'}<br><b>Bring up:</b> ${neg.fix.map(i=>esc(i.title)).join(' · ')||'none'}<br><b>Know before you buy:</b> ${neg.aware.map(i=>esc(i.title)).join(' · ')||'none'}<br><b>The good:</b> ${neg.good.map(g=>esc(g.title||g.text)).join(' · ')||'none'}</p>`:'');
   $('vehline').innerHTML=veh||v('vin')?`<p class="vehline">${esc(veh||'Vehicle')}<small>${v('vin')?'VIN '+esc(v('vin').toUpperCase()):''}${km?' · '+km.toLocaleString()+' km':''}</small></p>`:'<p class="hint">The year, make, model, VIN and km fill in from the Carfax.</p>';
   if(noCF&&!v('vin'))$('vehline').innerHTML+='<p class="res warn">No Carfax loaded. Add the VIN and km under "Check what the PDFs gave me".</p>';
 
@@ -1468,31 +1512,29 @@ function render(){
     ${tile('Title',noCF?'No Carfax':titleV?esc(titleV):'—',noCF?'o':brandBad?'r':titleV?'g':'',noCF?'Ask the seller for one':brandBad?'Branded title':'')}
   </div></div>
   <div class="sec"><h2 class="rs">Inspector's summary</h2>${neg.notes.length?`<div class="summary">${notesHTML(neg.notes)}</div>`:'<p class="empty">Write your summary in step 4.</p>'}</div>
+  <div class="sec" id="s-walk"><h2 class="rs">Walk-away check</h2>
+    ${neg.walk.length?`<p class="legend" style="margin:-4px 0 10px">These are the problems that usually make buyers walk away, because no negotiation can fix them.</p><div class="fcards">${neg.walk.map((i,n)=>negCard(i,n,'walk')).join('')}</div>`
+    :`<p class="legend" style="margin:-4px 0 10px">I checked for the problems that usually make buyers walk away. None found.</p><div class="wchk">${walkChecks().map(t=>`<div><i aria-hidden="true">✓</i>${esc(t)}</div>`).join('')}</div>`}</div>
   ${neg.fix.length?`<div class="sec" id="s-neg"><h2 class="rs">Topics to bring up in negotiation</h2><p class="legend" style="margin:-4px 0 10px">Focus on these findings when you talk to the ${who}. How each one is handled is up to you and the ${who}.</p>
     <div class="fcards">${neg.fix.map((i,n)=>negCard(i,n,'fix')).join('')}</div></div>`:''}
   ${neg.aware.length?`<div class="sec" id="s-aware"><h2 class="rs">Know before you buy</h2>
     <div class="fcards">${neg.aware.map((i,n)=>negCard(i,n,'aware')).join('')}</div></div>`:''}
-  <div class="sec" id="s-mto"><h2 class="rs">Could it pass a safety?</h2>
-    ${mtoF.length?`<p class="legend" style="margin:-4px 0 10px">Red flags I saw during the inspection that could stop this car from getting an Ontario Safety Standards Certificate, sorted by the categories of the MTO inspection standard. One item can be enough to fail a safety.</p>
-    <div class="sflags">${mtoF.map(m=>`<div class="sfl"><div class="sfi">${ICON('mto:'+m.k)}</div><div><div class="fh"><b>${esc(m.name)}</b><span class="fs">MTO Section ${m.sec}</span></div><p>${esc([...m.auto,m.note].filter(Boolean).join('. '))}</p></div></div>`).join('')}</div>
-    <div class="callout r"><b>Get it safetied before you buy</b>These findings could stop the car from being certified. Make sure the ${v('seller')==='private'?'car has':'dealer provides'} a Safety Standards Certificate before you pay, so you aren't left with a car that can't pass.</div>`
-    :`<p style="margin:0">I didn't see red flags in the safety categories during this inspection.</p>`}
-    <p class="legend">This is not a safety inspection, and I am not certifying the car or saying it will pass. These are findings from a pre-purchase inspection. Only a licensed Motor Vehicle Inspection Station can issue a Safety Standards Certificate.</p></div>
   ${v('seller')==='private'?`<div class="sec" id="s-rights"><h2 class="rs">Buying privately in Ontario</h2><div class="rights">
       <div><b>No OMVIC protection</b>Dealer disclosure rules and the 90-day right to cancel only apply to OMVIC-registered dealers.</div>
       <div><b>Get the UVIP</b>By law the seller must give you a Used Vehicle Information Package, with all pages: ownership history, liens and past odometer readings.</div>
-      <div><b>Buy it with a safety certificate</b>We only recommend buying this car once it has a Safety Standards Certificate. You also need one to put plates on it.${mtoF.length?` I saw ${mtoF.length} possible safety concern${mtoF.length>1?'s':''} that could stop it from passing.`:''}</div>
+      <div><b>Buy it with a safety certificate</b>We only recommend buying this car once it has a Safety Standards Certificate. You also need one to put plates on it.</div>
       <div><b>Watch for curbsiders</b>Unregistered dealers posing as private sellers. If the seller's name isn't on the ownership, ask why.</div></div></div>`
   :`<div class="sec" id="s-rights"><h2 class="rs">Your rights with an Ontario dealer</h2><p class="legend" style="margin:-4px 0 10px">Ontario's Motor Vehicle Dealers Act (enforced by OMVIC) requires dealers to disclose certain facts in writing on the bill of sale. Telling you out loud doesn't count.</p>
     ${omv.length?`<h3 class="rs" style="font-size:12pt">Must be written on the bill of sale, based on our findings</h3><div class="fcards">${omv.map(o=>`<div class="fc omv"><div class="fi">${ICON('doc')}</div><div class="fb"><div class="fh"><b>${esc(o.t)}</b><span class="fs">Disclose</span></div><p>${esc(o.w)}</p></div></div>`).join('')}</div>`:''}
-    <div class="callout ${mtoF.length?'r':'g'}"><b>Buy it with a safety certificate</b>We only recommend buying this car with a Safety Standards Certificate, not as-is, and with an extended warranty. A certificate means the car met Ontario's minimum standard on the day it was inspected. It is not a warranty, and it is valid for 36 days.${mtoF.length?` I saw ${mtoF.length} possible safety concern${mtoF.length>1?'s':''} that could stop it from being certified, so make sure the car is safetied before you buy.`:''}</div>
+    <div class="callout g"><b>Buy it with a safety certificate</b>We only recommend buying this car with a Safety Standards Certificate, not as-is, and with an extended warranty. A certificate means the car met Ontario's minimum standard on the day it was inspected. It is not a warranty, and it is valid for 36 days.</div>
     <div class="rights">
       <div><b>90 days to cancel</b>If the dealer didn't disclose the distance driven, the make, model and year, past use as a daily rental, police, emergency, taxi or limo, a salvage / rebuilt / irreparable brand, or a total loss, you can cancel within 90 days.</div>
       <div><b>All-in price</b>The advertised price must include every fee except HST and licensing.</div>
       <div><b>No cooling-off period</b>Once you sign, the deal is done. Read the bill of sale and check the disclosures before you sign.</div>
       <div><b>Check registration</b>Every dealer and salesperson must be registered with OMVIC. You can look them up at omvic.ca.</div></div></div>`}
   </section>`;
-  function negCard(i,n,g){return `<div class="fc ${g}"><div class="fi">${ICON(i.key)}</div><div class="fb"><div class="fh"><b>${esc(i.title)}</b><span class="fs">${g==='fix'?'Bring up':'Know'}</span></div><p>${esc(i.why)}</p>${i.chips&&i.chips.length?`<div class="chips">${i.chips.map(c=>`<span>${esc(c)}</span>`).join('')}</div>`:''}</div></div>`}
+  function walkChecks(){const o=[];if(paint.length)o.push(noCF?'No body filler found':undis.length?'No body filler or major accident repair off the record':'No unreported accident repair: the paint matches the Carfax');if(docs.carfax&&titleV)o.push('Clean title: no salvage, rebuilt, flood or total loss brand');if(docs.carfax)o.push('Odometer history is consistent');if(!o.length)o.push('Nothing found that a negotiation can\'t fix');return o}
+  function negCard(i,n,g){return `<div class="fc ${g}"><div class="fi">${ICON(i.key)}</div><div class="fb"><div class="fh"><b>${esc(i.title)}</b><span class="fs">${g==='walk'?'Walk away':g==='fix'?'Bring up':'Know'}</span></div><p>${esc(i.why)}</p>${i.chips&&i.chips.length?`<div class="chips">${i.chips.map(c=>`<span>${esc(c)}</span>`).join('')}</div>`:''}</div></div>`}
 
   /* paint vs carfax */
   const story=paintStory(x,noCF);
@@ -1632,7 +1674,7 @@ async function buildWebHTML(){
   for(const im of r.querySelectorAll('img')){const src=im.getAttribute('src')||'';if(src.startsWith('data:image')){try{im.setAttribute('src',await shrink(src,im.closest('.appx')?1100:im.closest('.wthumbs')?240:1280,.72))}catch(e){}}}
   r.querySelectorAll('section.appx').forEach(sec=>{const pgs=[...sec.querySelectorAll('.pg')];if(!pgs.length)return;const d=document.createElement('details');d.className='appd';d.innerHTML=`<summary>Show the original (${pgs.length} page${pgs.length>1?'s':''})</summary>`;pgs.forEach(p=>d.appendChild(p));sec.appendChild(d)});
   const vk=(r.querySelector('.verdict')||{}).className||'';const vcls=/\bno\b/.test(vk)?'v-no':/\bfix\b/.test(vk)?'v-fix':'v-yes';
-  const links=[['s-verdict','Verdict',vcls],['s-neg','Negotiation topics'],['s-aware','Know before you buy'],['s-mto','Safety'],['s-rights','Your rights'],['s-paint','Paint & accidents'],['s-history','History'],['s-codes','Codes'],['s-batt','Battery'],['s-tires','Tires'],['s-photos','Photos'],['s-limits','What this covers']].filter(([id])=>r.querySelector('#'+id));
+  const links=[['s-verdict','Verdict',vcls],['s-walk','Walk-away check'],['s-neg','Negotiation topics'],['s-aware','Know before you buy'],['s-rights','Your rights'],['s-paint','Paint & accidents'],['s-history','History'],['s-codes','Codes'],['s-batt','Battery'],['s-tires','Tires'],['s-photos','Photos'],['s-limits','What this covers']].filter(([id])=>r.querySelector('#'+id));
   const nav=`<nav class="wnav">${links.map(([id,l,c])=>`<a href="#${id}"${c?` class="${c}"`:''}>${l}</a>`).join('')}</nav>`;
   const wa=String(v('bizPhone')).replace(/\D/g,'');const waN=wa.length===10?'1'+wa:wa;
   const css=[...document.querySelectorAll('style')].map(x=>x.textContent).join('\n');
@@ -1667,7 +1709,6 @@ $('pubBtn').onclick=publishWeb;
 $('gemBtn').onclick=()=>{const b=$('gemBtn');const done=ok=>{b.textContent=ok?'Copied: paste it in Gemini':'Select and copy the text below';setTimeout(()=>b.textContent='Copy Gemini prompt',2500)};
   try{navigator.clipboard.writeText(GEMINI_PROMPT).then(()=>done(true),()=>{fallbackCopy();done(true)})}catch(e){fallbackCopy();done(true)}
   function fallbackCopy(){const t=document.createElement('textarea');t.value=GEMINI_PROMPT;document.body.appendChild(t);t.select();try{document.execCommand('copy')}catch(e){}t.remove()}};
-document.querySelectorAll('.picks button').forEach(b=>b.onclick=()=>{const el=$('sn_'+b.dataset.k);const t=b.textContent;if(!el.value.includes(t))el.value=el.value.trim()?el.value.trim().replace(/[.,;]$/,'')+', '+t.toLowerCase():t;el.dispatchEvent(new Event('input',{bubbles:true}))});
 $('pubClose').onclick=()=>$('pubm').hidden=true;
 $('pubCopy').onclick=()=>{const u=$('pubUrl').value;try{navigator.clipboard.writeText(u).then(()=>$('pubCopy').textContent='Copied',()=>{$('pubUrl').select()})}catch(e){$('pubUrl').select()}setTimeout(()=>$('pubCopy').textContent='Copy link',1600)};
 try{$('ghToken').value=ghToken()}catch(e){}
