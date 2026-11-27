@@ -1174,7 +1174,7 @@ HOW TO READ MY NOTES
 
 MY RULES
 Major findings (the only reason to walk away from a sale: accident or body repair history that isn't explained):
-- Body filler (350 µm and up) or repainted panels (200 to 350 µm) with no matching accident or repair on the Carfax or service records.
+- Body filler (350 µm and up) with no matching accident or repair on the Carfax or service records.
 - Structural or frame repair that isn't explained by the records.
 - Anything I call major in my notes.
 - Mechanical problems are NEVER major findings, however serious. They go under NEGOTIATE.
@@ -1185,7 +1185,7 @@ Negotiate (real problems the seller can fix or adjust the price for):
 - Tires under 3 mm, or 8+ years old by DOT date (10 years is the limit even with tread left).
 - Leaks, noises, worn brakes or suspension, warning lights, overdue maintenance, and every other mechanical problem I found. The dealer should get the chance to fix these properly, with itemized invoices and clear communication.
 Good to know (not a problem now, but the buyer should know):
-- Tires 6 to 8 years old, an accident that IS on the Carfax and matches the paint, a big repair on record, gaps in service history, a branded title (rebuilt, salvage, flood) or an odometer history that doesn't add up.
+- Tires 6 to 8 years old, an accident that IS on the Carfax and matches the paint, a big repair on record, gaps in service history, repainted panels (200 to 350 µm) with no matching record (say it isn't normal for factory paint and the buyer should be cautious and ask for the repair invoice; don't call it major), a branded title (rebuilt, salvage, flood) or an odometer history that doesn't add up.
 The good: what checked out well, so the buyer gets the full picture.
 Recommendation:
 - Not recommended if there is anything under MAJOR FINDINGS.
@@ -1412,7 +1412,7 @@ function buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF){
   const undis=x.rows.filter(r=>r.status!=='ok'&&r.verdict==='undisclosed');
   const uFill=undis.filter(r=>r.status==='filler'),uPaint=undis.filter(r=>r.status==='repaint');
   if(uFill.length)add({key:'body',grp:'walk',title:'Unreported body filler',why:`Body filler (Bondo) under the paint on: ${lst(uFill)}. None of it is on the Carfax.${uPaint.length?' Also refinished with no record: '+lst(uPaint)+'.':''}`,ask:'There is no record of what was damaged, what was replaced or who did the work. Ask for the repair invoice. If there is none, we do not recommend this car.',say:SAY.body});
-  else if(uPaint.length)add({key:'body',grp:'walk',title:'Unexplained body repair',why:`Repainted with no matching accident or repair on the Carfax: ${lst(uPaint)}.${uPaint.length>=3?' Several refinished panels point to an accident that was repaired off the record.':' Ask the seller to explain it with the repair invoice.'}`,ask:'Ask the dealer what was repainted and why, and for the invoice.',say:SAY.body});
+  else if(uPaint.length)add({key:'body',grp:'aware',title:'Repainted panels, not factory',why:`Repainted with no matching accident or repair on the Carfax: ${lst(uPaint)}. This isn't normal for factory paint, so be cautious: ask the seller what was repainted and why, and for the repair invoice.`,ask:'Ask the dealer what was repainted and why, and for the invoice.',say:SAY.body});
   const chg=num(bat.charging);
   if(bst==='fail')add({key:'battery',grp:'fix',title:'Battery failed',why:`Battery health (SOH) is ${bat.soh!=null&&bat.soh!==''?bat.soh+'%':'below spec'}${bat.cca?', '+bat.cca+(bat.rated?' of '+bat.rated:'')+' CCA':''}. A battery this worn won't hold up, especially in winter.`,ask:'Ask the dealer to install a new battery before delivery.',say:SAY.battery});
   if(bst==='charge')add({key:'battery',grp:'fix',title:'Battery needs a full charge',why:`The battery passed: health is ${bat.soh!=null&&bat.soh!==''?bat.soh+'%':'good'}. It was only at ${batx.soc??'a low'}% charge, which usually means the car has been sitting.${chg&&chg>=13.2&&chg<=14.9?' The alternator charges normally.':''}`,ask:'Ask the dealer to fully charge the battery before delivery. It does not need replacing.',say:'The battery is healthy but flat. Please fully charge it before I pick the car up.'});
@@ -1462,7 +1462,6 @@ function recommend(x,neg,sa,noCF){
   const nFill=noCF?x.rows.filter(r=>r.status==='filler'):[];
   const no=[];
   if(uFill.length)no.push(`Body filler on the ${lst(uFill)}, and none of it is on the Carfax.`);
-  if(uPaint.length)no.push(`${uPaint.length} panel${uPaint.length>1?'s':''} refinished (${lst(uPaint)}) with no accident or repair on the Carfax.`);
   if(nFill.length)no.push(`Body filler on the ${lst(nFill)} with no Carfax to show what happened.`);
   neg.walk.filter(i=>i.src==='you').forEach(i=>no.push(`${i.title}: ${i.why}`));
   const auto=no.length?'no':neg.fix.length?'fix':'yes';
