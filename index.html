@@ -568,7 +568,7 @@ RECOMMENDATION: Recommended if fixed. ..."></textarea>
       <div class="g2"><label>Inspector<input id="inspector" value="Nigel Devonish"></label><label>Licence<input id="licence" value="Red Seal 310S Automotive Technician"></label></div>
       <span class="grp">Thank-you discount &amp; reviews</span>
       <div class="g2"><label>Next-inspection code (from Stripe)<input id="nextCode" value="NIGEL50" autocapitalize="characters" autocorrect="off" spellcheck="false"></label><label>Discount<input id="nextOff" value="$50 off"></label></div>
-      <label>Google review link<input id="reviewUrl" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="https://g.page/r/…/review"></label>
+      <label>Google review link<input id="reviewUrl" value="https://g.page/r/CfTTNYLTnHRIEAE/review" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="https://g.page/r/…/review"></label>
       <p class="hint">Every report shows the code as a thank-you, whether or not the customer leaves a review. Google doesn't allow rewards for reviews, so the two are kept separate. Leave the code blank to hide it.</p>
       <div class="g2"><label>WhatsApp / phone<input id="bizPhone" value="(647) 500-3107"></label><label>Website<input id="bizWeb" value="onsite310s.ca"></label></div>
     </div></details>
@@ -1173,20 +1173,19 @@ HOW TO READ MY NOTES
 - Use only what's in the PDFs and my notes. Never add problems, causes or repairs I didn't find.
 
 MY RULES
-Major findings (serious problems a negotiation can't fix):
-- Accident repair that isn't on the Carfax: body filler (350 µm and up) on any panel, or 3 or more repainted panels (200 to 350 µm) with no matching accident.
-- Branded title: rebuilt, salvage, irreparable, flood, total loss, or stolen.
-- Odometer that goes backwards or doesn't add up.
-- Structural or frame damage.
-- Anything I call major or serious in my notes.
+Major findings (the only reason to walk away from a sale: accident or body repair history that isn't explained):
+- Body filler (350 µm and up) or repainted panels (200 to 350 µm) with no matching accident or repair on the Carfax or service records.
+- Structural or frame repair that isn't explained by the records.
+- Anything I call major in my notes.
+- Mechanical problems are NEVER major findings, however serious. They go under NEGOTIATE.
 Negotiate (real problems the seller can fix or adjust the price for):
 - Battery that failed on state of health (SOH). A healthy battery with a low charge is NOT a fail; it only needs charging.
 - Charging system outside about 13.5 to 14.8 V.
 - Active or permanent fault codes. Stored, history, pending and intermittent codes are low priority; leave them out unless my notes mention them.
 - Tires under 3 mm, or 8+ years old by DOT date (10 years is the limit even with tread left).
-- Leaks, noises, worn brakes or suspension, warning lights, overdue maintenance, and anything else I found that can be repaired.
+- Leaks, noises, worn brakes or suspension, warning lights, overdue maintenance, and every other mechanical problem I found. The dealer should get the chance to fix these properly, with itemized invoices and clear communication.
 Good to know (not a problem now, but the buyer should know):
-- Tires 6 to 8 years old, an accident that IS on the Carfax and matches the paint, a big repair on record, gaps in service history, one or two repainted panels with no record (could be cosmetic).
+- Tires 6 to 8 years old, an accident that IS on the Carfax and matches the paint, a big repair on record, gaps in service history, a branded title (rebuilt, salvage, flood) or an odometer history that doesn't add up.
 The good: what checked out well, so the buyer gets the full picture.
 Recommendation:
 - Not recommended if there is anything under MAJOR FINDINGS.
@@ -1413,7 +1412,7 @@ function buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF){
   const undis=x.rows.filter(r=>r.status!=='ok'&&r.verdict==='undisclosed');
   const uFill=undis.filter(r=>r.status==='filler'),uPaint=undis.filter(r=>r.status==='repaint');
   if(uFill.length)add({key:'body',grp:'walk',title:'Unreported body filler',why:`Body filler (Bondo) under the paint on: ${lst(uFill)}. None of it is on the Carfax.${uPaint.length?' Also refinished with no record: '+lst(uPaint)+'.':''}`,ask:'There is no record of what was damaged, what was replaced or who did the work. Ask for the repair invoice. If there is none, we do not recommend this car.',say:SAY.body});
-  else if(uPaint.length)add({key:'body',grp:uPaint.length>=3?'walk':'aware',title:uPaint.length>=3?'Unreported accident repair':'Unreported refinishing',why:`Extra paint with no matching accident on the Carfax: ${lst(uPaint)}.${uPaint.length>=3?' Several refinished panels point to an accident that was repaired off the record.':' This can be cosmetic (scratches or chips), but ask about it.'}`,ask:'Ask the dealer what was repainted and why, and for the invoice.',say:SAY.body});
+  else if(uPaint.length)add({key:'body',grp:'walk',title:'Unexplained body repair',why:`Repainted with no matching accident or repair on the Carfax: ${lst(uPaint)}.${uPaint.length>=3?' Several refinished panels point to an accident that was repaired off the record.':' Ask the seller to explain it with the repair invoice.'}`,ask:'Ask the dealer what was repainted and why, and for the invoice.',say:SAY.body});
   const chg=num(bat.charging);
   if(bst==='fail')add({key:'battery',grp:'fix',title:'Battery failed',why:`Battery health (SOH) is ${bat.soh!=null&&bat.soh!==''?bat.soh+'%':'below spec'}${bat.cca?', '+bat.cca+(bat.rated?' of '+bat.rated:'')+' CCA':''}. A battery this worn won't hold up, especially in winter.`,ask:'Ask the dealer to install a new battery before delivery.',say:SAY.battery});
   if(bst==='charge')add({key:'battery',grp:'fix',title:'Battery needs a full charge',why:`The battery passed: health is ${bat.soh!=null&&bat.soh!==''?bat.soh+'%':'good'}. It was only at ${batx.soc??'a low'}% charge, which usually means the car has been sitting.${chg&&chg>=13.2&&chg<=14.9?' The alternator charges normally.':''}`,ask:'Ask the dealer to fully charge the battery before delivery. It does not need replacing.',say:'The battery is healthy but flat. Please fully charge it before I pick the car up.'});
@@ -1425,8 +1424,8 @@ function buildNegotiation(x,active,sa,bat,bst,tr,minT,oldest,km,noCF){
   active.filter(c=>!new RegExp('\\b'+c.code.replace(/[-:]/g,'.')+'\\b','i').test(sumBody())).forEach(c=>items.push({src:'auto',grp:'fix',key:'code:'+c.code,title:(c.status==='permanent'?'Permanent code ':'Active code ')+c.code,why:`${c.code}${c.desc?': '+c.desc:''}${c.module?' ('+c.module+')':''}. ${c.status==='permanent'?'A permanent code stays until the car proves the repair worked. It can\'t be cleared with a scanner.':'This fault is active right now.'}`,ask:'Ask the dealer to diagnose and repair the fault and show you a clean scan before delivery.',say:`Your scan shows ${c.code}${c.desc?' ('+c.desc.toLowerCase()+')':''}. Please diagnose and repair it and show me a clean scan before I sign.`}));
   const major=sa.issues.find(i=>i.type==='major');if(major)add({key:'service',grp:'aware',title:'Maintenance not on record',why:major.text.replace(/\s*Ask for receipts.*$/,'')+' Intervals vary by make, so check the owner\'s manual schedule and ask for receipts.',ask:'Ask for service records. If there are none, ask the dealer to complete these services before delivery.',say:SAY.service});
   (sa.repairs||[]).forEach(r=>add({key:'repair:'+r.date,grp:'aware',title:'Major repair on record',why:`${r.what.join(', ')} on ${r.date}${r.km!=null?' at '+r.km.toLocaleString()+' km':''}${r.source?' by '+r.source:''}. A big repair done at a dealer is normal; what matters is that it was done right and is covered.`,ask:'Ask for the repair invoice and whether the parts and labour warranty transfers to you.',say:`The Carfax shows ${r.what[0].toLowerCase()} on ${r.date}. Can I see the invoice, and does the repair warranty transfer to me?`}));
-  if(/rebuilt|salvage|irreparable|non-repairable|flood|total|junk|stolen/i.test(v('cfTitle')))add({key:'title',grp:'walk',title:'Branded title',why:`The Carfax shows the title as ${v('cfTitle')}.`,ask:'A branded title affects insurance and resale value. We do not recommend this car.',say:''});
-  sa.issues.filter(i=>i.type==='odo').forEach(i=>add({key:'odo',grp:'walk',title:'Odometer reading went down',why:i.text,ask:'Ask the dealer to explain the odometer history in writing.',say:'The Carfax shows the odometer going down. Can you explain that in writing?'}));
+  if(/rebuilt|salvage|irreparable|non-repairable|flood|total|junk|stolen/i.test(v('cfTitle')))add({key:'title',grp:'aware',title:'Branded title',why:`The Carfax shows the title as ${v('cfTitle')}.`,ask:'A branded title affects insurance and resale value. Make sure it is written on the bill of sale.',say:''});
+  sa.issues.filter(i=>i.type==='odo').forEach(i=>add({key:'odo',grp:'aware',title:'Odometer reading went down',why:i.text,ask:'Ask the dealer to explain the odometer history in writing.',say:'The Carfax shows the odometer going down. Can you explain that in writing?'}));
   if(noCF){const f=x.rows.filter(r=>r.status!=='ok');const ff=f.filter(r=>r.status==='filler');
     if(f.length)add({key:'body',grp:ff.length?'walk':'aware',title:ff.length?'Body filler, no history report':'Refinished panels',why:`${lst(f)}.${ff.length?' Body filler means the panel was damaged and reshaped, and with no Carfax there is no record of it.':''}`,ask:'Ask what repairs were done and when, and get the Carfax before you pay.',say:'The paint readings show body work. What happened, and can I see the Carfax and the repair invoice?'});
     add({key:'nocarfax',grp:'aware',title:'No vehicle history report',why:'A Carfax was not available for this inspection, so accidents, liens, registration and service history could not be checked.',ask:'Ask the dealer for the Carfax, or buy one with the VIN at carfax.ca before you pay.',say:'Can you send me the Carfax for this VIN before we go any further?'});}
@@ -1463,17 +1462,15 @@ function recommend(x,neg,sa,noCF){
   const nFill=noCF?x.rows.filter(r=>r.status==='filler'):[];
   const no=[];
   if(uFill.length)no.push(`Body filler on the ${lst(uFill)}, and none of it is on the Carfax.`);
-  if(uPaint.length>=3)no.push(`${uPaint.length} panels refinished (${lst(uPaint)}) with no accident on the Carfax.`);
+  if(uPaint.length)no.push(`${uPaint.length} panel${uPaint.length>1?'s':''} refinished (${lst(uPaint)}) with no accident or repair on the Carfax.`);
   if(nFill.length)no.push(`Body filler on the ${lst(nFill)} with no Carfax to show what happened.`);
-  if(/rebuilt|salvage|irreparable|non-repairable|flood|total|junk|stolen/i.test(v('cfTitle')))no.push(`Branded title: ${v('cfTitle')}.`);
-  if(sa.issues.some(i=>i.type==='odo'))no.push('The odometer reading went down in the vehicle history.');
   neg.walk.filter(i=>i.src==='you').forEach(i=>no.push(`${i.title}: ${i.why}`));
   const auto=no.length?'no':neg.fix.length?'fix':'yes';
   const k=v('verdict')&&v('verdict')!=='auto'?v('verdict'):auto;
   const who=v('seller')==='private'?'seller':'dealer';
   const T={yes:{label:'Recommended',icon:'✓',text:`Nothing found on this car is a deal-breaker.${neg.aware.length?' Read "Know before you buy" before you sign.':''}`},
     fix:{label:'Recommended if fixed',icon:'!',text:`Everything found can be addressed. We recommend this car if the ${who} takes care of the topics below. How they handle it is between you and the ${who}.`},
-    no:{label:'Not recommended',icon:'✕',text:'We found a major issue that a negotiation can\'t fix. See "Major findings" below.'}};
+    no:{label:'Not recommended',icon:'✕',text:'We found accident or body repair that the vehicle history doesn\'t explain. See "Major findings" below.'}};
   if(k!=='no')T[k].text+=who==='dealer'?' Recommended only when sold with a Safety Standards Certificate and covered by an extended warranty.':' Recommended only once the car has a Safety Standards Certificate, and with an extended warranty.';
   return {k,auto,...T[k],reasons:k==='no'?(no.length?no:[]):k==='fix'?neg.fix.map(i=>i.title):[]};
 }
@@ -1536,8 +1533,8 @@ function render(){
     ${tile('Title',noCF?'No Carfax':titleV?esc(titleV):'—',noCF?'o':brandBad?'r':titleV?'g':'',noCF?'Ask the seller for one':brandBad?'Branded title':'')}
   </div></div>
   <div class="sec"><h2 class="rs">Inspector's summary</h2>${neg.notes.length?`<div class="summary">${notesHTML(neg.notes)}</div>`:'<p class="empty">Write your summary in step 4.</p>'}</div>
-  ${neg.walk.length?`<div class="sec" id="s-major"><h2 class="rs">Major findings</h2><p class="legend" style="margin:-4px 0 10px">Serious problems that a price negotiation can't fix. Read these before you decide.</p><div class="fcards">${neg.walk.map((i,n)=>negCard(i,n,'walk')).join('')}</div></div>`:''}
-  ${neg.fix.length?`<div class="sec" id="s-neg"><h2 class="rs">Topics to bring up in negotiation</h2><p class="legend" style="margin:-4px 0 10px">Focus on these findings when you talk to the ${who}. How each one is handled is up to you and the ${who}.</p>
+  ${neg.walk.length?`<div class="sec" id="s-major"><h2 class="rs">Major findings</h2><p class="legend" style="margin:-4px 0 10px">Accident or body repair that isn't explained by the Carfax or repair records. Read these before you decide.</p><div class="fcards">${neg.walk.map((i,n)=>negCard(i,n,'walk')).join('')}</div></div>`:''}
+  ${neg.fix.length?`<div class="sec" id="s-neg"><h2 class="rs">Topics to bring up in negotiation</h2><p class="legend" style="margin:-4px 0 10px">Focus on these findings when you talk to the ${who}. Mechanical issues can usually be fixed: give the ${who} the chance to repair them properly, and ask for itemized invoices for any work done before you buy.</p>
     <div class="fcards">${neg.fix.map((i,n)=>negCard(i,n,'fix')).join('')}</div></div>`:''}
   ${neg.aware.length?`<div class="sec" id="s-aware"><h2 class="rs">Know before you buy</h2>
     <div class="fcards">${neg.aware.map((i,n)=>negCard(i,n,'aware')).join('')}</div></div>`:''}
