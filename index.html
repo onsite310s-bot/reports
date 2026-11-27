@@ -501,7 +501,7 @@ ul.good li b{font:700 11pt/1 var(--display);text-transform:uppercase;letter-spac
       <textarea id="summary" style="min-height:260px" placeholder="Paste Gemini's answer here. It comes back in this layout:
 SUMMARY:
 - Overall picture of the car
-WALK AWAY:
+MAJOR FINDINGS:
 - None
 NEGOTIATE:
 - Battery: Failed, 41% health
@@ -513,7 +513,7 @@ CHECK:
 - None
 RECOMMENDATION: Recommended if fixed. ..."></textarea>
       <div class="gem"><button type="button" id="gemBtn">Copy Gemini prompt</button><span>Paste it in Gemini with your 4 PDFs, then dictate your notes after "My notes:". Paste Gemini's whole answer here.</span></div>
-      <p class="hint">Each heading goes to its own place in the report: Walk away, Negotiate (topics to bring up), Good to know, and The good. CHECK lines are only for you and never reach the customer. You can still type your own bullets the old way.</p>
+      <p class="hint">Each heading goes to its own place in the report: Major findings, Negotiate (topics to bring up), Good to know, and The good. CHECK lines are only for you and never reach the customer. You can still type your own bullets the old way.</p>
       <div id="negPreview"></div>
       <label style="margin-top:10px">Recommendation<select id="verdict"><option value="auto">Auto (from the findings)</option><option value="yes">Recommended</option><option value="fix">Recommended if fixed</option><option value="no">Not recommended</option></select></label>
 
@@ -1061,9 +1061,9 @@ const SAY={
  body:'The paint readings show repair work that isn\'t on the Carfax. What was damaged, what was replaced, and who did the work?',
  rust:'There is rust underneath. What has been done about it, and will you treat it before delivery?'};
 /* Section headers Gemini is told to use. Bullets under a header go straight to that group, no guessing. */
-const SUM_HEAD=[[/^summary$/i,'summary'],[/^(walk[- ]?away( flags| reasons| check)?|deal[- ]?breakers?|why buyers walk away)$/i,'walk'],[/^(negotiate|negotiation( topics)?|topics to bring up( in negotiation)?|bring up)$/i,'fix'],[/^(good to know|know before you buy)$/i,'aware'],[/^(the good|good news|positives?|what'?s good)$/i,'good'],[/^(check|check with me|to confirm|confirm)$/i,'check'],[/^(inspector'?s |final |my )?recommendation$/i,'rec']];
+const SUM_HEAD=[[/^summary$/i,'summary'],[/^(major( findings| issues| problems)?|walk[- ]?away( flags| reasons| check)?|deal[- ]?breakers?|why buyers walk away)$/i,'walk'],[/^(negotiate|negotiation( topics)?|topics to bring up( in negotiation)?|bring up)$/i,'fix'],[/^(good to know|know before you buy)$/i,'aware'],[/^(the good|good news|positives?|what'?s good)$/i,'good'],[/^(check|check with me|to confirm|confirm)$/i,'check'],[/^(inspector'?s |final |my )?recommendation$/i,'rec']];
 function sumHeader(l){const t=String(l).replace(/\*\*/g,'').replace(/^#+\s*/,'').replace(/^[-*•]\s*/,'').trim().replace(/\s*:\s*$/,'');if(!/:\s*$/.test(String(l).replace(/\*\*/g,'').trim())&&!/^#/.test(String(l).trim()))return null;const h=SUM_HEAD.find(([re])=>re.test(t));return h?h[1]:null}
-const isNone=t=>/^(none|n\/a|nothing( found| to report)?|no (issues|concerns|walk-?away (flags|reasons)|deal-?breakers)( found)?)\.?$/i.test(String(t).trim());
+const isNone=t=>/^(none|n\/a|nothing( found| to report)?|no (issues|concerns|major (findings|issues)|walk-?away (flags|reasons)|deal-?breakers)( found)?)\.?$/i.test(String(t).trim());
 function negotiation(summary){
   const raw=String(summary||'').split('\n').map(x=>x.trim()).filter(Boolean);
   const structured=raw.some(l=>{const h=sumHeader(l);return h&&h!=='rec'&&h!=='summary'});
@@ -1173,12 +1173,12 @@ HOW TO READ MY NOTES
 - Use only what's in the PDFs and my notes. Never add problems, causes or repairs I didn't find.
 
 MY RULES
-Walk away (deal-breakers no negotiation can fix):
+Major findings (serious problems a negotiation can't fix):
 - Accident repair that isn't on the Carfax: body filler (350 µm and up) on any panel, or 3 or more repainted panels (200 to 350 µm) with no matching accident.
 - Branded title: rebuilt, salvage, irreparable, flood, total loss, or stolen.
 - Odometer that goes backwards or doesn't add up.
 - Structural or frame damage.
-- Anything I call a walk-away or deal-breaker in my notes.
+- Anything I call major or serious in my notes.
 Negotiate (real problems the seller can fix or adjust the price for):
 - Battery that failed on state of health (SOH). A healthy battery with a low charge is NOT a fail; it only needs charging.
 - Charging system outside about 13.5 to 14.8 V.
@@ -1189,7 +1189,7 @@ Good to know (not a problem now, but the buyer should know):
 - Tires 6 to 8 years old, an accident that IS on the Carfax and matches the paint, a big repair on record, gaps in service history, one or two repainted panels with no record (could be cosmetic).
 The good: what checked out well, so the buyer gets the full picture.
 Recommendation:
-- Not recommended if there is anything under WALK AWAY.
+- Not recommended if there is anything under MAJOR FINDINGS.
 - Recommended if fixed if there is anything under NEGOTIATE.
 - Recommended if both are empty.
 - Every recommendation is only for a car sold with a Safety Standards Certificate and covered by an extended warranty. Never recommend an as-is car.
@@ -1208,7 +1208,7 @@ Reply with ONLY these 7 headings, in this order, in plain text (no bold, no #, n
 
 SUMMARY:
 - 2 or 3 sentences giving the overall picture of the car.
-WALK AWAY:
+MAJOR FINDINGS:
 - Area: finding
 NEGOTIATE:
 - Area: finding
@@ -1473,7 +1473,7 @@ function recommend(x,neg,sa,noCF){
   const who=v('seller')==='private'?'seller':'dealer';
   const T={yes:{label:'Recommended',icon:'✓',text:`Nothing found on this car is a deal-breaker.${neg.aware.length?' Read "Know before you buy" before you sign.':''}`},
     fix:{label:'Recommended if fixed',icon:'!',text:`Everything found can be addressed. We recommend this car if the ${who} takes care of the topics below. How they handle it is between you and the ${who}.`},
-    no:{label:'Not recommended',icon:'✕',text:'We found something that usually makes buyers walk away: a problem a negotiation can\'t fix. See "Walk-away check" below.'}};
+    no:{label:'Not recommended',icon:'✕',text:'We found a major issue that a negotiation can\'t fix. See "Major findings" below.'}};
   if(k!=='no')T[k].text+=who==='dealer'?' Recommended only when sold with a Safety Standards Certificate and covered by an extended warranty.':' Recommended only once the car has a Safety Standards Certificate, and with an extended warranty.';
   return {k,auto,...T[k],reasons:k==='no'?(no.length?no:[]):k==='fix'?neg.fix.map(i=>i.title):[]};
 }
@@ -1515,7 +1515,7 @@ function render(){
   const said=(sumParts().rec.match(/^(not recommended|recommended if fixed|recommended)/i)||[])[1];const saidK=said?{'not recommended':'no','recommended if fixed':'fix','recommended':'yes'}[said.toLowerCase()]:null;
   $('verdictWhy').textContent=`Auto verdict: ${{yes:'Recommended',fix:'Recommended if fixed',no:'Not recommended'}[rec.auto]}.`+(v('verdict')!=='auto'&&v('verdict')!==rec.auto?' You have overridden it.':'')+(saidK&&saidK!==rec.k?` Your summary says "${said}". Change the setting above if that's the one you want.`:'');
   const lowCodes=codes.filter(c=>c.code&&!c.include);
-  $('negPreview').innerHTML=(neg.checks.length?`<p class="res warn"><b>Gemini wants you to confirm:</b><br>${neg.checks.map(c=>'• '+esc(c)).join('<br>')}<br><small>These don't go in the report. Fix the summary, then delete the CHECK lines.</small></p>`:'')+((neg.walk.length||neg.fix.length||neg.aware.length||neg.good.length)?`<p class="hint" style="margin-top:4px"><b>Walk away:</b> ${neg.walk.map(i=>esc(i.title)).join(' · ')||'none'}<br><b>Bring up:</b> ${neg.fix.map(i=>esc(i.title)).join(' · ')||'none'}<br><b>Know before you buy:</b> ${neg.aware.map(i=>esc(i.title)).join(' · ')||'none'}<br><b>The good:</b> ${neg.good.map(g=>esc(g.title||g.text)).join(' · ')||'none'}</p>`:'');
+  $('negPreview').innerHTML=(neg.checks.length?`<p class="res warn"><b>Gemini wants you to confirm:</b><br>${neg.checks.map(c=>'• '+esc(c)).join('<br>')}<br><small>These don't go in the report. Fix the summary, then delete the CHECK lines.</small></p>`:'')+((neg.walk.length||neg.fix.length||neg.aware.length||neg.good.length)?`<p class="hint" style="margin-top:4px"><b>Major findings:</b> ${neg.walk.map(i=>esc(i.title)).join(' · ')||'none'}<br><b>Bring up:</b> ${neg.fix.map(i=>esc(i.title)).join(' · ')||'none'}<br><b>Know before you buy:</b> ${neg.aware.map(i=>esc(i.title)).join(' · ')||'none'}<br><b>The good:</b> ${neg.good.map(g=>esc(g.title||g.text)).join(' · ')||'none'}</p>`:'');
   $('vehline').innerHTML=veh||v('vin')?`<p class="vehline">${esc(veh||'Vehicle')}<small>${v('vin')?'VIN '+esc(v('vin').toUpperCase()):''}${km?' · '+km.toLocaleString()+' km':''}</small></p>`:'<p class="hint">The year, make, model, VIN and km fill in from the Carfax.</p>';
   if(noCF&&!v('vin'))$('vehline').innerHTML+='<p class="res warn">No Carfax loaded. Add the VIN and km under "Check what the PDFs gave me".</p>';
 
@@ -1536,9 +1536,7 @@ function render(){
     ${tile('Title',noCF?'No Carfax':titleV?esc(titleV):'—',noCF?'o':brandBad?'r':titleV?'g':'',noCF?'Ask the seller for one':brandBad?'Branded title':'')}
   </div></div>
   <div class="sec"><h2 class="rs">Inspector's summary</h2>${neg.notes.length?`<div class="summary">${notesHTML(neg.notes)}</div>`:'<p class="empty">Write your summary in step 4.</p>'}</div>
-  <div class="sec" id="s-walk"><h2 class="rs">Walk-away check</h2>
-    ${neg.walk.length?`<p class="legend" style="margin:-4px 0 10px">These are the problems that usually make buyers walk away, because no negotiation can fix them.</p><div class="fcards">${neg.walk.map((i,n)=>negCard(i,n,'walk')).join('')}</div>`
-    :`<p class="legend" style="margin:-4px 0 10px">I checked for the problems that usually make buyers walk away. None found.</p><div class="wchk">${walkChecks().map(t=>`<div><i aria-hidden="true">✓</i>${esc(t)}</div>`).join('')}</div>`}</div>
+  ${neg.walk.length?`<div class="sec" id="s-major"><h2 class="rs">Major findings</h2><p class="legend" style="margin:-4px 0 10px">Serious problems that a price negotiation can't fix. Read these before you decide.</p><div class="fcards">${neg.walk.map((i,n)=>negCard(i,n,'walk')).join('')}</div></div>`:''}
   ${neg.fix.length?`<div class="sec" id="s-neg"><h2 class="rs">Topics to bring up in negotiation</h2><p class="legend" style="margin:-4px 0 10px">Focus on these findings when you talk to the ${who}. How each one is handled is up to you and the ${who}.</p>
     <div class="fcards">${neg.fix.map((i,n)=>negCard(i,n,'fix')).join('')}</div></div>`:''}
   ${neg.aware.length?`<div class="sec" id="s-aware"><h2 class="rs">Know before you buy</h2>
@@ -1557,8 +1555,7 @@ function render(){
       <div><b>No cooling-off period</b>Once you sign, the deal is done. Read the bill of sale and check the disclosures before you sign.</div>
       <div><b>Check registration</b>Every dealer and salesperson must be registered with OMVIC. You can look them up at omvic.ca.</div></div></div>`}
   </section>`;
-  function walkChecks(){const o=[];if(paint.length)o.push(noCF?'No body filler found':undis.length?'No body filler or major accident repair off the record':'No unreported accident repair: the paint matches the Carfax');if(docs.carfax&&titleV)o.push('Clean title: no salvage, rebuilt, flood or total loss brand');if(docs.carfax)o.push('Odometer history is consistent');if(!o.length)o.push('Nothing found that a negotiation can\'t fix');return o}
-  function negCard(i,n,g){return `<div class="fc ${g}"><div class="fi">${ICON(i.key)}</div><div class="fb"><div class="fh"><b>${esc(i.title)}</b><span class="fs">${g==='walk'?'Walk away':g==='fix'?'Bring up':'Know'}</span></div><p>${esc(i.why)}</p>${i.chips&&i.chips.length?`<div class="chips">${i.chips.map(c=>`<span>${esc(c)}</span>`).join('')}</div>`:''}</div></div>`}
+  function negCard(i,n,g){return `<div class="fc ${g}"><div class="fi">${ICON(i.key)}</div><div class="fb"><div class="fh"><b>${esc(i.title)}</b><span class="fs">${g==='walk'?'Major':g==='fix'?'Bring up':'Know'}</span></div><p>${esc(i.why)}</p>${i.chips&&i.chips.length?`<div class="chips">${i.chips.map(c=>`<span>${esc(c)}</span>`).join('')}</div>`:''}</div></div>`}
 
   /* paint vs carfax */
   const story=paintStory(x,noCF);
@@ -1705,7 +1702,7 @@ async function buildWebHTML(){
   for(const im of r.querySelectorAll('img')){const src=im.getAttribute('src')||'';if(src.startsWith('data:image')){try{im.setAttribute('src',await shrink(src,im.closest('.appx')?1100:im.closest('.wthumbs')?240:1280,.72))}catch(e){}}}
   r.querySelectorAll('section.appx').forEach(sec=>{const pgs=[...sec.querySelectorAll('.pg')];if(!pgs.length)return;const d=document.createElement('details');d.className='appd';d.innerHTML=`<summary>Show the original (${pgs.length} page${pgs.length>1?'s':''})</summary>`;pgs.forEach(p=>d.appendChild(p));sec.appendChild(d)});
   const vk=(r.querySelector('.verdict')||{}).className||'';const vcls=/\bno\b/.test(vk)?'v-no':/\bfix\b/.test(vk)?'v-fix':'v-yes';
-  const links=[['s-verdict','Verdict',vcls],['s-walk','Walk-away check'],['s-neg','Negotiation topics'],['s-aware','Know before you buy'],['s-rights','Your rights'],['s-paint','Paint & accidents'],['s-history','History'],['s-codes','Codes'],['s-batt','Battery'],['s-tires','Tires'],['s-photos','Photos'],['s-thanks','Your discount'],['s-limits','What this covers']].filter(([id])=>r.querySelector('#'+id));
+  const links=[['s-verdict','Verdict',vcls],['s-major','Major findings'],['s-neg','Negotiation topics'],['s-aware','Know before you buy'],['s-rights','Your rights'],['s-paint','Paint & accidents'],['s-history','History'],['s-codes','Codes'],['s-batt','Battery'],['s-tires','Tires'],['s-photos','Photos'],['s-thanks','Your discount'],['s-limits','What this covers']].filter(([id])=>r.querySelector('#'+id));
   const nav=`<nav class="wnav">${links.map(([id,l,c])=>`<a href="#${id}"${c?` class="${c}"`:''}>${l}</a>`).join('')}</nav>`;
   const wa=String(v('bizPhone')).replace(/\D/g,'');const waN=wa.length===10?'1'+wa:wa;
   const css=[...document.querySelectorAll('style')].map(x=>x.textContent).join('\n');
